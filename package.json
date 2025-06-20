@@ -1,7 +1,7 @@
 {
   "name": "node-contacts-crud-api",
   "version": "0.0.1",
-  "description": "Project to practice test-driving a basic contacts API with git remote set-url origin git@github-personal:your-username/your-repo.gitNode, Express and PostgreSQL",
+  "description": "Project to practice test-driving a basic contacts API with TypeScript, Node, Express, PostgreSQL, Zod, Vitest, and Supertest",
   "main": "./backend/src/server.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
