@@ -18,7 +18,7 @@ interface Contact {
 }
 ```
 
-The API runs on a simple server powered by Express and PostgreSQL database. All endpoints are protected by validation schemas and provide thorough responses, including any errors if necessary.
+The API runs on a simple server powered by Express and a PostgreSQL database. All endpoints are protected by validation schemas and provide thorough responses, including any errors if necessary.
 
 In the test environment, the database is added via dependency injection as an in-memory version using the `pg-mem` package.
 
