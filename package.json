@@ -1,0 +1,17 @@
+{
+  "name": "node-contacts-crud-api",
+  "version": "0.0.1",
+  "description": "Project to practice test-driving a basic contacts API with git remote set-url origin git@github-personal:your-username/your-repo.gitNode, Express and PostgreSQL",
+  "main": "./backend/src/server.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "backend",
+    "api",
+    "tdd",
+    "crud"
+  ],
+  "author": "Simon Revill",
+  "license": "MIT"
+}

@@ -1,0 +1,1 @@
+export { createContactsRouter } from "./contactsController";
