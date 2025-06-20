@@ -7,7 +7,6 @@ import {
   ContactBuilder,
   makeRequest,
   generateNewContactField,
-  generateNewEmail,
   generateContactWithMissingField,
   getRandomContact,
   getPreviousOrNextUniqueEmail,
@@ -427,7 +426,10 @@ describe("Contacts API", () => {
         it("Then PUT /api/contacts/:id - should update and return the updated contact", async () => {
           // Arrange
           const existingContact = getRandomContact(fakeContactData);
-          const updatedEmail = generateNewEmail(existingContact);
+          const updatedEmail = generateNewContactField(
+            existingContact,
+            "email"
+          );
           const updatedContact: Contact = {
             ...existingContact,
             email: updatedEmail,

@@ -204,17 +204,6 @@ export const generateNewContactField = (
   return newFieldValue;
 };
 
-export const generateNewEmail = (existingContact: Contact) => {
-  const existingContactEmail = existingContact.email;
-  const newEmail = faker.internet.email();
-
-  if (existingContactEmail === newEmail) {
-    generateNewEmail(existingContact);
-  }
-
-  return newEmail;
-};
-
 export const generateContactWithMissingField = (
   existingContact: Contact,
   excludedField: keyof ContactInput
