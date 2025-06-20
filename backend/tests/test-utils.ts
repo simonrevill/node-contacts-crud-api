@@ -204,17 +204,6 @@ export const generateNewContactField = (
   return newFieldValue;
 };
 
-export const generateNewFirstName = (existingContact: Contact) => {
-  const existingContactFirstName = existingContact.firstName;
-  const newFirstName = faker.person.firstName();
-
-  if (existingContactFirstName === newFirstName) {
-    generateNewFirstName(existingContact);
-  }
-
-  return newFirstName;
-};
-
 export const generateNewLastName = (existingContact: Contact) => {
   const existingContactLastName = existingContact.lastName;
   const newLastName = faker.person.lastName();
