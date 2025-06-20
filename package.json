@@ -4,7 +4,7 @@
   "description": "Project to practice test-driving a basic contacts API with TypeScript, Node, Express, PostgreSQL, Zod, Vitest, and Supertest",
   "main": "./backend/src/server.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:backend": "cd backend && npm test"
   },
   "keywords": [
     "backend",
