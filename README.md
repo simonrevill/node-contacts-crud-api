@@ -2,9 +2,29 @@
 
 [![codecov](https://codecov.io/github/simonrevill/node-contacts-crud-api/branch/main/graph/badge.svg?token=QTB4X3Y34Y)](https://codecov.io/github/simonrevill/node-contacts-crud-api)
 
-This project is my attempt at using TDD to build and consume a basic REST API.
+## Introduction
 
-The REST API specification is as follows:
+This project is my attempt at using TDD to build and consume a basic REST API to help you manage a list of contacts.
+
+A contact is currently defined as:
+
+```ts
+interface Contact {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  createdAt: string;
+}
+```
+
+The API runs on a simple server powered by Express and PostgreSQL database. All endpoints are protected by validation schemas and provide thorough responses, including any errors if necessary.
+
+In the test environment, the database is added via dependency injection as an in-memory version using the `pg-mem` package.
+
+## Routes
+
+The available API routes are as follows:
 
 | CRUD Operation   | HTTP Method | Endpoint          |
 | ---------------- | ----------- | ----------------- |
