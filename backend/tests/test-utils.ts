@@ -181,6 +181,29 @@ export const getPreviousOrNextUniqueEmail = (
       : existingContactIndex + 1
   ].email;
 
+export const generateNewContactField = (
+  existingContact: Contact,
+  field: keyof ContactInput
+) => {
+  const existingContactField = existingContact[field];
+  let newFieldValue = "";
+
+  switch (field) {
+    case "firstName":
+      newFieldValue = faker.person.firstName();
+    case "lastName":
+      newFieldValue = faker.person.lastName();
+    case "email":
+      newFieldValue = faker.internet.email();
+  }
+
+  if (existingContactField === newFieldValue) {
+    generateNewContactField(existingContact, field);
+  }
+
+  return newFieldValue;
+};
+
 export const generateNewFirstName = (existingContact: Contact) => {
   const existingContactFirstName = existingContact.firstName;
   const newFirstName = faker.person.firstName();
