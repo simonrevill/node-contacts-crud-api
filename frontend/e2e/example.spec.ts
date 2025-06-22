@@ -1,20 +1,18 @@
 import { test, expect } from "@playwright/test";
 
-const { describe } = test;
+const { describe, beforeEach } = test;
+
+beforeEach(async ({ page }) => {
+  await page.goto("/");
+});
 
 describe("initial page load", () => {
   test("page has correct title", async ({ page }) => {
-    // Arrange
-    await page.goto("/");
-
     // Assert
     await expect(page).toHaveTitle(/Contacts/);
   });
 
   test("page has correct heading", async ({ page }) => {
-    // Arrange
-    await page.goto("/");
-
     // Act
     const heading = await page.getByRole("heading", {
       level: 1,
