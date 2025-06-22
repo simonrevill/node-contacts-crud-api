@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 const { describe } = test;
 
-describe("", () => {
+describe("initial page load", () => {
   test("page has correct title", async ({ page }) => {
     // Arrange
     await page.goto("/");
