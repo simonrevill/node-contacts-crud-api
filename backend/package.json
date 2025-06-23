@@ -4,14 +4,20 @@
   "description": "Practice application for building a test-driven API to manage contacts.",
   "main": "src/index.js",
   "type": "module",
+  "author": "Simon Revill",
+  "license": "MIT",
   "scripts": {
     "dev": "tsx watch --env-file=.env src/server.ts",
     "test": "vitest --coverage",
     "test:coverage": "vitest run --coverage",
     "test:mutation": "stryker run"
   },
-  "author": "Simon Revill",
-  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "pg": "^8.16.0",
+    "zod": "^3.25.56"
+  },
   "devDependencies": {
     "@faker-js/faker": "^9.8.0",
     "@stryker-mutator/core": "^9.0.1",
@@ -26,11 +32,5 @@
     "tsx": "^4.19.4",
     "typescript": "^5.8.3",
     "vitest": "^3.1.4"
-  },
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^5.1.0",
-    "pg": "^8.16.0",
-    "zod": "^3.25.56"
   }
 }
