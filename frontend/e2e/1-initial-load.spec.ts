@@ -9,17 +9,18 @@ beforeEach(async ({ page }) => {
 describe("initial page load", () => {
   test("page has correct title", async ({ page }) => {
     // Assert
-    await expect(page).toHaveTitle(/Contacts/);
+    await expect(page).toHaveTitle(/Contact Manager/);
   });
 
   test("page has correct heading", async ({ page }) => {
     // Act
-    const heading = await page.getByRole("heading", {
+    const header = page.getByRole("banner");
+    const heading = header.getByRole("heading", {
       level: 1,
-      name: /Contacts/,
+      name: /Contact Manager/,
     });
 
     // Assert
-    await expect(heading).toBeVisible();
+    expect(heading).toBeVisible();
   });
 });

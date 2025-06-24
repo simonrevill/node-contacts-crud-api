@@ -1,5 +1,9 @@
 function App() {
-  return <h1>Contacts</h1>;
+  return (
+    <header>
+      <h1>Contact Manager</h1>
+    </header>
+  );
 }
 
 export default App;
