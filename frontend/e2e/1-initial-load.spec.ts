@@ -25,6 +25,6 @@ describe("Initial load of the application", () => {
     });
 
     // Assert
-    expect(heading).toBeVisible();
+    await expect(heading).toBeVisible();
   });
 });
