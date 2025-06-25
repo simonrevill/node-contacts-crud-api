@@ -27,4 +27,32 @@ describe("Initial load of the application", () => {
     // Assert
     await expect(heading).toBeVisible();
   });
+
+  test("User sees error message when the application fails to load data", async ({
+    page,
+  }) => {
+    // Arrange
+    const errorMessageHeading = page.getByText("Something went wrong.");
+    const errorMessageSubheading = page.getByText("Please try again later");
+
+    // Assert
+    await expect(errorMessageHeading).toBeVisible();
+    await expect(errorMessageSubheading).toBeVisible();
+  });
+
+  test("User sees an empty contact list when the application loads successfully", async ({
+    page,
+  }) => {
+    // Arrange
+    const errorMessageHeading = page.getByText("No contacts");
+    const errorMessageSubheading = page.getByText(
+      "Add a contact to get started"
+    );
+    const addContactButton = page.getByRole("button", { name: "Add contact" });
+
+    // Assert
+    await expect(errorMessageHeading).toBeVisible();
+    await expect(errorMessageSubheading).toBeVisible();
+    await expect(addContactButton).toBeVisible();
+  });
 });
