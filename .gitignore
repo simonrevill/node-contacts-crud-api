@@ -15,6 +15,10 @@ coverage
 reports
 *.stryker.tmp
 .env
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
 
 # Editor directories and files
 .vscode/*
