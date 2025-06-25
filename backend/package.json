@@ -10,7 +10,8 @@
     "dev": "tsx watch --env-file=.env src/server.ts",
     "test": "vitest --coverage",
     "test:coverage": "vitest run --coverage",
-    "test:mutation": "stryker run"
+    "test:mutation": "stryker run",
+    "qa:tsc": "npx tsc --noEmit"
   },
   "dependencies": {
     "cors": "^2.8.5",

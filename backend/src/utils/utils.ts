@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 
-import { ContactErrorConstructor } from "../types";
+import { type ContactErrorConstructor } from "../types";
 
 export class ContactError extends Error {
   code?: string;

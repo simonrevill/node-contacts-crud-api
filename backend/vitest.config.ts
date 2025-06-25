@@ -5,11 +5,12 @@ export default defineConfig({
     globals: true,
     environment: "node",
     coverage: {
+      provider: "v8",
       exclude: [
         ...coverageConfigDefaults.exclude,
-        "./src/server.ts",
-        "./src/domain/models",
-        "./src/types.ts",
+        "src/server.ts",
+        "src/domain/models",
+        "src/types.ts",
         "src/**/*/index.ts",
         "./tests",
       ],

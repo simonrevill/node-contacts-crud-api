@@ -7,7 +7,7 @@ import { newDb } from "pg-mem";
 import { createApp } from "../src/app";
 import { ContactsRepository } from "../src/infrastructure/repositories";
 import { type IContactsRepository, type HTTPRequestMethod } from "../src/types";
-import { type Contact, ContactInput } from "../src/domain/models";
+import { type Contact, type ContactInput } from "../src/domain/models";
 
 interface MakeRequestConfig {
   app: Express;
