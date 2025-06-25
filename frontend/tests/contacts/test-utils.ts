@@ -1,6 +1,6 @@
-import type { IContactsAPI } from "@/types";
+import type { IContactsAPI } from "../../src/types";
 import type { Contact } from "../../../backend/src/domain/models/Contact";
-import { ContactError } from "../../../backend/src/utils";
+import { ContactError } from "shared";
 
 export class FakeContactsAPI implements IContactsAPI {
   async fetchContacts(): Promise<Contact[]> {

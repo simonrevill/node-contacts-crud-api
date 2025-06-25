@@ -5,7 +5,7 @@ import {
   type NextFunction,
 } from "express";
 
-import { ContactError } from "../../utils";
+import { ContactError } from "shared";
 import { UNIQUE_VIOLATION } from "../../constants";
 
 export const errorHandler: ErrorRequestHandler = (

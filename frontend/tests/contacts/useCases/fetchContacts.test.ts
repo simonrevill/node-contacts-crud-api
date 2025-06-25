@@ -1,7 +1,7 @@
-import { fetchContacts } from "@/contacts/useCases";
+import { fetchContacts } from "../../../src/contacts/useCases";
 import { FakeContactsAPI } from "../test-utils";
-import type { IContactsAPI } from "@/types";
-import { ContactError } from "../../../../backend/src/utils";
+import type { IContactsAPI } from "../../../src/types";
+import { ContactError } from "shared";
 
 const fakeAPI: IContactsAPI = new FakeContactsAPI();
 

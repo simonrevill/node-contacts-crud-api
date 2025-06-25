@@ -8,7 +8,7 @@
     "skipLibCheck": true,
     "types": ["vitest/globals", "@types/node"],
     "paths": {
-      "@/*": ["./src/*"]
+      "shared": ["../shared/index.ts"]
     },
 
     /* Bundler mode */

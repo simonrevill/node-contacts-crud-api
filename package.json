@@ -14,5 +14,8 @@
     "crud"
   ],
   "author": "Simon Revill",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "zod": "^3.25.67"
+  }
 }

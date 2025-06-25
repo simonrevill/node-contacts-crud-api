@@ -1,6 +1,10 @@
 import { z } from "zod/v4";
 
-import { type ContactErrorConstructor } from "../types";
+export interface ContactErrorConstructor {
+  code?: string;
+  status: number;
+  error: string | z.core.$ZodIssue[];
+}
 
 export class ContactError extends Error {
   code?: string;
