@@ -2,7 +2,6 @@
   "name": "node-contacts-crud-api",
   "version": "0.0.1",
   "description": "Project to practice test-driving a basic contacts API with TypeScript, Node, Express, PostgreSQL, Zod, Vitest, and Supertest",
-  "main": "./backend/src/server.ts",
   "scripts": {
     "test:frontend": "cd frontend && npm test",
     "test:backend": "cd backend && npm test"
