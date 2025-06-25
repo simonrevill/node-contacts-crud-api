@@ -5,6 +5,7 @@ import {
 } from "vitest/config";
 import react from "@vitejs/plugin-react";
 import tsconfigPaths from "vite-tsconfig-paths";
+import path from "path";
 
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
@@ -26,6 +27,11 @@ export default defineConfig({
         "playwright.config.ts",
         "src/types.ts",
       ],
+    },
+  },
+  resolve: {
+    alias: {
+      shared: path.resolve(__dirname, "../shared/index.ts"),
     },
   },
 });
