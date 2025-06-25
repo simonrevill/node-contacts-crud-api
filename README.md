@@ -1,7 +1,7 @@
 # Node Contacts CRUD API
 
 [![codecov](https://codecov.io/github/simonrevill/node-contacts-crud-api/branch/main/graph/badge.svg?token=QTB4X3Y34Y)](https://codecov.io/github/simonrevill/node-contacts-crud-api)
-[![Backend CI](https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/backend_qa.yml/badge.svg?branch=main)](https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/backend_qa.yml)
+[![CI pipeline](https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/backend_qa.yml/badge.svg?branch=main)](https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/backend_qa.yml)
 [![Playwright Tests](https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/e2e_qa.yml/badge.svg)](https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/e2e_qa.yml)
 
 ## Introduction
