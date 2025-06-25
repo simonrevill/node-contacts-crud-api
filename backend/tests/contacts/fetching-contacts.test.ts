@@ -7,13 +7,13 @@ import { initialise, makeRequest, getRandomContact } from "../test-utils";
 let app: Express;
 let fakeContactData: Contact[];
 
-beforeEach(async () => {
-  const setup = await initialise({ withFailingMockRepository: true });
-  app = setup.app;
-  fakeContactData = setup.fakeData;
-});
-
 describe("Given there is an issue with fetching data from the database", () => {
+  beforeEach(async () => {
+    const setup = await initialise({ withFailingMockRepository: true });
+    app = setup.app;
+    fakeContactData = setup.fakeData;
+  });
+
   describe("When I want to fetch a list of contacts", () => {
     it("Then GET /api/contacts - should return a 500 Internal Server Error", async () => {
       // Arrange & Act
