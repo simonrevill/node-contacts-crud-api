@@ -1,4 +1,4 @@
-name: Frontend CI pipeline
+name: Frontend CI Pipeline
 
 on:
   push:
