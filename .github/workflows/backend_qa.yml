@@ -13,6 +13,18 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      - name: Cache Root Node Modules
+        uses: actions/cache@v3
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-root-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-root-node-
+
+      - name: Install dependencies at root
+        run: npm ci
+        working-directory: .
+
       - name: Read Node version from .nvmrc
         id: get-node-version
         run: echo "version=$(cat .nvmrc)" >> $GITHUB_OUTPUT
@@ -31,7 +43,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Install dependencies
+      - name: Install dependencies in backend
         run: npm ci
         working-directory: ./backend
 
