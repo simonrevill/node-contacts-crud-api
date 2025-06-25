@@ -1,6 +1,8 @@
-/// <reference types="vitest/config" />
-
-import { defineConfig } from "vite";
+import {
+  configDefaults,
+  coverageConfigDefaults,
+  defineConfig,
+} from "vitest/config";
 import react from "@vitejs/plugin-react";
 import tsconfigPaths from "vite-tsconfig-paths";
 
@@ -14,5 +16,14 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: "./vitest.setup.ts",
     reporters: ["verbose"],
+    include: [...configDefaults.include, "tests"],
+    exclude: [...configDefaults.exclude, "e2e"],
+    coverage: {
+      exclude: [
+        ...coverageConfigDefaults.exclude,
+        "e2e",
+        "playwright.config.ts",
+      ],
+    },
   },
 });
