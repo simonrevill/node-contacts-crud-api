@@ -22,6 +22,7 @@ export default defineConfig({
       exclude: [
         ...coverageConfigDefaults.exclude,
         "e2e",
+        "playwright-report",
         "playwright.config.ts",
       ],
     },
