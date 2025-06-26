@@ -1,14 +1,12 @@
 import { fetchContacts } from "../../../src/contacts/useCases";
-import { FakeContactsAPI } from "../test-utils";
-import type { IContactsAPI } from "../../../src/types";
+import { createMockContactData, FakeContactsAPI } from "../test-utils";
 import { ContactError } from "shared";
-
-const fakeAPI: IContactsAPI = new FakeContactsAPI();
 
 describe("Fetching contacts", async () => {
   it("should throw an error when there is a problem fetching contacts from the server", async () => {
     // Arrange
-    const fetchContactsPromise = fetchContacts(fakeAPI);
+    const fakeApiWithServerError = new FakeContactsAPI([], true);
+    const fetchContactsPromise = fetchContacts(fakeApiWithServerError);
 
     // Act & Assert
     await expect(fetchContactsPromise).rejects.toBeInstanceOf(ContactError);
@@ -16,5 +14,17 @@ describe("Fetching contacts", async () => {
       status: 500,
       error: "Something went wrong.",
     });
+  });
+
+  it("should return a list of contacts", async () => {
+    // Arrange
+    const fakeContactData = createMockContactData(10);
+    const fakeApiWithContactsData = new FakeContactsAPI(fakeContactData);
+
+    // Act
+    const result = await fetchContacts(fakeApiWithContactsData);
+
+    // Assert
+    expect(result).toStrictEqual(fakeContactData);
   });
 });
