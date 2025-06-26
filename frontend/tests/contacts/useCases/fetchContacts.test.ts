@@ -16,7 +16,19 @@ describe("Fetching contacts", async () => {
     });
   });
 
-  it("should return a list of contacts", async () => {
+  it("should return an empty list of contacts when there are no existing contacts in the database", async () => {
+    // Arrange
+    const fakeContactData = createMockContactData(0);
+    const fakeApiWithContactsData = new FakeContactsAPI(fakeContactData);
+
+    // Act
+    const result = await fetchContacts(fakeApiWithContactsData);
+
+    // Assert
+    expect(result).toStrictEqual(fakeContactData);
+  });
+
+  it("should return a list of contacts when there are existing contacts in the database", async () => {
     // Arrange
     const fakeContactData = createMockContactData(10);
     const fakeApiWithContactsData = new FakeContactsAPI(fakeContactData);
