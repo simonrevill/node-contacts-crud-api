@@ -1,9 +1,7 @@
+import { Header } from "./contacts/components/Header";
+
 function App() {
-  return (
-    <header>
-      <h1>Contact Manager</h1>
-    </header>
-  );
+  return <Header />;
 }
 
 export default App;
