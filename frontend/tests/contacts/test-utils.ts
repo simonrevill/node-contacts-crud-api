@@ -39,7 +39,7 @@ export const createMockContactData = (count: number): Contact[] => {
 };
 
 export const initialise = (config?: {
-  contactsToGenerate: number;
+  contactsToGenerate?: number;
   shouldThrowServerError?: boolean;
 }) => {
   const contactsToGenerate = config?.contactsToGenerate || 0;

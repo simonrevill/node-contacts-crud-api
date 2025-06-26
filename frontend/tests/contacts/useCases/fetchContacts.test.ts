@@ -10,7 +10,6 @@ let fakeContactData: Contact[];
 describe("Fetching contacts with a server error", async () => {
   beforeEach(() => {
     const { data, api } = initialise({
-      contactsToGenerate: 0,
       shouldThrowServerError: true,
     });
 
@@ -33,9 +32,7 @@ describe("Fetching contacts with a server error", async () => {
 
 describe("Fetching contacts when there are no existing contacts in the database", async () => {
   beforeEach(() => {
-    const { data, api } = initialise({
-      contactsToGenerate: 0,
-    });
+    const { data, api } = initialise();
 
     fakeContactData = data;
     fakeApi = api;
