@@ -37,3 +37,18 @@ export const createMockContactData = (count: number): Contact[] => {
     { count }
   );
 };
+
+export const initialise = (config?: {
+  contactsToGenerate: number;
+  shouldThrowServerError?: boolean;
+}) => {
+  const contactsToGenerate = config?.contactsToGenerate || 0;
+
+  const data = createMockContactData(contactsToGenerate);
+  const api = new FakeContactsAPI(data, config?.shouldThrowServerError);
+
+  return {
+    data,
+    api,
+  };
+};

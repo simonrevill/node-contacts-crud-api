@@ -1,12 +1,26 @@
+import type { Contact } from "../../../../backend/src/domain/models/Contact";
 import { fetchContacts } from "../../../src/contacts/useCases";
-import { createMockContactData, FakeContactsAPI } from "../test-utils";
+import type { IContactsAPI } from "../../../src/types";
+import { initialise } from "../test-utils";
 import { ContactError } from "shared";
 
-describe("Fetching contacts", async () => {
+let fakeApi: IContactsAPI;
+let fakeContactData: Contact[];
+
+describe("Fetching contacts with a server error", async () => {
+  beforeEach(() => {
+    const { data, api } = initialise({
+      contactsToGenerate: 0,
+      shouldThrowServerError: true,
+    });
+
+    fakeContactData = data;
+    fakeApi = api;
+  });
+
   it("should throw an error when there is a problem fetching contacts from the server", async () => {
     // Arrange
-    const fakeApiWithServerError = new FakeContactsAPI([], true);
-    const fetchContactsPromise = fetchContacts(fakeApiWithServerError);
+    const fetchContactsPromise = fetchContacts(fakeApi);
 
     // Act & Assert
     await expect(fetchContactsPromise).rejects.toBeInstanceOf(ContactError);
@@ -15,26 +29,40 @@ describe("Fetching contacts", async () => {
       error: "Something went wrong.",
     });
   });
+});
 
-  it("should return an empty list of contacts when there are no existing contacts in the database", async () => {
-    // Arrange
-    const fakeContactData = createMockContactData(0);
-    const fakeApiWithContactsData = new FakeContactsAPI(fakeContactData);
+describe("Fetching contacts when there are no existing contacts in the database", async () => {
+  beforeEach(() => {
+    const { data, api } = initialise({
+      contactsToGenerate: 0,
+    });
 
-    // Act
-    const result = await fetchContacts(fakeApiWithContactsData);
+    fakeContactData = data;
+    fakeApi = api;
+  });
+
+  it("should return an empty list of contacts ", async () => {
+    // Arrange & Act
+    const result = await fetchContacts(fakeApi);
 
     // Assert
     expect(result).toStrictEqual(fakeContactData);
   });
+});
+
+describe("Fetching contacts when there are existing contacts in the database", async () => {
+  beforeEach(() => {
+    const { data, api } = initialise({
+      contactsToGenerate: 10,
+    });
+
+    fakeContactData = data;
+    fakeApi = api;
+  });
 
   it("should return a list of contacts when there are existing contacts in the database", async () => {
-    // Arrange
-    const fakeContactData = createMockContactData(10);
-    const fakeApiWithContactsData = new FakeContactsAPI(fakeContactData);
-
-    // Act
-    const result = await fetchContacts(fakeApiWithContactsData);
+    // Arrange & Act
+    const result = await fetchContacts(fakeApi);
 
     // Assert
     expect(result).toStrictEqual(fakeContactData);
