@@ -6,12 +6,12 @@ import App from "./App.tsx";
 import { ContactsApiProvider } from "./contacts/api/ContactsApiProvider.tsx";
 import { ContactsApi } from "./contacts/api/ContactsApi.ts";
 
-const contactsApiServive = new ContactsApi();
+const contactsApi = new ContactsApi();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ChakraProvider value={defaultSystem}>
-      <ContactsApiProvider api={contactsApiServive}>
+      <ContactsApiProvider api={contactsApi}>
         <App />
       </ContactsApiProvider>
     </ChakraProvider>
