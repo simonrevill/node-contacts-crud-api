@@ -4,9 +4,9 @@ import { ChakraProvider, defaultSystem } from "@chakra-ui/react";
 
 import App from "./App.tsx";
 import { ContactsApiProvider } from "./contacts/api/ContactsApiProvider.tsx";
-import { ContactsApi } from "./contacts/api/ContactsApi.ts";
+import { createContactsApiAdapter } from "./contacts/api/ContactsApiService.ts";
 
-const contactsApi = new ContactsApi();
+const contactsApi = createContactsApiAdapter();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

@@ -1,22 +1,18 @@
 import { screen, within } from "@testing-library/react";
-import { initialise, renderWithApi } from "../test-utils";
+import { renderWithApi } from "../test-utils";
 import { ContactsPage } from "../../../src/contacts/views/ContactsPage";
-import type { IContactsAPI } from "../../../src/types";
-
-let fakeApi: IContactsAPI;
+import { createContactsApiAdapter } from "../../../src/contacts/api/ContactsApiService";
 
 describe("ContactsPage component tests", () => {
-  beforeEach(() => {
-    const { api } = initialise({
-      shouldThrowServerError: true,
-    });
-
-    fakeApi = api;
-  });
-
-  it("should show an error message when there is a problem fetching contacts", async () => {
+  it.only("should show an error message when there is a problem fetching contacts", async () => {
     // Arrange
-    renderWithApi(<ContactsPage />, { api: fakeApi });
+    const spy = vi.fn().mockResolvedValue({
+      ok: false,
+      json: () => ({ status: 500, error: "Something went wrong." }),
+    });
+    renderWithApi(<ContactsPage />, {
+      api: createContactsApiAdapter({ request: spy }),
+    });
 
     // Assert
     const alert = await screen.findByRole("alert");
