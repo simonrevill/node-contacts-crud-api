@@ -4,7 +4,7 @@ import { fetchContacts } from "../../../src/contacts/useCases";
 import { createMockContactData } from "../test-utils";
 import { ContactError } from "shared";
 
-describe("Fetching contacts with a server error", async () => {
+describe("Fetching contacts use case", async () => {
   it("should throw an error when there is a problem fetching contacts from the server", async () => {
     // Arrange
     const mockServerError = new ContactError({
@@ -21,10 +21,8 @@ describe("Fetching contacts with a server error", async () => {
     await expect(fetchContactsPromise).rejects.toBeInstanceOf(ContactError);
     await expect(fetchContactsPromise).rejects.toMatchObject(mockServerError);
   });
-});
 
-describe("Fetching contacts when there are no existing contacts in the database", async () => {
-  it("should return an empty list of contacts ", async () => {
+  it("should return an empty list of contacts when there are existing contacts in the database", async () => {
     // Arrange
     const fakeEmptyContactData: Contact[] = [];
     const mock = vi.fn().mockResolvedValue({
@@ -39,9 +37,7 @@ describe("Fetching contacts when there are no existing contacts in the database"
     // Assert
     expect(result).toStrictEqual([]);
   });
-});
 
-describe("Fetching contacts when there are existing contacts in the database", async () => {
   it("should return a list of contacts when there are existing contacts in the database", async () => {
     // Arrange
     const fakeContactData = createMockContactData(3);
