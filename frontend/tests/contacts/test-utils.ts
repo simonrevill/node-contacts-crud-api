@@ -21,22 +21,30 @@ export const createMockContactData = (count: number): Contact[] => {
   );
 };
 
-export function renderWithApi(
-  ui: React.ReactElement,
-  { api, ...renderOptions }: { api: IContactsAPI } & RenderOptions
-) {
-  return render(
-    React.createElement(ContactsApiProvider, { api, children: ui }),
-    renderOptions
-  );
-}
-
 export function renderWithChakraProvider(
   ui: React.ReactElement,
   renderOptions?: RenderOptions
 ) {
   return render(
     React.createElement(ChakraProvider, { value: defaultSystem, children: ui }),
+    renderOptions
+  );
+}
+
+export function renderWithProviders(
+  ui: React.ReactElement,
+  {
+    api,
+    ...renderOptions
+  }: {
+    api: IContactsAPI;
+  } & RenderOptions
+) {
+  return render(
+    React.createElement(ChakraProvider, {
+      value: defaultSystem,
+      children: React.createElement(ContactsApiProvider, { api, children: ui }),
+    }),
     renderOptions
   );
 }

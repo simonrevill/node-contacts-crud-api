@@ -1,5 +1,5 @@
 import { screen, within } from "@testing-library/react";
-import { createMockContactData, renderWithApi } from "../test-utils";
+import { createMockContactData, renderWithProviders } from "../test-utils";
 import { ContactsPage } from "../../../src/contacts/views/ContactsPage";
 import { createContactsApiAdapter } from "../../../src/contacts/api/ContactsApiService";
 import { ContactError } from "shared";
@@ -15,7 +15,7 @@ describe("ContactsPage component tests", () => {
       ok: false,
       json: () => mockServerError,
     });
-    renderWithApi(<ContactsPage />, {
+    renderWithProviders(<ContactsPage />, {
       api: createContactsApiAdapter({ request: spy }),
     });
 
@@ -31,6 +31,8 @@ describe("ContactsPage component tests", () => {
     expect(subheading).toBeVisible();
   });
 
+  it("should show a no contacts alert when there are no contacts", async () => {});
+
   it("should show a list of contacts", async () => {
     // Arrange
     const fakeContactData = createMockContactData(3);
@@ -38,7 +40,7 @@ describe("ContactsPage component tests", () => {
       ok: true,
       json: () => fakeContactData,
     });
-    renderWithApi(<ContactsPage />, {
+    renderWithProviders(<ContactsPage />, {
       api: createContactsApiAdapter({ request: spy }),
     });
 
