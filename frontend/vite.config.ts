@@ -20,12 +20,14 @@ export default defineConfig({
     include: [...configDefaults.include, "tests"],
     exclude: [...configDefaults.exclude, "e2e"],
     coverage: {
+      include: ["src/**/*.{ts,tsx}"],
       exclude: [
         ...coverageConfigDefaults.exclude,
         "e2e",
         "playwright-report",
         "playwright.config.ts",
         "src/types.ts",
+        "**/*/index.ts",
       ],
     },
   },

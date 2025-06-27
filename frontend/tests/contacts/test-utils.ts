@@ -1,3 +1,6 @@
+import React from "react";
+import { render, type RenderOptions } from "@testing-library/react";
+import { ContactsApiProvider } from "../../src/contacts/api/ContactsApiProvider";
 import { faker } from "@faker-js/faker";
 
 import type { IContactsAPI } from "../../src/types";
@@ -52,3 +55,13 @@ export const initialise = (config?: {
     api,
   };
 };
+
+export function renderWithApi(
+  ui: React.ReactElement,
+  { api, ...renderOptions }: { api: IContactsAPI } & RenderOptions
+) {
+  return render(
+    React.createElement(ContactsApiProvider, { api, children: ui }),
+    renderOptions
+  );
+}
