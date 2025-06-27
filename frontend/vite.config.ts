@@ -26,6 +26,8 @@ export default defineConfig({
         "e2e",
         "playwright-report",
         "playwright.config.ts",
+        "src/App.tsx",
+        "src/main.tsx",
         "src/types.ts",
         "**/*/index.ts",
       ],
