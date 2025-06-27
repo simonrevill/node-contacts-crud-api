@@ -5,7 +5,7 @@ import { NoContacts } from "../../../src/contacts/components";
 import { renderWithChakraProvider } from "../test-utils";
 
 describe("NoContacts component tests", () => {
-  it("should render the the not contacts message and a button to add  new contact", () => {
+  it("should render the the no contacts message and a button to add a new contact", () => {
     // Arrange
     const onAddContactFake = () => {};
     renderWithChakraProvider(<NoContacts onAddContact={onAddContactFake} />);
