@@ -13,7 +13,6 @@ describe("Fetching contacts with a server error", async () => {
     });
     const mock = vi.fn().mockResolvedValue({
       ok: false,
-      json: () => mockServerError,
     });
     const fakeApi = createContactsApiAdapter({ request: mock });
     const fetchContactsPromise = fetchContacts(fakeApi);

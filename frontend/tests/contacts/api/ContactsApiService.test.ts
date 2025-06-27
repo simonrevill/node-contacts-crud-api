@@ -9,13 +9,12 @@ describe("API service adapter tests", () => {
       status: 500,
       error: "Something went wrong.",
     });
-    const spy = vi.fn().mockResolvedValue({
+    const mock = vi.fn().mockResolvedValue({
       ok: false,
-      json: () => "x",
     });
 
     // Act
-    const { fetchContacts } = createContactsApiAdapter({ request: spy });
+    const { fetchContacts } = createContactsApiAdapter({ request: mock });
 
     // Assert
     await expect(fetchContacts()).rejects.toMatchObject(mockServerError);
