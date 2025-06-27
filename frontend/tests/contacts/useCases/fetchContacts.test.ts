@@ -1,24 +1,17 @@
 import type { Contact } from "../../../../backend/src/domain/models/Contact";
+import { createContactsApiAdapter } from "../../../src/contacts/api/ContactsApiService";
 import { fetchContacts } from "../../../src/contacts/useCases";
-import type { IContactsAPI } from "../../../src/types";
-import { initialise } from "../test-utils";
+import { createMockContactData } from "../test-utils";
 import { ContactError } from "shared";
 
-let fakeApi: IContactsAPI;
-let fakeContactData: Contact[];
-
 describe("Fetching contacts with a server error", async () => {
-  beforeEach(() => {
-    const { data, api } = initialise({
-      shouldThrowServerError: true,
-    });
-
-    fakeContactData = data;
-    fakeApi = api;
-  });
-
   it("should throw an error when there is a problem fetching contacts from the server", async () => {
     // Arrange
+    const mock = vi.fn().mockResolvedValue({
+      ok: false,
+      json: () => ({ status: 500, error: "Something went wrong." }),
+    });
+    const fakeApi = createContactsApiAdapter({ request: mock });
     const fetchContactsPromise = fetchContacts(fakeApi);
 
     // Act & Assert
@@ -31,34 +24,34 @@ describe("Fetching contacts with a server error", async () => {
 });
 
 describe("Fetching contacts when there are no existing contacts in the database", async () => {
-  beforeEach(() => {
-    const { data, api } = initialise();
-
-    fakeContactData = data;
-    fakeApi = api;
-  });
-
   it("should return an empty list of contacts ", async () => {
-    // Arrange & Act
+    // Arrange
+    const fakeEmptyContactData: Contact[] = [];
+    const mock = vi.fn().mockResolvedValue({
+      ok: true,
+      json: () => fakeEmptyContactData,
+    });
+    const fakeApi = createContactsApiAdapter({ request: mock });
+
+    // Act
     const result = await fetchContacts(fakeApi);
 
     // Assert
-    expect(result).toStrictEqual(fakeContactData);
+    expect(result).toStrictEqual([]);
   });
 });
 
 describe("Fetching contacts when there are existing contacts in the database", async () => {
-  beforeEach(() => {
-    const { data, api } = initialise({
-      contactsToGenerate: 10,
-    });
-
-    fakeContactData = data;
-    fakeApi = api;
-  });
-
   it("should return a list of contacts when there are existing contacts in the database", async () => {
-    // Arrange & Act
+    // Arrange
+    const fakeContactData = createMockContactData(3);
+    const mock = vi.fn().mockResolvedValue({
+      ok: true,
+      json: () => fakeContactData,
+    });
+    const fakeApi = createContactsApiAdapter({ request: mock });
+
+    // Act
     const result = await fetchContacts(fakeApi);
 
     // Assert

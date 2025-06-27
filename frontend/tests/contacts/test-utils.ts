@@ -5,28 +5,6 @@ import { faker } from "@faker-js/faker";
 
 import type { IContactsAPI } from "../../src/types";
 import type { Contact } from "../../../backend/src/domain/models/Contact";
-import { ContactError } from "shared";
-
-export class FakeContactsAPI implements IContactsAPI {
-  shouldThrowServerError: boolean;
-  contactsData: Contact[];
-
-  constructor(
-    contactsData: Contact[] = [],
-    shouldThrowServerError: boolean = false
-  ) {
-    this.contactsData = contactsData;
-    this.shouldThrowServerError = shouldThrowServerError;
-  }
-
-  async fetchContacts(): Promise<Contact[]> {
-    if (this.shouldThrowServerError) {
-      throw new ContactError({ status: 500, error: "Something went wrong." });
-    }
-
-    return Promise.resolve(this.contactsData);
-  }
-}
 
 export const createMockContactData = (count: number): Contact[] => {
   return faker.helpers.multiple<Contact>(
@@ -39,21 +17,6 @@ export const createMockContactData = (count: number): Contact[] => {
     }),
     { count }
   );
-};
-
-export const initialise = (config?: {
-  contactsToGenerate?: number;
-  shouldThrowServerError?: boolean;
-}) => {
-  const contactsToGenerate = config?.contactsToGenerate || 0;
-
-  const data = createMockContactData(contactsToGenerate);
-  const api = new FakeContactsAPI(data, config?.shouldThrowServerError);
-
-  return {
-    data,
-    api,
-  };
 };
 
 export function renderWithApi(
