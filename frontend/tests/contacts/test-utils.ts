@@ -1,5 +1,7 @@
 import React from "react";
 import { render, type RenderOptions } from "@testing-library/react";
+import { ChakraProvider, defaultSystem } from "@chakra-ui/react";
+
 import { ContactsApiProvider } from "../../src/contacts/api/ContactsApiProvider";
 import { faker } from "@faker-js/faker";
 
@@ -25,6 +27,16 @@ export function renderWithApi(
 ) {
   return render(
     React.createElement(ContactsApiProvider, { api, children: ui }),
+    renderOptions
+  );
+}
+
+export function renderWithChakraProvider(
+  ui: React.ReactElement,
+  renderOptions?: RenderOptions
+) {
+  return render(
+    React.createElement(ChakraProvider, { value: defaultSystem, children: ui }),
     renderOptions
   );
 }
