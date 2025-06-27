@@ -7,7 +7,6 @@ describe("Header component tests", () => {
     // Arrange
     renderWithChakraProvider(<Header />);
 
-    screen.debug();
     // Assert
     const header = screen.getByRole("banner");
     const heading = within(header).getByRole("heading", {
