@@ -19,10 +19,6 @@ describe("API service adapter tests", () => {
 
     // Assert
     await expect(fetchContacts()).rejects.toMatchObject(mockServerError);
-    expect(spy).toHaveBeenCalledWith("http://localhost:8080/api/contacts", {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    });
   });
 
   it("returns a list of contacts when there is a successful response", async () => {
@@ -39,5 +35,9 @@ describe("API service adapter tests", () => {
 
     // Assert
     expect(result).toStrictEqual(fakeContactData);
+    expect(spy).toHaveBeenCalledWith("http://localhost:8080/api/contacts", {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
   });
 });
