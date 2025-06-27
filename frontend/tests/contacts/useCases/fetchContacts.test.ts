@@ -20,10 +20,7 @@ describe("Fetching contacts with a server error", async () => {
 
     // Act & Assert
     await expect(fetchContactsPromise).rejects.toBeInstanceOf(ContactError);
-    await expect(fetchContactsPromise).rejects.toMatchObject({
-      status: 500,
-      error: "Something went wrong.",
-    });
+    await expect(fetchContactsPromise).rejects.toMatchObject(mockServerError);
   });
 });
 

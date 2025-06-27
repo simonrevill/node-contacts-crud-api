@@ -1,9 +1,14 @@
+import { ContactError } from "shared";
 import { createContactsApiAdapter } from "../../../src/contacts/api/ContactsApiService";
 import { createMockContactData } from "../test-utils";
 
 describe("API service adapter tests", () => {
   it("throws a 500 error when the request fails", async () => {
     // Arrange
+    const mockServerError = new ContactError({
+      status: 500,
+      error: "Something went wrong.",
+    });
     const spy = vi.fn().mockResolvedValue({
       ok: false,
       json: () => "x",
@@ -13,10 +18,7 @@ describe("API service adapter tests", () => {
     const { fetchContacts } = createContactsApiAdapter({ request: spy });
 
     // Assert
-    await expect(fetchContacts()).rejects.toMatchObject({
-      status: 500,
-      error: "Something went wrong.",
-    });
+    await expect(fetchContacts()).rejects.toMatchObject(mockServerError);
     expect(spy).toHaveBeenCalledWith("http://localhost:8080/api/contacts", {
       method: "GET",
       headers: { "Content-Type": "application/json" },
