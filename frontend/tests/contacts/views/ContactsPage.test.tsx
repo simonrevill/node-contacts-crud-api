@@ -2,13 +2,18 @@ import { screen, within } from "@testing-library/react";
 import { createMockContactData, renderWithApi } from "../test-utils";
 import { ContactsPage } from "../../../src/contacts/views/ContactsPage";
 import { createContactsApiAdapter } from "../../../src/contacts/api/ContactsApiService";
+import { ContactError } from "shared";
 
 describe("ContactsPage component tests", () => {
   it("should show an error message when there is a problem fetching contacts", async () => {
     // Arrange
+    const mockServerError = new ContactError({
+      status: 500,
+      error: "Something went wrong.",
+    });
     const spy = vi.fn().mockResolvedValue({
       ok: false,
-      json: () => ({ status: 500, error: "Something went wrong." }),
+      json: () => mockServerError,
     });
     renderWithApi(<ContactsPage />, {
       api: createContactsApiAdapter({ request: spy }),
