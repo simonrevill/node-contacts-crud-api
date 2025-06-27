@@ -7,9 +7,13 @@ import { ContactError } from "shared";
 describe("Fetching contacts with a server error", async () => {
   it("should throw an error when there is a problem fetching contacts from the server", async () => {
     // Arrange
+    const mockServerError = new ContactError({
+      status: 500,
+      error: "Something went wrong.",
+    });
     const mock = vi.fn().mockResolvedValue({
       ok: false,
-      json: () => ({ status: 500, error: "Something went wrong." }),
+      json: () => mockServerError,
     });
     const fakeApi = createContactsApiAdapter({ request: mock });
     const fetchContactsPromise = fetchContacts(fakeApi);
