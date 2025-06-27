@@ -13,7 +13,7 @@ describe("API service adapter tests", () => {
     const { fetchContacts } = createContactsApiAdapter({ request: spy });
 
     // Assert
-    expect(() => fetchContacts()).rejects.toMatchObject({
+    expect(async () => await fetchContacts()).rejects.toMatchObject({
       status: 500,
       error: "Something went wrong.",
     });
