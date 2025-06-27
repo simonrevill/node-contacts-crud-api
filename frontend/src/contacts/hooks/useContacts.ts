@@ -18,7 +18,6 @@ export default function useContacts() {
         if (error instanceof ContactError) {
           setIsError(true);
         }
-        console.error(error);
       }
     })();
   }, [contactsApi]);
@@ -26,5 +25,6 @@ export default function useContacts() {
   return {
     contacts,
     isError,
+    hasNoContacts: contacts.length === 0,
   };
 }

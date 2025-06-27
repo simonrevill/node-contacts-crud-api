@@ -2,7 +2,7 @@ import { Button } from "@chakra-ui/react";
 import { Plus } from "lucide-react";
 
 interface NoContactsProps {
-  onAddContact: () => void;
+  onAddContact?: () => void;
 }
 
 export default function NoContacts({ onAddContact }: NoContactsProps) {

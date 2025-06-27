@@ -1,7 +1,8 @@
+import { NoContacts } from "../../components";
 import useContacts from "../../hooks/useContacts";
 
 export default function ContactsPage() {
-  const { contacts, isError } = useContacts();
+  const { contacts, isError, hasNoContacts } = useContacts();
 
   if (isError) {
     return (
@@ -10,6 +11,10 @@ export default function ContactsPage() {
         <p>Please try again later</p>
       </div>
     );
+  }
+
+  if (hasNoContacts) {
+    return <NoContacts />;
   }
 
   return (

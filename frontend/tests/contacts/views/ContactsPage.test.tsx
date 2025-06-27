@@ -1,22 +1,20 @@
-import { screen, within } from "@testing-library/react";
+import { act, screen, within } from "@testing-library/react";
 import { createMockContactData, renderWithProviders } from "../test-utils";
 import { ContactsPage } from "../../../src/contacts/views/ContactsPage";
 import { createContactsApiAdapter } from "../../../src/contacts/api/ContactsApiService";
-import { ContactError } from "shared";
+import type { Contact } from "../../../../backend/src/domain/models/Contact";
 
-describe("ContactsPage component tests", () => {
+describe("ContactsPage tests", () => {
   it("should show an error message when there is a problem fetching contacts", async () => {
     // Arrange
-    const mockServerError = new ContactError({
-      status: 500,
-      error: "Something went wrong.",
-    });
     const spy = vi.fn().mockResolvedValue({
       ok: false,
-      json: () => mockServerError,
+      json: vi.fn(),
     });
-    renderWithProviders(<ContactsPage />, {
-      api: createContactsApiAdapter({ request: spy }),
+    await act(async () => {
+      renderWithProviders(<ContactsPage />, {
+        api: createContactsApiAdapter({ request: spy }),
+      });
     });
 
     // Assert
@@ -31,7 +29,33 @@ describe("ContactsPage component tests", () => {
     expect(subheading).toBeVisible();
   });
 
-  it("should show a no contacts alert when there are no contacts", async () => {});
+  it("should show a no contacts alert when there are no contacts", async () => {
+    // Arrange
+    const fakeEmptyContactData: Contact[] = [];
+    const spy = vi.fn().mockResolvedValue({
+      ok: true,
+      json: () => fakeEmptyContactData,
+    });
+    renderWithProviders(<ContactsPage />, {
+      api: createContactsApiAdapter({ request: spy }),
+    });
+
+    // Assert
+    const noContactsAlert = await screen.findByRole("alert");
+    const noContactsHeading = within(noContactsAlert).getByRole("heading", {
+      level: 2,
+      name: /No Contacts/i,
+    });
+    const noContactsMessage = within(noContactsAlert).getByText(
+      /Add a contact to get started/i
+    );
+    const addContactButton = within(noContactsAlert).getByRole("button", {
+      name: /Add contact/i,
+    });
+    expect(noContactsHeading).toBeVisible();
+    expect(noContactsMessage).toBeVisible();
+    expect(addContactButton).toBeVisible();
+  });
 
   it("should show a list of contacts", async () => {
     // Arrange
