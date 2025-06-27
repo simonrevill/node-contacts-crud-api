@@ -44,8 +44,17 @@ describe("ContactsPage component tests", () => {
 
     // Assert
     const contactList = await screen.findByRole("list");
+    const contacts = within(contactList).getAllByRole("listitem");
 
     expect(contactList).toBeVisible();
-    expect(contactList.children).toHaveLength(fakeContactData.length);
+    expect(contacts).toHaveLength(fakeContactData.length);
+    fakeContactData.forEach((contact, index) => {
+      const contactItem = contacts[index];
+      expect(
+        within(contactItem).getByText(
+          `${contact.firstName} ${contact.lastName}`
+        )
+      ).toBeVisible();
+    });
   });
 });
