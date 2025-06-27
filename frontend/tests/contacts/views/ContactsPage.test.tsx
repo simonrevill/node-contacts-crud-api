@@ -4,7 +4,7 @@ import { ContactsPage } from "../../../src/contacts/views/ContactsPage";
 import { createContactsApiAdapter } from "../../../src/contacts/api/ContactsApiService";
 
 describe("ContactsPage component tests", () => {
-  it.only("should show an error message when there is a problem fetching contacts", async () => {
+  it("should show an error message when there is a problem fetching contacts", async () => {
     // Arrange
     const spy = vi.fn().mockResolvedValue({
       ok: false,
@@ -26,7 +26,7 @@ describe("ContactsPage component tests", () => {
     expect(subheading).toBeVisible();
   });
 
-  it.only("should show a list of contacts", async () => {
+  it("should show a list of contacts", async () => {
     // Arrange
     const fakeContactData = createMockContactData(3);
     const spy = vi.fn().mockResolvedValue({
