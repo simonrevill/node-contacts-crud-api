@@ -35,7 +35,7 @@ describe("Fetching contacts use case", async () => {
     const result = await fetchContacts(fakeApi);
 
     // Assert
-    expect(result).toStrictEqual([]);
+    expect(result).toStrictEqual(fakeEmptyContactData);
   });
 
   it("should return a list of contacts when there are existing contacts in the database", async () => {
