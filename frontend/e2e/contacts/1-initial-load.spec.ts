@@ -34,6 +34,9 @@ describe("Initial load of the application", () => {
         }),
       });
     });
+
+    await contactsPage.goto();
+
     // Assert
     await expect(contactsPage.fetchErrorMessageHeading).toBeVisible();
     await expect(contactsPage.fetchErrorMessageSubheading).toBeVisible();
