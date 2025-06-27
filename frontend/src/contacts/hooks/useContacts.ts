@@ -2,16 +2,18 @@ import { useEffect, useState } from "react";
 import { useContactsApi } from "../api/ContactsApiContext";
 import { fetchContacts } from "../useCases";
 import { ContactError } from "shared";
+import type { Contact } from "../../../../backend/src/domain/models/Contact";
 
 export default function useContacts() {
   const contactsApi = useContactsApi();
-
+  const [contacts, setContacts] = useState<Contact[]>([]);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     (async () => {
       try {
-        await fetchContacts(contactsApi);
+        const data = await fetchContacts(contactsApi);
+        setContacts(data);
       } catch (error) {
         if (error instanceof ContactError) {
           setIsError(true);
@@ -22,6 +24,7 @@ export default function useContacts() {
   }, [contactsApi]);
 
   return {
+    contacts,
     isError,
   };
 }

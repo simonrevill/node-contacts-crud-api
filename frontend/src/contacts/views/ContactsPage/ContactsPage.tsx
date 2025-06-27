@@ -1,7 +1,7 @@
 import useContacts from "../../hooks/useContacts";
 
 export default function ContactsPage() {
-  const { isError } = useContacts();
+  const { contacts, isError } = useContacts();
 
   if (isError) {
     return (
@@ -11,4 +11,12 @@ export default function ContactsPage() {
       </div>
     );
   }
+
+  return (
+    <ul>
+      {contacts.map((contact) => (
+        <li key={contact.id}>{`${contact.firstName} ${contact.lastName}`}</li>
+      ))}
+    </ul>
+  );
 }

@@ -1,5 +1,5 @@
 import { screen, within } from "@testing-library/react";
-import { renderWithApi } from "../test-utils";
+import { createMockContactData, renderWithApi } from "../test-utils";
 import { ContactsPage } from "../../../src/contacts/views/ContactsPage";
 import { createContactsApiAdapter } from "../../../src/contacts/api/ContactsApiService";
 
@@ -24,5 +24,23 @@ describe("ContactsPage component tests", () => {
 
     expect(heading).toBeVisible();
     expect(subheading).toBeVisible();
+  });
+
+  it.only("should show a list of contacts", async () => {
+    // Arrange
+    const fakeContactData = createMockContactData(3);
+    const spy = vi.fn().mockResolvedValue({
+      ok: true,
+      json: () => fakeContactData,
+    });
+    renderWithApi(<ContactsPage />, {
+      api: createContactsApiAdapter({ request: spy }),
+    });
+
+    // Assert
+    const contactList = await screen.findByRole("list");
+
+    expect(contactList).toBeVisible();
+    expect(contactList.children).toHaveLength(fakeContactData.length);
   });
 });
