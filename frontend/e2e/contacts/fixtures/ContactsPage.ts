@@ -13,7 +13,7 @@ export class ContactsPage {
     this.header = this.page.getByRole("banner");
     this.heading = this.page.getByRole("heading", {
       level: 1,
-      name: /Contact Manager/,
+      name: /Contacts Manager/,
     });
     this.fetchErrorMessageHeading = this.page.getByText(
       "Something went wrong."

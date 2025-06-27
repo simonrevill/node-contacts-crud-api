@@ -9,7 +9,7 @@ describe("Initial load of the application", () => {
     contactsPage,
   }) => {
     // Arrange & Assert
-    expect(await contactsPage.getTitle()).toBe("Contact Manager");
+    expect(await contactsPage.getTitle()).toBe("Contacts Manager");
   });
 
   test("User sees the correct heading when the application loads", async ({
