@@ -21,8 +21,20 @@ describe("Initial load of the application", () => {
 
   test("User sees error message when the application fails to load data", async ({
     contactsPage,
+    page,
   }) => {
-    // Arrange & Assert
+    // Arrange
+    await page.route("http://localhost:8080/api/contacts", async (route) => {
+      await route.fulfill({
+        status: 500,
+        contentType: "application/json",
+        body: JSON.stringify({
+          status: 500,
+          error: "Something went wrong.",
+        }),
+      });
+    });
+    // Assert
     await expect(contactsPage.fetchErrorMessageHeading).toBeVisible();
     await expect(contactsPage.fetchErrorMessageSubheading).toBeVisible();
   });
