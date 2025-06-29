@@ -1,19 +1,18 @@
-import type {
-  Contact,
-  ContactInput,
-} from "../../../../backend/src/domain/models/Contact";
-import type { IContactsAPI } from "../../types";
+import type { ContactInput } from "../../../../backend/src/domain/models/Contact";
+import type { IContactsAPI, CreateContactResponse } from "../../types";
 
 export const createContact = async (
   api: IContactsAPI,
   newContact: ContactInput
-): Promise<{ location: string; contact: Contact }> => {
+): Promise<CreateContactResponse> => {
   const response = await api.createContact(newContact);
 
+  const status = response.status;
   const contact = await response.json();
   const location = response.headers.get("location")!;
 
   return {
+    status,
     contact,
     location,
   };

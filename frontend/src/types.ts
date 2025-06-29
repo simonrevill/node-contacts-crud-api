@@ -29,3 +29,9 @@ export class ContactError extends Error {
     this.error = error;
   }
 }
+
+export interface CreateContactResponse {
+  status: number;
+  contact: Contact;
+  location: string;
+}

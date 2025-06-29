@@ -7,7 +7,7 @@ import { createContact } from "../../../src/contacts/useCases";
 import { createMockContact, createMockContactResponse } from "../test-utils";
 
 describe("Creating contacts use case", async () => {
-  it("should create and return a new contact with the correct location header", async () => {
+  it("should create and return a new contact with a 201 status and the correct location header", async () => {
     // Arrange
     const newContact: ContactInput = createMockContact();
     const expectedNewContactResponse: Contact =
@@ -15,6 +15,7 @@ describe("Creating contacts use case", async () => {
     const expectedLocation = `/api/contacts/${expectedNewContactResponse.id}`;
     const mock = vi.fn().mockResolvedValue({
       ok: true,
+      status: 201,
       headers: {
         get: (name: string) => (name === "location" ? expectedLocation : null),
       },
@@ -23,9 +24,13 @@ describe("Creating contacts use case", async () => {
     const fakeApi = createContactsApiAdapter({ request: mock });
 
     // Act
-    const { contact, location } = await createContact(fakeApi, newContact);
+    const { contact, location, status } = await createContact(
+      fakeApi,
+      newContact
+    );
 
     // Assert
+    expect(status).toBe(201);
     expect(contact).toStrictEqual(expectedNewContactResponse);
     expect(location).toStrictEqual(expectedLocation);
   });
