@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useContactsApi } from "../api/ContactsApiContext";
 import { fetchContacts } from "../useCases";
-import { ContactError } from "shared";
+import { ContactError } from "../../types";
 import type { Contact } from "../../../../backend/src/domain/models/Contact";
 
 export default function useContacts() {

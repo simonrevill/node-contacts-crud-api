@@ -2,7 +2,7 @@ import type { Contact } from "../../../../backend/src/domain/models/Contact";
 import { createContactsApiAdapter } from "../../../src/contacts/api/ContactsApiService";
 import { fetchContacts } from "../../../src/contacts/useCases";
 import { createMockContactData } from "../test-utils";
-import { ContactError } from "shared";
+import { ContactError } from "../../../src/types";
 
 describe("Fetching contacts use case", async () => {
   it("should throw an error when there is a problem fetching contacts from the server", async () => {

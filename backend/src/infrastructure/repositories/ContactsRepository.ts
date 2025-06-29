@@ -2,7 +2,7 @@ import { Pool } from "pg";
 
 import { type IContactsRepository } from "../../types";
 import { type Contact, type ContactInput } from "../../domain/models";
-import { ContactError } from "shared";
+import { ContactError } from "../../types";
 
 export class ContactsRepository implements IContactsRepository {
   pool: Pool;

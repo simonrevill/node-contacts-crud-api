@@ -1,4 +1,4 @@
-import { ContactError } from "shared";
+import { ContactError } from "../../../src/types";
 import { createContactsApiAdapter } from "../../../src/contacts/api/ContactsApiService";
 import { createMockContactData } from "../test-utils";
 

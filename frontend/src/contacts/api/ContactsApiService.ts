@@ -1,5 +1,4 @@
-import { ContactError } from "shared";
-import type { IContactsAPI } from "../../types";
+import { type IContactsAPI, ContactError } from "../../types";
 import type { Contact } from "../../../../backend/src/domain/models/Contact";
 
 interface ContactsApiAdapterOptions {

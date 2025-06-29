@@ -1,6 +1,4 @@
 import { coverageConfigDefaults, defineConfig } from "vitest/config";
-import path from "path";
-
 export default defineConfig({
   test: {
     globals: true,
@@ -17,10 +15,5 @@ export default defineConfig({
       ],
     },
     reporters: ["verbose"],
-  },
-  resolve: {
-    alias: {
-      shared: path.resolve(__dirname, "../shared/index.ts"),
-    },
   },
 });

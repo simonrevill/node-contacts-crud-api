@@ -7,9 +7,6 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "types": ["vitest/globals", "@types/node"],
-    "paths": {
-      "shared": ["../shared/index.ts"]
-    },
 
     /* Bundler mode */
     "moduleResolution": "bundler",

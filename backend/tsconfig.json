@@ -17,10 +17,7 @@
     // Disallow features that require cross-file awareness
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
-    "types": ["@types/node", "vitest/globals"],
-    "paths": {
-      "shared": ["../shared/index.ts"]
-    }
+    "types": ["@types/node", "vitest/globals"]
   },
   "exclude": ["coverage"]
 }

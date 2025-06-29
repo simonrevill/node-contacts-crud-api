@@ -1,6 +1,6 @@
 import { type NextFunction, type Request, type Response } from "express";
 import { z } from "zod/v4";
-import { ContactError } from "shared";
+import { ContactError } from "../../types";
 
 export const contactIdValidator = (
   req: Request,
