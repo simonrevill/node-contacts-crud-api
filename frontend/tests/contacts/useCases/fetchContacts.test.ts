@@ -22,7 +22,7 @@ describe("Fetching contacts use case", async () => {
     await expect(fetchContactsPromise).rejects.toMatchObject(mockServerError);
   });
 
-  it("should return an empty list of contacts when there are existing contacts in the database", async () => {
+  it("should return an empty list of contacts when there are no existing contacts in the database", async () => {
     // Arrange
     const fakeEmptyContactData: Contact[] = [];
     const mock = vi.fn().mockResolvedValue({
