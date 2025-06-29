@@ -55,6 +55,12 @@ jobs:
         run: npm run test:coverage
         working-directory: ./frontend
 
+      - name: Upload frontend unit test coverage artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-unit-test-coverage
+          path: frontend/coverage/
+
       - name: Upload results to Codecov
         uses: codecov/codecov-action@v5
         with:
