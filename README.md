@@ -69,7 +69,7 @@ To help me acheive this I have use the following:
 - Test-driven development (TDD)
 - Mutation tests
 - GitHub Actions running all test suites, perform type checks, linting, and generating test report artifacts ready for future analysis.
-- Monorepo to keep all related code in one place.
+- Monorepo structure to keep all related code in one place.
 
 ## Getting started
 
