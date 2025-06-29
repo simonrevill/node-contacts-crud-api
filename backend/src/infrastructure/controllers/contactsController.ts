@@ -96,9 +96,9 @@ export function createContactsRouter(
     }
   };
 
-  router.get("/", getAllContacts);
+  router.get("", getAllContacts);
   router.get("/:id", contactIdValidator, getContactById);
-  router.post("/", contactValidator, createContact);
+  router.post("", contactValidator, createContact);
   router.put("/:id", contactIdValidator, contactValidator, updateContact);
   router.delete("/:id", contactIdValidator, deleteContact);
 
