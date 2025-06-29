@@ -24,11 +24,11 @@ This project is my attempt at using TDD to build and consume a basic REST API to
 
 The goal of the project is to present a simple CRUD application that is thoroughly tested, with clear separation of concerns throughout the backend and frontend. This means the app is easy to change over time and I can be confident in my code.
 
-To help me acheive this I have use the following:
+To help me achieve this I have used the following:
 
 - Test-driven development (TDD)
 - Mutation tests
-- GitHub Actions running all test suites, perform type checks, linting, and generating test report artifacts ready for future analysis.
+- GitHub Actions running all test suites, performs type checks, linting, and generates test report artefacts ready for future analysis.
 - Monorepo structure to keep all related code in one place.
 
 ## Getting started
@@ -79,4 +79,4 @@ The available API routes are as follows:
 
 ## Frontend
 
-The frontend application is built using TypeScript, React and Chakra UI. All domain logic is tested independently of the UI adding extra flexibility.
+The frontend application is built using TypeScript, React and Chakra UI. All domain logic is tested independently of the UI, adding extra flexibility.
