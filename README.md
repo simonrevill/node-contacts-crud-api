@@ -9,6 +9,16 @@
 
 This project is my attempt at using TDD to build and consume a basic REST API to help you manage a list of contacts.
 
+## Running the tests
+
+### Backend and Frontend Unit Tests:
+
+```shell
+$ npm run test:unit
+```
+
+## Domain
+
 A contact is currently defined as:
 
 ```ts
