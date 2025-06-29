@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "Project to practice test-driving a basic contacts API with TypeScript, Node, Express, PostgreSQL, Zod, Vitest, and Supertest",
   "scripts": {
-    "test:unit": "cd backend && npx vitest run && cd ../frontend && npx vitest run"
+    "test:unit": "cd backend && npx vitest run && cd ../frontend && npx vitest run",
+    "test:e2e": "cd frontend && npm run test:e2e"
   },
   "keywords": [
     "backend",

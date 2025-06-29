@@ -11,10 +11,16 @@ This project is my attempt at using TDD to build and consume a basic REST API to
 
 ## Running the tests
 
-### Backend and Frontend Unit Tests:
+### Run backend and frontend unit tests:
 
 ```shell
 $ npm run test:unit
+```
+
+### Run end-to-end tests:
+
+```shell
+$ npm run test:e2e
 ```
 
 ## Domain
