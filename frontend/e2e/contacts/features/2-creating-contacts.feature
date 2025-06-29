@@ -6,18 +6,18 @@ Feature: Creating a new contact with valid and invalid data
     Then I should see a create a new contact form with the relevant fields
     And a submit button
     And a button to navigate back to the contact list
+  
+  Scenario: Form shows validation errors and submit is disabled with invalid data
+    Given I am on the "Create contact" form
+    When I fill in the form with invalid data
+    Then I should see the relevant validation error message
+    And The submit button should be disabled 
 
   Scenario: Form shows no validation errors and submit is enabled with valid data
     Given I am on the "Create contact" form
     When I fill in the form with valid data
     Then I should see no validation error messages
     And the submit button should be enabled
-
-  Scenario: Form shows validation errors and submit is disabled with invalid data
-    Given I am on the "Create contact" form
-    When I fill in the form with invalid data
-    Then I should see the relevant validation error message
-    And The submit button should be disabled 
 
   Scenario: Form shows a loading spinner and a message when submitting valid data
     Given I am on the "Create contact" form
