@@ -1,9 +1,13 @@
 import { z } from "zod/v4";
 
-import type { Contact } from "../../backend/src/domain/models/Contact";
+import type {
+  Contact,
+  ContactInput,
+} from "../../backend/src/domain/models/Contact";
 
 export interface IContactsAPI {
   fetchContacts(): Promise<Contact[]>;
+  createContact(newContact: ContactInput): Promise<Response>;
 }
 
 export interface ContactErrorConstructor {
