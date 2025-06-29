@@ -1,4 +1,3 @@
-import { describe, beforeEach, expect, it } from "vitest";
 import { type Express } from "express";
 
 import { type Contact } from "../../src/domain/models";
@@ -26,6 +25,31 @@ describe("Given there is existing data in the database", () => {
         url: `/api/contacts/${existingContact.id}`,
         expectedStatus: 204,
       });
+    });
+
+    it("Then DELETE /api/contacts/:id - should return a 204 No Content and send an empty response when deletion is successful", async () => {
+      // Arrange
+      const existingContact = getRandomContact(fakeContactData);
+
+      // Spy on res.send and res.json by mocking the response object
+      const res = {
+        status: vi.fn().mockReturnThis(),
+        send: vi.fn(),
+        json: vi.fn(),
+      } as any;
+
+      // Import the sendResponse function directly
+      const { sendResponse } = await import(
+        "../../src/infrastructure/controllers/contactsController"
+      );
+
+      // Act
+      sendResponse(res, 204, undefined);
+
+      // Assert
+      expect(res.status).toHaveBeenCalledWith(204);
+      expect(res.send).toHaveBeenCalled();
+      expect(res.json).not.toHaveBeenCalled();
     });
   });
 

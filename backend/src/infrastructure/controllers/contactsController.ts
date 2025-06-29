@@ -11,9 +11,10 @@ import {
   contactValidator,
 } from "../middleware/contactValidator";
 
-const sendResponse = <T>(res: Response, status: number, data?: T) => {
+export const sendResponse = <T>(res: Response, status: number, data?: T) => {
   if (!data) {
     res.status(status).send();
+    return;
   }
 
   res.status(status).json(data);

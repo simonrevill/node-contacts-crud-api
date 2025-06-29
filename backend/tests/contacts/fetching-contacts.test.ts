@@ -1,4 +1,3 @@
-import { describe, beforeEach, expect, it } from "vitest";
 import { type Express } from "express";
 
 import { type Contact } from "../../src/domain/models";
