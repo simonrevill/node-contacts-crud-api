@@ -11,6 +11,8 @@ describe("NoContacts component tests", () => {
     renderWithChakraProvider(<NoContacts onAddContact={onAddContactFake} />);
 
     const noContactsAlert = screen.getByRole("alert");
+    const noContactsIcon =
+      within(noContactsAlert).getByLabelText("No contacts icon");
     const noContactsHeading = within(noContactsAlert).getByRole("heading", {
       level: 2,
       name: /No Contacts/i,
@@ -23,6 +25,7 @@ describe("NoContacts component tests", () => {
     });
 
     // Assert
+    expect(noContactsIcon).toBeVisible();
     expect(noContactsHeading).toBeVisible();
     expect(noContactsMessage).toBeVisible();
     expect(addContactButton).toBeVisible();
