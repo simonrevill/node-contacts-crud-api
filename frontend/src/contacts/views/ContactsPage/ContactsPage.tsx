@@ -1,5 +1,10 @@
-import { Box, Text } from "@chakra-ui/react";
-import { ContactList, ContactListItem, NoContacts } from "../../components";
+import { Text } from "@chakra-ui/react";
+import {
+  ContactList,
+  ContactListItem,
+  Main,
+  NoContacts,
+} from "../../components";
 import useContacts from "../../hooks/useContacts";
 
 export default function ContactsPage() {
@@ -7,25 +12,25 @@ export default function ContactsPage() {
 
   if (isError) {
     return (
-      <Box as="main" p={4}>
+      <Main>
         <div role="alert">
           <h2>Something went wrong.</h2>
           <p>Please try again later</p>
         </div>
-      </Box>
+      </Main>
     );
   }
 
   if (hasNoContacts) {
     return (
-      <Box as="main" p={4}>
+      <Main>
         <NoContacts />
-      </Box>
+      </Main>
     );
   }
 
   return (
-    <Box as="main" p={4}>
+    <Main>
       <ContactList>
         {contacts.map((contact) => (
           <ContactListItem key={contact.id}>
@@ -35,6 +40,6 @@ export default function ContactsPage() {
           </ContactListItem>
         ))}
       </ContactList>
-    </Box>
+    </Main>
   );
 }

@@ -1,4 +1,4 @@
-import { Button } from "@chakra-ui/react";
+import { Box, Button, Heading, Text } from "@chakra-ui/react";
 import { Plus } from "lucide-react";
 
 interface NoContactsProps {
@@ -7,9 +7,19 @@ interface NoContactsProps {
 
 export default function NoContacts({ onAddContact }: NoContactsProps) {
   return (
-    <div role="alert">
-      <h2>No Contacts</h2>
-      <p>Add a contact to get started</p>
+    <Box
+      display="flex"
+      flexDir="column"
+      gap={4}
+      flex={1}
+      justifyContent="center"
+      alignItems="center"
+      role="alert"
+    >
+      <Heading as="h2" fontSize="md" fontWeight="semibold">
+        No Contacts
+      </Heading>
+      <Text fontSize="sm">Add a contact to get started</Text>
       <Button
         variant="solid"
         size="lg"
@@ -19,6 +29,6 @@ export default function NoContacts({ onAddContact }: NoContactsProps) {
         <Plus />
         Add contact
       </Button>
-    </div>
+    </Box>
   );
 }

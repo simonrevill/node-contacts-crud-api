@@ -13,7 +13,7 @@ export default function ContactList({ children }: ContactListProps) {
       borderWidth={0.25}
       borderStyle="solid"
       borderColor="gray.300"
-      borderRadius={2}
+      borderRadius={4}
     >
       {children}
     </List.Root>
