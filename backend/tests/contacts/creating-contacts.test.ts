@@ -1,3 +1,5 @@
+import express from "express";
+import { createContactsRouter } from "../../src/infrastructure/controllers/contactsController";
 import { type Express } from "express";
 
 import { type Contact, type ContactInput } from "../../src/domain/models";
@@ -6,6 +8,7 @@ import {
   ContactBuilder,
   makeRequest,
   getRandomContact,
+  makeBrokenContactsAppWithUndefinedCreateContact,
 } from "../test-utils";
 
 let app: Express;
@@ -212,6 +215,31 @@ describe("Given there is existing data in the database", () => {
         status: 409,
         error: `Email address is not unique.`,
       });
+    });
+  });
+
+  describe("When I want to create a new contact but there is an issue with the server", () => {
+    it("Then POST /api/contacts - should handle the case where contact is undefined and not set the Location header", async () => {
+      // Arrange
+      const brokenApp = makeBrokenContactsAppWithUndefinedCreateContact();
+      const newContact = new ContactBuilder()
+        .withFirstName("Jane")
+        .withLastName("Doe")
+        .withEmail("janedoe@example.com")
+        .build();
+
+      // Act
+      const { headers, body } = await makeRequest({
+        app: brokenApp,
+        method: "POST",
+        url: `/api/contacts`,
+        expectedStatus: 201, // or whatever your controller does in this case
+        body: JSON.stringify(newContact),
+      });
+
+      // Assert
+      expect(headers["location"]).toBeUndefined();
+      expect(body).toEqual({}); // Express returns an empty object for no content
     });
   });
 });

@@ -58,7 +58,9 @@ export function createContactsRouter(
   ): Promise<void> => {
     try {
       const contact = await contactsRepository.createContact(req.body);
-      res.setHeader("Location", `/api/contacts/${contact?.id}`);
+      if (contact) {
+        res.setHeader("Location", `/api/contacts/${contact.id}`);
+      }
       sendResponse(res, 201, contact);
     } catch (error) {
       next(error);

@@ -1,10 +1,11 @@
-import { type Express } from "express";
+import express, { type Express } from "express";
 import request, { type Response as SupertestResponse } from "supertest";
 import { faker } from "@faker-js/faker";
 import { Pool } from "pg";
 import { newDb } from "pg-mem";
 
 import { createApp } from "../src/app";
+import { createContactsRouter } from "../src/infrastructure/controllers/contactsController";
 import { ContactsRepository } from "../src/infrastructure/repositories";
 import { type IContactsRepository, type HTTPRequestMethod } from "../src/types";
 import { type Contact, type ContactInput } from "../src/domain/models";
@@ -220,3 +221,11 @@ export const generateContactWithMissingField = (
 
   return contact;
 };
+
+export function makeBrokenContactsAppWithUndefinedCreateContact() {
+  const mockRepo = { createContact: async () => undefined } as any;
+  const app = express();
+  app.use(express.json());
+  app.use("/api/contacts", createContactsRouter(mockRepo));
+  return app;
+}
