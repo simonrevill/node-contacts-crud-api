@@ -1,4 +1,4 @@
-name: Backend Mutation Tests
+name: Backend Mutation Tests CI Pipeline
 
 on:
   push:
