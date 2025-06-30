@@ -12,11 +12,12 @@ describe("Initial load of the application", () => {
     expect(await contactsPage.getTitle()).toBe("Contacts Manager");
   });
 
-  test("User sees the correct heading when the application loads", async ({
+  test("User sees the correct headings when the application loads", async ({
     contactsPage,
   }) => {
     // Arrange & Assert
     await expect(contactsPage.heading).toBeVisible();
+    await expect(contactsPage.contactListHeading).toBeVisible();
   });
 
   test("User sees error message when the application fails to load data", async ({

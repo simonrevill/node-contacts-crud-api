@@ -18,6 +18,24 @@ describe("Creating contacts", () => {
     ).toBeVisible();
   });
 
+  test("User can navigate back to the contacts page from the add contact page", async ({
+    contactsPage,
+    page,
+  }) => {
+    // Arrange
+    await contactsPage.goToNewContactForm();
+    await page.waitForURL("**/create");
+
+    const backButton = await page.getByRole("button", { name: /Back/i });
+
+    // Act
+    await backButton.click();
+    await page.waitForURL("/");
+
+    // Assert
+    await expect(contactsPage.contactListHeading).toBeVisible();
+  });
+
   test("User sees a form to create a new contact with the relevant controls", async ({
     contactsPage,
     page,

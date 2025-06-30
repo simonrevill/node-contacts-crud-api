@@ -3,6 +3,7 @@ import type { Locator, Page } from "@playwright/test";
 export class ContactsPage {
   header: Locator;
   heading: Locator;
+  contactListHeading: Locator;
   fetchErrorMessageHeading: Locator;
   fetchErrorMessageSubheading: Locator;
   emptyStateHeading: Locator;
@@ -14,6 +15,10 @@ export class ContactsPage {
     this.heading = this.page.getByRole("heading", {
       level: 1,
       name: /Contacts Manager/,
+    });
+    this.contactListHeading = this.page.getByRole("heading", {
+      level: 2,
+      name: /My Contacts/,
     });
     this.fetchErrorMessageHeading = this.page.getByText(
       "Something went wrong."
