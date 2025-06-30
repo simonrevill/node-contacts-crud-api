@@ -33,10 +33,10 @@ describe("Creating contacts", () => {
     const cancelButton = page.getByRole("button", { name: /Cancel/i });
     const submitButton = page.getByRole("button", { name: /Submit/i });
 
-    expect(firstNameInput).toBeVisible();
-    expect(lastNameInput).toBeVisible();
-    expect(emailInput).toBeVisible();
-    expect(cancelButton).toBeVisible();
-    expect(submitButton).toBeVisible();
+    await expect(firstNameInput).toBeVisible();
+    await expect(lastNameInput).toBeVisible();
+    await expect(emailInput).toBeVisible();
+    await expect(cancelButton).toBeVisible();
+    await expect(submitButton).toBeVisible();
   });
 });
