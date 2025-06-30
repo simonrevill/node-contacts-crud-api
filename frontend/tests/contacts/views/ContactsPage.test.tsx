@@ -3,16 +3,23 @@ import { createMockContactData, renderWithProviders } from "../test-utils";
 import { ContactsPage } from "../../../src/contacts/views/ContactsPage";
 import { createContactsApiAdapter } from "../../../src/contacts/api/ContactsApiService";
 import type { Contact } from "../../../../backend/src/domain/models/Contact";
+import { createRoutesStub } from "react-router";
 
 describe("ContactsPage tests", () => {
   it("should show an error message when there is a problem fetching contacts", async () => {
     // Arrange
+    const Stub = createRoutesStub([
+      {
+        path: "/",
+        Component: ContactsPage,
+      },
+    ]);
     const spy = vi.fn().mockResolvedValue({
       ok: false,
       json: vi.fn(),
     });
     await act(async () => {
-      renderWithProviders(<ContactsPage />, {
+      renderWithProviders(<Stub />, {
         api: createContactsApiAdapter({ request: spy }),
       });
     });
@@ -31,12 +38,18 @@ describe("ContactsPage tests", () => {
 
   it("should show a no contacts alert when there are no contacts", async () => {
     // Arrange
+    const Stub = createRoutesStub([
+      {
+        path: "/",
+        Component: ContactsPage,
+      },
+    ]);
     const fakeEmptyContactData: Contact[] = [];
     const spy = vi.fn().mockResolvedValue({
       ok: true,
       json: () => fakeEmptyContactData,
     });
-    renderWithProviders(<ContactsPage />, {
+    renderWithProviders(<Stub />, {
       api: createContactsApiAdapter({ request: spy }),
     });
 
@@ -59,12 +72,18 @@ describe("ContactsPage tests", () => {
 
   it("should show a list of contacts", async () => {
     // Arrange
+    const Stub = createRoutesStub([
+      {
+        path: "/",
+        Component: ContactsPage,
+      },
+    ]);
     const fakeContactData = createMockContactData(3);
     const spy = vi.fn().mockResolvedValue({
       ok: true,
       json: () => fakeContactData,
     });
-    renderWithProviders(<ContactsPage />, {
+    renderWithProviders(<Stub />, {
       api: createContactsApiAdapter({ request: spy }),
     });
 

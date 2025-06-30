@@ -7,7 +7,7 @@ export class ContactsPage {
   fetchErrorMessageSubheading: Locator;
   emptyStateHeading: Locator;
   emptyStateSubheading: Locator;
-  emptyStateAddContactButton: Locator;
+  addContactButton: Locator;
 
   constructor(public readonly page: Page) {
     this.header = this.page.getByRole("banner");
@@ -23,13 +23,17 @@ export class ContactsPage {
     );
     this.emptyStateHeading = page.getByText("No contacts");
     this.emptyStateSubheading = page.getByText("Add a contact to get started");
-    this.emptyStateAddContactButton = page.getByRole("button", {
+    this.addContactButton = page.getByRole("button", {
       name: "Add contact",
     });
   }
 
   async goto() {
     await this.page.goto("/");
+  }
+
+  async goToNewContactForm() {
+    await this.page.goto("/create");
   }
 
   async getTitle(): Promise<string> {

@@ -1,11 +1,14 @@
-import { Box, Button, Heading, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Heading,
+  Text,
+  Link as ChakraLink,
+} from "@chakra-ui/react";
 import { Plus, UserRoundX } from "lucide-react";
+import { NavLink } from "react-router";
 
-interface NoContactsProps {
-  onAddContact?: () => void;
-}
-
-export default function NoContacts({ onAddContact }: NoContactsProps) {
+export default function NoContacts() {
   return (
     <Box
       display="flex"
@@ -25,15 +28,14 @@ export default function NoContacts({ onAddContact }: NoContactsProps) {
         No Contacts
       </Heading>
       <Text fontSize="sm">Add a contact to get started</Text>
-      <Button
-        variant="solid"
-        size="lg"
-        colorScheme="teal"
-        onClick={onAddContact}
-      >
-        <Plus />
-        Add contact
-      </Button>
+      <ChakraLink asChild>
+        <NavLink to="/create">
+          <Button variant="solid" size="lg" colorScheme="teal">
+            <Plus />
+            Add contact
+          </Button>
+        </NavLink>
+      </ChakraLink>
     </Box>
   );
 }

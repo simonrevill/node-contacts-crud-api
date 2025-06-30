@@ -1,14 +1,19 @@
 import { screen, within } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 
 import { NoContacts } from "../../../src/contacts/components";
 import { renderWithChakraProvider } from "../test-utils";
+import { createRoutesStub } from "react-router";
 
 describe("NoContacts component tests", () => {
   it("should render the the no contacts message and a button to add a new contact", () => {
     // Arrange
-    const onAddContactFake = () => {};
-    renderWithChakraProvider(<NoContacts onAddContact={onAddContactFake} />);
+    const Stub = createRoutesStub([
+      {
+        path: "/",
+        Component: NoContacts,
+      },
+    ]);
+    renderWithChakraProvider(<Stub />);
 
     const noContactsAlert = screen.getByRole("alert");
     const noContactsIcon =
@@ -29,22 +34,5 @@ describe("NoContacts component tests", () => {
     expect(noContactsHeading).toBeVisible();
     expect(noContactsMessage).toBeVisible();
     expect(addContactButton).toBeVisible();
-  });
-
-  it("should call the onAddContact callback when user clicks on the button", async () => {
-    // Arrange
-    const user = userEvent.setup();
-    const spy = vi.fn();
-    renderWithChakraProvider(<NoContacts onAddContact={spy} />);
-    const noContactsAlert = screen.getByRole("alert");
-    const addContactButton = within(noContactsAlert).getByRole("button", {
-      name: /Add contact/i,
-    });
-
-    // Act
-    await user.click(addContactButton);
-
-    // Assert
-    expect(spy).toHaveBeenCalledTimes(1);
   });
 });
