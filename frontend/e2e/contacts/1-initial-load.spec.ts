@@ -1,8 +1,4 @@
-import { describe, beforeEach, test, expect } from "./contacts-test";
-
-beforeEach(async ({ contactsPage }) => {
-  await contactsPage.goto();
-});
+import { describe, test, expect } from "./contacts-test";
 
 describe("Initial load of the application", () => {
   test("User sees the correct page title when the application loads", async ({
