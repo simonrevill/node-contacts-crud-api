@@ -10,14 +10,12 @@ describe("Creating contacts", () => {
 
     // Act
     await contactsPage.addContactButton.click();
+    await page.waitForURL("**/create");
 
     // Assert
-    const addContactHeading = page.getByRole("heading", {
-      level: 2,
-      name: /Add a contact/i,
-    });
-
-    expect(addContactHeading).toBeVisible();
+    await expect(
+      page.getByRole("heading", { level: 2, name: /Add a contact/i })
+    ).toBeVisible();
   });
 
   test("User sees a form to create a new contact with the relevant controls", async ({
@@ -26,6 +24,7 @@ describe("Creating contacts", () => {
   }) => {
     // Arrange
     await contactsPage.goToNewContactForm();
+    await page.waitForURL("**/create");
 
     // Assert
     const firstNameInput = page.getByLabel("First name");
