@@ -18,7 +18,7 @@ describe("Creating contacts", () => {
     ).toBeVisible();
   });
 
-  test("User can navigate back to the contacts page from the add contact page", async ({
+  test("User can navigate back to the contacts page from the add contact page using the back button", async ({
     contactsPage,
     page,
   }) => {
@@ -27,6 +27,24 @@ describe("Creating contacts", () => {
     await page.waitForURL("**/create");
 
     const backButton = await page.getByRole("button", { name: /Back/i });
+
+    // Act
+    await backButton.click();
+    await page.waitForURL("/");
+
+    // Assert
+    await expect(contactsPage.contactListHeading).toBeVisible();
+  });
+
+  test("User can navigate back to the contacts page from the add contact page using the cancel button", async ({
+    contactsPage,
+    page,
+  }) => {
+    // Arrange
+    await contactsPage.goToNewContactForm();
+    await page.waitForURL("**/create");
+
+    const backButton = await page.getByRole("button", { name: /Cancel/i });
 
     // Act
     await backButton.click();
