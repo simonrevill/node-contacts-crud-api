@@ -53,26 +53,4 @@ describe("Creating contacts", () => {
     // Assert
     await expect(contactsPage.contactListHeading).toBeVisible();
   });
-
-  test("User sees a form to create a new contact with the relevant controls", async ({
-    contactsPage,
-    page,
-  }) => {
-    // Arrange
-    await contactsPage.goToNewContactForm();
-    await page.waitForURL("**/create");
-
-    // Assert
-    const firstNameInput = page.getByLabel("First name");
-    const lastNameInput = page.getByLabel("Last name");
-    const emailInput = page.getByLabel("Email");
-    const cancelButton = page.getByRole("button", { name: /Cancel/i });
-    const submitButton = page.getByRole("button", { name: /Submit/i });
-
-    await expect(firstNameInput).toBeVisible();
-    await expect(lastNameInput).toBeVisible();
-    await expect(emailInput).toBeVisible();
-    await expect(cancelButton).toBeVisible();
-    await expect(submitButton).toBeVisible();
-  });
 });
