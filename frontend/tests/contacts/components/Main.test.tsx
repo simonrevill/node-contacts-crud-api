@@ -27,4 +27,13 @@ describe("Main component tests", () => {
     expect(childComponent).toBeVisible();
     expect(childComponent).toHaveTextContent("Test child component");
   });
+
+  it("should render a list item with the correct height style", () => {
+    // Arrange
+    renderWithChakraProvider(<Main />);
+
+    // Assert
+    const main = screen.getByRole("main");
+    expect(getComputedStyle(main).height).toBe("calc(100dvh - 4.75rem)");
+  });
 });
