@@ -13,6 +13,9 @@ export default defineConfig({
         "src/**/*/index.ts",
         "./tests",
       ],
+      thresholds: {
+        100: true,
+      },
     },
     reporters: ["verbose"],
   },
