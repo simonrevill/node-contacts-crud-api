@@ -83,4 +83,18 @@ describe("Creating contacts", () => {
       await expect(page.getByRole("alert")).toHaveText(message);
     });
   });
+
+  test("User sees no validation errors and can click on the enabled submit button when provided form data is valid", async ({
+    addContactPage,
+    page,
+  }) => {
+    // Arrange & Act
+    await addContactPage.firstNameInput.fill("John");
+    await addContactPage.lastNameInput.fill("Smith");
+    await addContactPage.emailInput.fill("john.smith@gmail.com");
+
+    // Assert
+    await expect(page.getByRole("alert")).toHaveCount(0);
+    await expect(addContactPage.submitButton).toBeEnabled();
+  });
 });
