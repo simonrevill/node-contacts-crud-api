@@ -10,6 +10,7 @@
     "preview": "vite preview",
     "test": "vitest --coverage",
     "test:coverage": "vitest run --coverage",
+    "test:mutation": "stryker run",
     "test:e2e": "npx playwright test --ui",
     "qa:tsc": "tsc --noEmit"
   },
@@ -26,6 +27,8 @@
     "@eslint/js": "^9.25.0",
     "@faker-js/faker": "^9.8.0",
     "@playwright/test": "^1.53.1",
+    "@stryker-mutator/core": "^9.0.1",
+    "@stryker-mutator/vitest-runner": "^9.0.1",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",

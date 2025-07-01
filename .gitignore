@@ -13,7 +13,10 @@ dist-ssr
 *.local
 coverage
 reports
-*.stryker.tmp
+/.stryker.tmp/
+/frontend/.stryker.tmp/
+/backend/.stryker.tmp/
+**/.stryker.tmp/
 .env
 test-results/
 playwright-report/
