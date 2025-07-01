@@ -16,4 +16,21 @@ describe("ContactListItem component tests", () => {
 
     expect(contactListItem).toBeVisible();
   });
+
+  it("should render the last list item without a border", () => {
+    // Arrange
+    renderWithChakraProvider(
+      <ContactList>
+        <ContactListItem />
+        <ContactListItem />
+      </ContactList>
+    );
+
+    // Assert
+    const contactListItems = screen.getAllByRole("listitem");
+    const lastContactListItem = contactListItems[1];
+    const lastContactListItemStyle = getComputedStyle(lastContactListItem);
+
+    expect(lastContactListItemStyle.borderBottomWidth).toBe("");
+  });
 });

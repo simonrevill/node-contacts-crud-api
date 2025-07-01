@@ -9,7 +9,7 @@ export default function ContactListItem({ children }: ContactListItemProps) {
   return (
     <List.Item
       p={4}
-      borderBottomWidth={0.25}
+      borderBottomWidth="0.0156rem"
       borderBottomStyle="solid"
       borderBottomColor="gray.300"
       _last={{ borderBottom: "none" }}
