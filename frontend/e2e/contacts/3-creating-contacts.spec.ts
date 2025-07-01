@@ -89,9 +89,7 @@ describe("Creating contacts", () => {
     page,
   }) => {
     // Arrange & Act
-    await addContactPage.firstNameInput.fill("John");
-    await addContactPage.lastNameInput.fill("Smith");
-    await addContactPage.emailInput.fill("john.smith@gmail.com");
+    await addContactPage.fillAddContactFormWithValidData();
 
     // Assert
     await expect(page.getByRole("alert")).toHaveCount(0);

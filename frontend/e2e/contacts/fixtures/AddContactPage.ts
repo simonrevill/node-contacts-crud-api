@@ -23,4 +23,10 @@ export class AddContactPage {
   async goto() {
     await this.page.goto("/create");
   }
+
+  async fillAddContactFormWithValidData() {
+    await this.firstNameInput.fill("John");
+    await this.lastNameInput.fill("Smith");
+    await this.emailInput.fill("john.smith@gmail.com");
+  }
 }
