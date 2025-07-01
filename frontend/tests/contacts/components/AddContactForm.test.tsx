@@ -180,7 +180,6 @@ describe("AddContactForm tests", () => {
         // Assert
         const alerts = await screen.findAllByRole("alert");
         const errorMessage = await screen.findByRole("alert");
-        screen.debug(errorMessage);
         const submitButton = screen.getByRole("button", { name: /Submit/i });
 
         expect(field.value).toBe(value);
