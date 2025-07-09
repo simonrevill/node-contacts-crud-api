@@ -45,7 +45,7 @@ export function renderWithChakraProvider(
   renderOptions?: RenderOptions
 ) {
   return render(
-    React.createElement(ChakraProvider, { value: defaultSystem, children: ui }),
+    <ChakraProvider value={defaultSystem}>{ui}</ChakraProvider>,
     renderOptions
   );
 }
