@@ -27,7 +27,7 @@ export default function AddContactForm() {
         name="firstName"
         control={control}
         render={({ field }) => (
-          <Field.Root invalid={isFirstNameInvalid}>
+          <Field.Root invalid={isFirstNameInvalid} mb={6}>
             <Field.Label htmlFor="firstName">First name</Field.Label>
             <Input
               {...field}
@@ -45,7 +45,7 @@ export default function AddContactForm() {
         name="lastName"
         control={control}
         render={({ field }) => (
-          <Field.Root invalid={isLastNameInvalid}>
+          <Field.Root invalid={isLastNameInvalid} mb={6}>
             <Field.Label htmlFor="lastName">Last name</Field.Label>
             <Input
               {...field}
@@ -63,7 +63,7 @@ export default function AddContactForm() {
         name="email"
         control={control}
         render={({ field }) => (
-          <Field.Root invalid={isEmailInvalid}>
+          <Field.Root invalid={isEmailInvalid} mb={12}>
             <Field.Label htmlFor="email">Email</Field.Label>
             <Input
               {...field}
@@ -78,18 +78,20 @@ export default function AddContactForm() {
           </Field.Root>
         )}
       />
-      <ChakraLink asChild>
-        <NavLink to="/">
-          <Button variant="outline">
-            <X />
-            Cancel
-          </Button>
-        </NavLink>
-      </ChakraLink>
-      <Button type="submit" variant="solid" disabled={isSubmitDisabled}>
-        <Check />
-        Submit
-      </Button>
+      <Box display="flex" justifyContent="flex-end" gap={4}>
+        <ChakraLink asChild>
+          <NavLink to="/">
+            <Button variant="outline">
+              <X />
+              Cancel
+            </Button>
+          </NavLink>
+        </ChakraLink>
+        <Button type="submit" variant="solid" disabled={isSubmitDisabled}>
+          <Check />
+          Submit
+        </Button>
+      </Box>
     </Box>
   );
 }

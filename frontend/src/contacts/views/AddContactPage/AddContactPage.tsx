@@ -9,13 +9,15 @@ export default function AddContactPage() {
     <Main>
       <ChakraLink asChild>
         <NavLink to="/">
-          <Button variant="outline">
+          <Button variant="outline" mb={6}>
             <ChevronLeft />
             Back
           </Button>
         </NavLink>
       </ChakraLink>
-      <Heading as="h2">Add a contact</Heading>
+      <Heading as="h2" mb={6}>
+        Add a contact
+      </Heading>
       <AddContactForm />
     </Main>
   );
