@@ -1,15 +1,10 @@
 import React from "react";
 import { render, type RenderOptions } from "@testing-library/react";
 import { ChakraProvider, defaultSystem } from "@chakra-ui/react";
-
-import { ContactsApiProvider } from "../../src/contacts/api/ContactsApiProvider";
+import { ContactsApiProvider } from "api/ContactsApiProvider";
 import { faker } from "@faker-js/faker";
-
-import type { IContactsAPI } from "../../src/types";
-import type {
-  Contact,
-  ContactInput,
-} from "../../../backend/src/domain/models/Contact";
+import type { IContactsAPI } from "types";
+import type { Contact, ContactInput } from "backend/domain/models/Contact";
 
 export const createMockContact = (): ContactInput => ({
   firstName: faker.person.firstName(),

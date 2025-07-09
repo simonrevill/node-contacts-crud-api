@@ -1,8 +1,8 @@
 import { screen, within } from "@testing-library/react";
-
-import { NoContacts } from "../../../src/contacts/components";
-import { renderWithProviders } from "../test-utils";
 import { createRoutesStub } from "react-router";
+
+import { NoContacts } from "components";
+import { renderWithProviders } from "test-utils";
 
 describe("NoContacts component tests", () => {
   it("should render the the no contacts message and a button to add a new contact", () => {

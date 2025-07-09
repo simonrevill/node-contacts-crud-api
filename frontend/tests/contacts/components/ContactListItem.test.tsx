@@ -1,6 +1,7 @@
 import { screen } from "@testing-library/react";
-import { ContactList, ContactListItem } from "../../../src/contacts/components";
-import { renderWithProviders } from "../test-utils";
+
+import { ContactList, ContactListItem } from "components";
+import { renderWithProviders } from "test-utils";
 
 describe("ContactListItem component tests", () => {
   it("should render correctly", () => {

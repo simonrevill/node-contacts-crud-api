@@ -5,11 +5,35 @@ import {
 } from "vitest/config";
 import react from "@vitejs/plugin-react";
 import tsconfigPaths from "vite-tsconfig-paths";
+import path from "path";
 
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
   server: {
     port: 3000,
+  },
+  resolve: {
+    alias: [
+      {
+        find: "useCases",
+        replacement: path.resolve(__dirname, "src/contacts/useCases/index.ts"),
+      },
+      {
+        find: "test-utils",
+        replacement: path.resolve(__dirname, "tests/contacts/test-utils.tsx"),
+      },
+      {
+        find: "components",
+        replacement: path.resolve(
+          __dirname,
+          "src/contacts/components/index.ts"
+        ),
+      },
+      {
+        find: "views",
+        replacement: path.resolve(__dirname, "src/contacts/views/index.ts"),
+      },
+    ],
   },
   test: {
     css: true,

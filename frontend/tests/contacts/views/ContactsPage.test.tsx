@@ -1,9 +1,11 @@
 import { act, screen, within } from "@testing-library/react";
-import { createMockContactData, renderWithProviders } from "../test-utils";
-import { ContactsPage } from "../../../src/contacts/views/ContactsPage";
-import { createContactsApiAdapter } from "../../../src/contacts/api/ContactsApiService";
-import type { Contact } from "../../../../backend/src/domain/models/Contact";
 import { createRoutesStub } from "react-router";
+
+import type { Contact } from "backend/domain/models/Contact";
+
+import { createContactsApiAdapter } from "api/ContactsApiService";
+import { ContactsPage } from "views";
+import { createMockContactData, renderWithProviders } from "test-utils";
 
 describe("ContactsPage tests", () => {
   it("should show an error message when there is a problem fetching contacts", async () => {

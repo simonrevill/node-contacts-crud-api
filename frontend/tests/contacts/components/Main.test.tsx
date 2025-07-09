@@ -1,6 +1,7 @@
 import { screen } from "@testing-library/react";
-import { Main } from "../../../src/contacts/components";
-import { renderWithProviders } from "../test-utils";
+
+import { Main } from "components";
+import { renderWithProviders } from "test-utils";
 
 describe("Main component tests", () => {
   it("should render correctly", () => {

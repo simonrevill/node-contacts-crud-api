@@ -2,8 +2,8 @@ import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { createRoutesStub } from "react-router";
 
-import { AddContactForm } from "../../../src/contacts/components";
-import { renderWithProviders } from "../test-utils";
+import { AddContactForm } from "components";
+import { renderWithProviders } from "test-utils";
 
 describe("AddContactForm tests", () => {
   describe("initial rendering", () => {

@@ -7,7 +7,6 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "types": ["vitest/globals", "@types/node"],
-
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
@@ -23,7 +22,25 @@
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* Paths */
+    "baseUrl": ".",
+    "paths": {
+      "src/*": ["src/*"],
+      "components": ["src/contacts/components/index.ts"],
+      "components/*": ["src/contacts/components/*"],
+      "hooks/*": ["src/contacts/hooks/*"],
+      "views": ["src/contacts/views/index.ts"],
+      "views/*": ["src/contacts/views/*"],
+      "useCases": ["src/contacts/useCases/index.ts"],
+      "useCases/*": ["src/contacts/useCases/*"],
+      "api/*": ["src/contacts/api/*"],
+      "types": ["src/types.ts"],
+      "backend/*": ["../backend/src/*"],
+      "tests/*": ["tests/*"],
+      "test-utils": ["tests/contacts/test-utils.tsx"]
+    }
   },
   "include": ["src", "tests", "playwright.config.ts", "vitest.setup.ts"]
 }

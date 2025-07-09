@@ -1,8 +1,8 @@
 import { screen } from "@testing-library/react";
 import { createRoutesStub } from "react-router";
 
-import { AddContactPage } from "../../../src/contacts/views/AddContactPage";
-import { renderWithProviders } from "../test-utils";
+import { AddContactPage } from "views";
+import { renderWithProviders } from "test-utils";
 
 describe("AddContactPage tests", () => {
   it("should render a back button that links back to the contacts page", async () => {

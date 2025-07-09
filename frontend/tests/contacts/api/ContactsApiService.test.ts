@@ -1,6 +1,6 @@
-import { ContactError } from "../../../src/types";
-import { createContactsApiAdapter } from "../../../src/contacts/api/ContactsApiService";
-import { createMockContactData } from "../test-utils";
+import { createContactsApiAdapter } from "api/ContactsApiService";
+import { createMockContactData } from "test-utils";
+import { ContactError } from "types";
 
 describe("API service adapter tests", () => {
   it("throws a 500 error when the request fails", async () => {

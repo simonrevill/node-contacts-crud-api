@@ -1,6 +1,7 @@
 import { screen, within } from "@testing-library/react";
-import { Header } from "../../../src/contacts/components/Header";
-import { renderWithProviders } from "../test-utils";
+
+import { Header } from "components";
+import { renderWithProviders } from "test-utils";
 
 describe("Header component tests", () => {
   it("should render the correct heading", () => {

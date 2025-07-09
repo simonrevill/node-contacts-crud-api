@@ -1,10 +1,8 @@
-import type {
-  Contact,
-  ContactInput,
-} from "../../../../backend/src/domain/models/Contact";
-import { createContactsApiAdapter } from "../../../src/contacts/api/ContactsApiService";
-import { createContact } from "../../../src/contacts/useCases";
-import { createMockContact, createMockContactResponse } from "../test-utils";
+import type { Contact, ContactInput } from "backend/domain/models/Contact";
+
+import { createContactsApiAdapter } from "api/ContactsApiService";
+import { createContact } from "useCases";
+import { createMockContact, createMockContactResponse } from "test-utils";
 
 describe("Creating contacts use case", async () => {
   it("should be called with the correct URL and send the correct request", async () => {

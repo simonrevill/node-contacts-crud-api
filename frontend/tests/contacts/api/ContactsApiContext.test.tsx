@@ -1,5 +1,5 @@
-import { useContactsApi } from "../../../src/contacts/api/ContactsApiContext";
-import { renderWithProviders } from "../test-utils";
+import { useContactsApi } from "api/ContactsApiContext";
+import { renderWithProviders } from "test-utils";
 
 describe("ContactsApiContext tests", () => {
   it("should throw an error when useContactsApi is called outside of ContactsApiProvider", () => {
