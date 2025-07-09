@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { createRoutesStub } from "react-router";
 
 import { AddContactForm } from "../../../src/contacts/components";
-import { renderWithChakraProvider } from "../test-utils";
+import { renderWithProviders } from "../test-utils";
 
 describe("AddContactForm tests", () => {
   describe("initial rendering", () => {
@@ -15,7 +15,7 @@ describe("AddContactForm tests", () => {
           Component: AddContactForm,
         },
       ]);
-      renderWithChakraProvider(<Stub />);
+      renderWithProviders(<Stub />);
 
       // Assert
       const firstNameInput: HTMLInputElement =
@@ -34,7 +34,7 @@ describe("AddContactForm tests", () => {
           Component: AddContactForm,
         },
       ]);
-      renderWithChakraProvider(<Stub />);
+      renderWithProviders(<Stub />);
 
       // Assert
       const lastNameInput: HTMLInputElement =
@@ -53,7 +53,7 @@ describe("AddContactForm tests", () => {
           Component: AddContactForm,
         },
       ]);
-      renderWithChakraProvider(<Stub />);
+      renderWithProviders(<Stub />);
 
       // Assert
       const emailInput: HTMLInputElement = screen.getByLabelText(/Email/i);
@@ -71,7 +71,7 @@ describe("AddContactForm tests", () => {
           Component: AddContactForm,
         },
       ]);
-      renderWithChakraProvider(<Stub />);
+      renderWithProviders(<Stub />);
 
       // Assert
       const cancelButton = screen.getByRole("link", { name: /Cancel/i });
@@ -87,7 +87,7 @@ describe("AddContactForm tests", () => {
           Component: AddContactForm,
         },
       ]);
-      renderWithChakraProvider(<Stub />);
+      renderWithProviders(<Stub />);
 
       // Assert
       const submitButton = screen.getByRole("button", { name: /Submit/i });
@@ -121,7 +121,7 @@ describe("AddContactForm tests", () => {
             Component: AddContactForm,
           },
         ]);
-        renderWithChakraProvider(<Stub />);
+        renderWithProviders(<Stub />);
 
         const field: HTMLInputElement = screen.getByLabelText(fieldName);
 
@@ -169,7 +169,7 @@ describe("AddContactForm tests", () => {
             Component: AddContactForm,
           },
         ]);
-        renderWithChakraProvider(<Stub />);
+        renderWithProviders(<Stub />);
 
         const field: HTMLInputElement = screen.getByLabelText(fieldName);
 

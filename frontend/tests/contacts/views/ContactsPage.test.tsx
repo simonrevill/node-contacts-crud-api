@@ -20,6 +20,7 @@ describe("ContactsPage tests", () => {
     });
     await act(async () => {
       renderWithProviders(<Stub />, {
+        withContactApi: true,
         api: createContactsApiAdapter({ request: spy }),
       });
     });
@@ -50,6 +51,7 @@ describe("ContactsPage tests", () => {
       json: () => fakeEmptyContactData,
     });
     renderWithProviders(<Stub />, {
+      withContactApi: true,
       api: createContactsApiAdapter({ request: spy }),
     });
 
@@ -84,6 +86,7 @@ describe("ContactsPage tests", () => {
       json: () => fakeContactData,
     });
     renderWithProviders(<Stub />, {
+      withContactApi: true,
       api: createContactsApiAdapter({ request: spy }),
     });
 

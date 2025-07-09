@@ -1,11 +1,11 @@
 import { screen } from "@testing-library/react";
 import { ContactList, ContactListItem } from "../../../src/contacts/components";
-import { renderWithChakraProvider } from "../test-utils";
+import { renderWithProviders } from "../test-utils";
 
 describe("ContactListItem component tests", () => {
   it("should render correctly", () => {
     // Arrange
-    renderWithChakraProvider(
+    renderWithProviders(
       <ContactList>
         <ContactListItem />
       </ContactList>
@@ -19,7 +19,7 @@ describe("ContactListItem component tests", () => {
 
   it("should render the last list item without a border", () => {
     // Arrange
-    renderWithChakraProvider(
+    renderWithProviders(
       <ContactList>
         <ContactListItem />
         <ContactListItem />

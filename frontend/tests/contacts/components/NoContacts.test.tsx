@@ -1,7 +1,7 @@
 import { screen, within } from "@testing-library/react";
 
 import { NoContacts } from "../../../src/contacts/components";
-import { renderWithChakraProvider } from "../test-utils";
+import { renderWithProviders } from "../test-utils";
 import { createRoutesStub } from "react-router";
 
 describe("NoContacts component tests", () => {
@@ -13,7 +13,7 @@ describe("NoContacts component tests", () => {
         Component: NoContacts,
       },
     ]);
-    renderWithChakraProvider(<Stub />);
+    renderWithProviders(<Stub />);
 
     const noContactsAlert = screen.getByRole("alert");
     const noContactsIcon =

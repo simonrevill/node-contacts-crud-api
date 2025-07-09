@@ -1,11 +1,11 @@
 import { screen } from "@testing-library/react";
 import { Main } from "../../../src/contacts/components";
-import { renderWithChakraProvider } from "../test-utils";
+import { renderWithProviders } from "../test-utils";
 
 describe("Main component tests", () => {
   it("should render correctly", () => {
     // Arrange
-    renderWithChakraProvider(<Main />);
+    renderWithProviders(<Main />);
 
     // Assert
     const contactList = screen.getByRole("main");
@@ -15,7 +15,7 @@ describe("Main component tests", () => {
 
   it("should render a list item as a child", () => {
     // Arrange
-    renderWithChakraProvider(
+    renderWithProviders(
       <Main>
         <p>Test child component</p>
       </Main>
@@ -30,7 +30,7 @@ describe("Main component tests", () => {
 
   it("should render a list item with the correct height style", () => {
     // Arrange
-    renderWithChakraProvider(<Main />);
+    renderWithProviders(<Main />);
 
     // Assert
     const main = screen.getByRole("main");

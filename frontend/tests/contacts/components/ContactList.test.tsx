@@ -1,11 +1,11 @@
 import { screen, within } from "@testing-library/react";
 import { ContactList, ContactListItem } from "../../../src/contacts/components";
-import { renderWithChakraProvider } from "../test-utils";
+import { renderWithProviders } from "../test-utils";
 
 describe("ContactList component tests", () => {
   it("should render correctly", () => {
     // Arrange
-    renderWithChakraProvider(<ContactList />);
+    renderWithProviders(<ContactList />);
 
     // Assert
     const contactList = screen.getByRole("list");
@@ -15,7 +15,7 @@ describe("ContactList component tests", () => {
 
   it("should render a list item as a child", () => {
     // Arrange
-    renderWithChakraProvider(
+    renderWithProviders(
       <ContactList>
         <ContactListItem>Example list item</ContactListItem>
       </ContactList>

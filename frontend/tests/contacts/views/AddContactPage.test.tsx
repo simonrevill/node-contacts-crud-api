@@ -2,7 +2,7 @@ import { screen } from "@testing-library/react";
 import { createRoutesStub } from "react-router";
 
 import { AddContactPage } from "../../../src/contacts/views/AddContactPage";
-import { renderWithChakraProvider } from "../test-utils";
+import { renderWithProviders } from "../test-utils";
 
 describe("AddContactPage tests", () => {
   it("should render a back button that links back to the contacts page", async () => {
@@ -14,7 +14,7 @@ describe("AddContactPage tests", () => {
       },
     ]);
 
-    renderWithChakraProvider(<Stub />);
+    renderWithProviders(<Stub />);
 
     // Act
     const backButton = screen.getByRole("button", { name: /Back/i });
@@ -31,7 +31,7 @@ describe("AddContactPage tests", () => {
         Component: AddContactPage,
       },
     ]);
-    renderWithChakraProvider(<Stub />);
+    renderWithProviders(<Stub />);
 
     // Act
     const addContactHeading = screen.getByRole("heading", {

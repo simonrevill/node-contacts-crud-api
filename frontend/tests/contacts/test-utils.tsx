@@ -40,31 +40,29 @@ export const createMockContactResponse = (
   };
 };
 
-export function renderWithChakraProvider(
-  ui: React.ReactElement,
-  renderOptions?: RenderOptions
-) {
-  return render(
-    <ChakraProvider value={defaultSystem}>{ui}</ChakraProvider>,
-    renderOptions
-  );
-}
+type ProvidersOptions = {
+  withContactApi?: boolean;
+  api?: IContactsAPI;
+} & RenderOptions;
 
 export function renderWithProviders(
   ui: React.ReactElement,
-  {
-    api,
-    ...renderOptions
-  }: {
-    api: IContactsAPI;
-  } & RenderOptions
+  { withContactApi = false, api, ...renderOptions }: ProvidersOptions = {}
 ) {
-  return render(
-    <ChakraProvider value={defaultSystem}>
-      <ContactsApiProvider api={api}>{ui}</ContactsApiProvider>,
-    </ChakraProvider>,
-    renderOptions
-  );
+  let tree = <ChakraProvider value={defaultSystem}>{ui}</ChakraProvider>;
+
+  if (withContactApi) {
+    if (!api) {
+      throw new Error("You must provide an api when withContactApi is true");
+    }
+    tree = (
+      <ChakraProvider value={defaultSystem}>
+        <ContactsApiProvider api={api}>{ui}</ContactsApiProvider>
+      </ChakraProvider>
+    );
+  }
+
+  return render(tree, renderOptions);
 }
 
 export class ContactBuilder {
