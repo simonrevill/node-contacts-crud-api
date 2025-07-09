@@ -60,10 +60,9 @@ export function renderWithProviders(
   } & RenderOptions
 ) {
   return render(
-    React.createElement(ChakraProvider, {
-      value: defaultSystem,
-      children: React.createElement(ContactsApiProvider, { api, children: ui }),
-    }),
+    <ChakraProvider value={defaultSystem}>
+      <ContactsApiProvider api={api}>{ui}</ContactsApiProvider>,
+    </ChakraProvider>,
     renderOptions
   );
 }
