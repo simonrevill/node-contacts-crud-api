@@ -1,6 +1,5 @@
-import { render } from "@testing-library/react";
-
 import { useContactsApi } from "../../../src/contacts/api/ContactsApiContext";
+import { renderWithProviders } from "../test-utils";
 
 describe("ContactsApiContext tests", () => {
   it("should throw an error when useContactsApi is called outside of ContactsApiProvider", () => {
@@ -12,7 +11,7 @@ describe("ContactsApiContext tests", () => {
 
     // Assert
     expect(() => {
-      render(<TestComponent />);
+      renderWithProviders(<TestComponent />);
     }).toThrowError("useContactsApi must be used within a ContactsApiProvider");
   });
 });
