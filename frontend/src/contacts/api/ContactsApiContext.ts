@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import type { IContactsAPI } from "../../types";
+import type { IContactsAPI } from "types";
 
 export const ContactsApiContext = createContext<IContactsAPI | null>(null);
 

@@ -1,6 +1,6 @@
 import { type ReactNode } from "react";
-import type { IContactsAPI } from "../../types";
-import { ContactsApiContext } from "./ContactsApiContext";
+import type { IContactsAPI } from "types";
+import { ContactsApiContext } from "api/ContactsApiContext";
 
 export const ContactsApiProvider = ({
   api,

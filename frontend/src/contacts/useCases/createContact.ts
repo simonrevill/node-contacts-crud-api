@@ -1,5 +1,6 @@
-import type { ContactInput } from "../../../../backend/src/domain/models/Contact";
-import type { IContactsAPI, CreateContactResponse } from "../../types";
+import type { ContactInput } from "backend/domain/models/Contact";
+
+import type { IContactsAPI, CreateContactResponse } from "types";
 
 export const createContact = async (
   api: IContactsAPI,

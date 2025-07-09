@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-
 import { Box } from "@chakra-ui/react";
 
 interface MainProps {

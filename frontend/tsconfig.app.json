@@ -30,6 +30,7 @@
       "src/*": ["src/*"],
       "components": ["src/contacts/components/index.ts"],
       "components/*": ["src/contacts/components/*"],
+      "hooks": ["src/contacts/hooks/index.ts"],
       "hooks/*": ["src/contacts/hooks/*"],
       "views": ["src/contacts/views/index.ts"],
       "views/*": ["src/contacts/views/*"],

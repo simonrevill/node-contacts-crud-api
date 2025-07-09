@@ -1,7 +1,7 @@
-import { Header } from "./contacts/components/Header";
-import { ContactsPage } from "./contacts/views/ContactsPage";
-import { AddContactPage } from "./contacts/views/AddContactPage";
 import { Route, Routes } from "react-router";
+
+import { Header } from "components";
+import { ContactsPage, AddContactPage } from "views";
 
 function App() {
   return (

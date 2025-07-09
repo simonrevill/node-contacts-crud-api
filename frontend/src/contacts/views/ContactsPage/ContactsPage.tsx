@@ -1,11 +1,7 @@
 import { Heading, Text } from "@chakra-ui/react";
-import {
-  ContactList,
-  ContactListItem,
-  Main,
-  NoContacts,
-} from "../../components";
-import useContacts from "../../hooks/useContacts";
+
+import { ContactList, ContactListItem, Main, NoContacts } from "components";
+import { useContacts } from "hooks";
 
 export default function ContactsPage() {
   const { contacts, isError, hasNoContacts } = useContacts();

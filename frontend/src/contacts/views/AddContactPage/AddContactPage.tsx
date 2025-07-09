@@ -2,7 +2,7 @@ import { NavLink } from "react-router";
 import { Heading, Link as ChakraLink, Button } from "@chakra-ui/react";
 import { ChevronLeft } from "lucide-react";
 
-import { AddContactForm, Main } from "../../components";
+import { AddContactForm, Main } from "components";
 
 export default function AddContactPage() {
   return (

@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { X, Check } from "lucide-react";
 
-import useAddContactForm from "../../hooks/useAddContactForm";
+import { useAddContactForm } from "hooks";
 
 export default function AddContactForm() {
   const {
