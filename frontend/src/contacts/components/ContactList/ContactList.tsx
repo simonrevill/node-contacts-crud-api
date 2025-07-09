@@ -14,6 +14,8 @@ export default function ContactList({ children }: ContactListProps) {
       borderStyle="solid"
       borderColor="gray.300"
       borderRadius={4}
+      flex={1}
+      overflowY="auto"
     >
       {children}
     </List.Root>
