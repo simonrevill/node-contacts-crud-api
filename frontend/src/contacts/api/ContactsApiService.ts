@@ -1,5 +1,5 @@
 import { type IContactsAPI, ContactError } from "types";
-import type { Contact, ContactInput } from "backend/domain/models/Contact";
+import type { Contact, ContactInput } from "backend/domain/models";
 
 interface ContactsApiAdapterOptions {
   request?: typeof window.fetch;

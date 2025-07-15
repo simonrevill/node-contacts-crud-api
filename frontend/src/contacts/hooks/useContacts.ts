@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useContactsApi } from "../api/ContactsApiContext";
 import { fetchContacts } from "../useCases";
 import { ContactError } from "../../types";
-import type { Contact } from "../../../../backend/src/domain/models/Contact";
+import type { Contact } from "../../../../backend/src/domain/models";
 
 export default function useContacts() {
   const contactsApi = useContactsApi();

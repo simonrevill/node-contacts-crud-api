@@ -1,4 +1,4 @@
-import type { Contact } from "backend/domain/models/Contact";
+import type { Contact } from "backend/domain/models";
 
 import type { IContactsAPI } from "types";
 

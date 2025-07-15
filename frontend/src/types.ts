@@ -1,9 +1,6 @@
 import { z } from "zod/v4";
 
-import type {
-  Contact,
-  ContactInput,
-} from "../../backend/src/domain/models/Contact";
+import type { Contact, ContactInput } from "backend/domain/models";
 
 export interface IContactsAPI {
   fetchContacts(): Promise<Contact[]>;
