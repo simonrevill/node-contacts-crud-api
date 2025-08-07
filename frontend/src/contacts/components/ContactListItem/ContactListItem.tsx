@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { List } from "@chakra-ui/react";
+import { List, Text } from "@chakra-ui/react";
 
 interface ContactListItemProps {
   children?: ReactNode;
@@ -14,7 +14,9 @@ export default function ContactListItem({ children }: ContactListItemProps) {
       borderBottomColor="gray.300"
       _last={{ borderBottom: "none" }}
     >
-      {children}
+       <Text as="span" fontSize="md" fontWeight="semibold">
+        {children}
+       </Text>
     </List.Item>
   );
 }

@@ -39,9 +39,7 @@ export default function ContactsPage() {
       <ContactList>
         {contacts.map((contact) => (
           <ContactListItem key={contact.id}>
-            <Text as="span" fontSize="md" fontWeight="semibold">
-              {`${contact.firstName} ${contact.lastName}`}
-            </Text>
+            {`${contact.firstName} ${contact.lastName}`}
           </ContactListItem>
         ))}
       </ContactList>
