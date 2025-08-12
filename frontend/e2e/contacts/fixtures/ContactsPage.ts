@@ -4,6 +4,7 @@ export class ContactsPage {
   header: Locator;
   heading: Locator;
   contactListHeading: Locator;
+  loadingMessage: Locator;
   fetchErrorMessageHeading: Locator;
   fetchErrorMessageSubheading: Locator;
   emptyStateHeading: Locator;
@@ -19,6 +20,9 @@ export class ContactsPage {
     this.contactListHeading = this.page.getByRole("heading", {
       level: 2,
       name: /My Contacts/,
+    });
+    this.loadingMessage = this.page.getByRole("status", {
+      name: "Fetching contacts...",
     });
     this.fetchErrorMessageHeading = this.page.getByText(
       "Something went wrong."
@@ -43,5 +47,32 @@ export class ContactsPage {
 
   async getTitle(): Promise<string> {
     return await this.page.title();
+  }
+
+  async simulateFetchingEmptyContactList() {
+    await this.page.route("**/api/contacts", async (route) => {
+      await new Promise((resolve) => setTimeout(resolve, 500)); // 500ms delay
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify([]),
+      });
+    });
+  }
+
+  async simulateServerError() {
+    await this.page.route(
+      "http://localhost:8080/api/contacts",
+      async (route) => {
+        await route.fulfill({
+          status: 500,
+          contentType: "application/json",
+          body: JSON.stringify({
+            status: 500,
+            error: "Something went wrong.",
+          }),
+        });
+      }
+    );
   }
 }

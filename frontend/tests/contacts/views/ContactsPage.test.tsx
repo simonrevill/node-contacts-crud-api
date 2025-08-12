@@ -8,6 +8,31 @@ import { ContactsPage } from "views";
 import { createMockContactData, renderWithProviders } from "test-utils";
 
 describe("ContactsPage tests", () => {
+  it("should show a loading message when fetching contacts", async () => {
+    // Arrange
+    const Stub = createRoutesStub([
+      {
+        path: "/",
+        Component: ContactsPage,
+      },
+    ]);
+    const fakeEmptyContactData: Contact[] = [];
+    const spy = vi.fn().mockResolvedValue({
+      ok: true,
+      json: () => fakeEmptyContactData,
+    });
+    renderWithProviders(<Stub />, {
+      withContactApi: true,
+      api: createContactsApiAdapter({ request: spy }),
+    });
+
+    // Assert
+    expect(screen.getByRole("status")).toBeVisible();
+    expect(screen.getByRole("status")).toHaveTextContent(
+      "Fetching contacts..."
+    );
+  });
+
   it("should show an error message when there is a problem fetching contacts", async () => {
     // Arrange
     const Stub = createRoutesStub([

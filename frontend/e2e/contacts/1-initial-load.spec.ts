@@ -16,21 +16,28 @@ describe("Initial load of the application", () => {
     await expect(contactsPage.contactListHeading).toBeVisible();
   });
 
-  test("User sees error message when the application fails to load data", async ({
+  test("User sees a loading text when the application loads", async ({
     contactsPage,
     page,
   }) => {
-    // Arrange
-    await page.route("http://localhost:8080/api/contacts", async (route) => {
-      await route.fulfill({
-        status: 500,
-        contentType: "application/json",
-        body: JSON.stringify({
-          status: 500,
-          error: "Something went wrong.",
-        }),
-      });
+    // Arrange & Act
+    await contactsPage.simulateFetchingEmptyContactList();
+    await contactsPage.goto();
+
+    // Assert
+    await page.waitForSelector('[role="status"]', {
+      timeout: 2000,
     });
+    const loadingMessage = page.getByRole("status");
+    expect(loadingMessage).toBeVisible();
+    expect(loadingMessage).toContainText("Fetching contacts...");
+  });
+
+  test("User sees error message when the application fails to load data", async ({
+    contactsPage,
+  }) => {
+    // Arrange
+    await contactsPage.simulateServerError();
 
     await contactsPage.goto();
 

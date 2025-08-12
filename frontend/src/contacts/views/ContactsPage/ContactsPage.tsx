@@ -4,7 +4,20 @@ import { ContactList, ContactListItem, Main, NoContacts } from "components";
 import { useContacts } from "hooks";
 
 export default function ContactsPage() {
-  const { contacts, isError, hasNoContacts } = useContacts();
+  const { contacts, isLoading, isError, hasNoContacts } = useContacts();
+
+  if (isLoading) {
+    return (
+      <Main>
+        <Heading as="h2" mb={8}>
+          My Contacts
+        </Heading>
+        <p role="status" aria-live="polite">
+          Fetching contacts...
+        </p>
+      </Main>
+    );
+  }
 
   if (isError) {
     return (

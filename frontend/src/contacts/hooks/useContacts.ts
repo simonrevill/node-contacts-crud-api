@@ -7,10 +7,12 @@ import type { Contact } from "../../../../backend/src/domain/models";
 export default function useContacts() {
   const contactsApi = useContactsApi();
   const [contacts, setContacts] = useState<Contact[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     (async () => {
+      setIsLoading(true);
       try {
         const data = await fetchContacts(contactsApi);
         setContacts(data);
@@ -18,12 +20,15 @@ export default function useContacts() {
         if (error instanceof ContactError) {
           setIsError(true);
         }
+      } finally {
+        setIsLoading(false);
       }
     })();
   }, [contactsApi]);
 
   return {
     contacts,
+    isLoading,
     isError,
     hasNoContacts: contacts.length === 0,
   };
