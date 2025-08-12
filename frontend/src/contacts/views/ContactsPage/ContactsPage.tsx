@@ -1,15 +1,12 @@
-import { Heading } from "@chakra-ui/react";
-
 import {
   ContactList,
   ContactListItem,
   FetchingContacts,
-  Main,
   NoContacts,
   SomethingWentWrong,
+  ContactsPageContainer,
 } from "components";
 import { useContacts } from "hooks";
-import type { ReactNode } from "react";
 
 export default function ContactsPage() {
   const { contacts, isLoading, isError, hasNoContacts } = useContacts();
@@ -48,20 +45,5 @@ export default function ContactsPage() {
         ))}
       </ContactList>
     </ContactsPageContainer>
-  );
-}
-
-interface ContactsPageContainerProps {
-  children: ReactNode;
-}
-
-function ContactsPageContainer({ children }: ContactsPageContainerProps) {
-  return (
-    <Main>
-      <Heading as="h2" mb={8}>
-        My Contacts
-      </Heading>
-      {children}
-    </Main>
   );
 }

@@ -6,3 +6,4 @@ export { Main } from "./Main";
 export { AddContactForm } from "./AddContactForm";
 export { FetchingContacts } from "./FetchingContacts";
 export { SomethingWentWrong } from "./SomethingWentWrong";
+export { ContactsPageContainer } from "./ContactsPageContainer";
