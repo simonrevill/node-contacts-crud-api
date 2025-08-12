@@ -6,6 +6,7 @@ import {
   FetchingContacts,
   Main,
   NoContacts,
+  SomethingWentWrong,
 } from "components";
 import { useContacts } from "hooks";
 
@@ -29,10 +30,7 @@ export default function ContactsPage() {
         <Heading as="h2" mb={8}>
           My Contacts
         </Heading>
-        <div role="alert">
-          <h2>Something went wrong.</h2>
-          <p>Please try again later</p>
-        </div>
+        <SomethingWentWrong />
       </Main>
     );
   }
