@@ -1,6 +1,12 @@
 import { Heading } from "@chakra-ui/react";
 
-import { ContactList, ContactListItem, Main, NoContacts } from "components";
+import {
+  ContactList,
+  ContactListItem,
+  FetchingContacts,
+  Main,
+  NoContacts,
+} from "components";
 import { useContacts } from "hooks";
 
 export default function ContactsPage() {
@@ -12,9 +18,7 @@ export default function ContactsPage() {
         <Heading as="h2" mb={8}>
           My Contacts
         </Heading>
-        <p role="status" aria-live="polite">
-          Fetching contacts...
-        </p>
+        <FetchingContacts />
       </Main>
     );
   }

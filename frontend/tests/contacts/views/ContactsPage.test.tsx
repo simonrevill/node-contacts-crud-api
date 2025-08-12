@@ -77,9 +77,11 @@ describe("ContactsPage tests", () => {
       ok: true,
       json: () => fakeEmptyContactData,
     });
-    renderWithProviders(<Stub />, {
-      withContactApi: true,
-      api: createContactsApiAdapter({ request: spy }),
+    await act(async () => {
+      renderWithProviders(<Stub />, {
+        withContactApi: true,
+        api: createContactsApiAdapter({ request: spy }),
+      });
     });
 
     // Assert
