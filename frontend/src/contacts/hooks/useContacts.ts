@@ -26,10 +26,12 @@ export default function useContacts() {
     })();
   }, [contactsApi]);
 
+  const hasNoContacts = contacts.length === 0;
+
   return {
     contacts,
     isLoading,
     isError,
-    hasNoContacts: contacts.length === 0,
+    hasNoContacts,
   };
 }
