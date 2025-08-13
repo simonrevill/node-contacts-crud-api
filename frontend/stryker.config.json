@@ -15,6 +15,7 @@
   "mutate": [
     "{src,lib}/**/!(*.+(s|S)pec|*.+(t|T)est).+(cjs|mjs|js|ts|mts|cts|jsx|tsx|html|vue|svelte)",
     "!src/main.tsx",
+    "!src/theme.ts",
     "!src/App.tsx",
     "!src/contacts/hooks/**/*"
   ]
