@@ -52,6 +52,7 @@ export default defineConfig({
         "playwright.config.ts",
         "src/App.tsx",
         "src/main.tsx",
+        "src/theme.ts",
         "src/types.ts",
         "**/*/index.ts",
       ],
