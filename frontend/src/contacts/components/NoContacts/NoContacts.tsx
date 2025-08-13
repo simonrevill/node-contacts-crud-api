@@ -30,7 +30,7 @@ export default function NoContacts() {
       <Text fontSize="sm">Add a contact to get started</Text>
       <ChakraLink asChild>
         <NavLink to="/create">
-          <Button variant="solid" size="lg" colorScheme="teal">
+          <Button variant="solid" size="lg">
             <Plus />
             Add contact
           </Button>
