@@ -17,7 +17,7 @@
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "pg": "^8.16.0",
-    "zod": "^3.25.56"
+    "zod": "^4.0.17"
   },
   "devDependencies": {
     "@faker-js/faker": "^9.8.0",

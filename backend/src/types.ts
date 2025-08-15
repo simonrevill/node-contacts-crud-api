@@ -1,5 +1,5 @@
 import { Pool } from "pg";
-import { z } from "zod/v4";
+import { z } from "zod";
 
 import { type Contact, type ContactInput } from "./domain/models/Contact";
 export interface ContactErrorConstructor {

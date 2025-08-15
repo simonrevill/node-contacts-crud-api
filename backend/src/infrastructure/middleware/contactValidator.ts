@@ -1,5 +1,5 @@
 import { type NextFunction, type Request, type Response } from "express";
-import { z } from "zod/v4";
+import { z } from "zod";
 import { ContactError } from "../../types";
 
 export const contactIdValidator = (
