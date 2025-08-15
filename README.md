@@ -34,7 +34,7 @@ To help me achieve this I have used the following:
 
 - Test-driven development (TDD)
 - Mutation tests
-- GitHub Actions running all test suites, performs type checks, linting, and generates test report artefacts ready for future analysis.
+- GitHub Actions running all test suites, performs type checks, linting, and generates test report artifacts ready for future analysis.
 - Monorepo structure to keep all related code in one place.
 
 ## Getting started
