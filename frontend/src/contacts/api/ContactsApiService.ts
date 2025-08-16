@@ -17,11 +17,11 @@ export const createContactsApiAdapter = ({
         },
       });
 
-      if (response.ok) {
-        return await response.json();
+      if (!response.ok) {
+        throw new ContactError({ status: 500, error: "Something went wrong." });
       }
 
-      throw new ContactError({ status: 500, error: "Something went wrong." });
+      return await response.json();
     },
     async createContact(newContact: ContactInput): Promise<Response> {
       const response = await request("http://localhost:8080/api/contacts", {
