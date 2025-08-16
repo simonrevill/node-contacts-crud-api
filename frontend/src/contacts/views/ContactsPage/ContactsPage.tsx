@@ -11,18 +11,18 @@ import { useContacts } from "hooks";
 export default function ContactsPage() {
   const { contacts, isLoading, isError, hasNoContacts } = useContacts();
 
-  if (isError) {
-    return (
-      <ContactsPageContainer>
-        <SomethingWentWrong />
-      </ContactsPageContainer>
-    );
-  }
-
   if (isLoading) {
     return (
       <ContactsPageContainer>
         <FetchingContacts />
+      </ContactsPageContainer>
+    );
+  }
+
+  if (isError) {
+    return (
+      <ContactsPageContainer>
+        <SomethingWentWrong />
       </ContactsPageContainer>
     );
   }
