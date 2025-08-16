@@ -5,6 +5,7 @@ import { ContactsApiProvider } from "api/ContactsApiProvider";
 import { faker } from "@faker-js/faker";
 import type { IContactsAPI } from "types";
 import type { Contact, ContactInput } from "backend/domain/models/Contact";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 export const createMockContact = (): ContactInput => ({
   firstName: faker.person.firstName(),
@@ -44,16 +45,26 @@ export function renderWithProviders(
   ui: React.ReactElement,
   { withContactApi = false, api, ...renderOptions }: ProvidersOptions = {}
 ) {
-  let tree = <ChakraProvider value={defaultSystem}>{ui}</ChakraProvider>;
+  const queryClient = new QueryClient({
+    defaultOptions: { queries: { retry: false } },
+  });
+
+  let tree = (
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider value={defaultSystem}>{ui}</ChakraProvider>;
+    </QueryClientProvider>
+  );
 
   if (withContactApi) {
     if (!api) {
       throw new Error("You must provide an api when withContactApi is true");
     }
     tree = (
-      <ChakraProvider value={defaultSystem}>
-        <ContactsApiProvider api={api}>{ui}</ContactsApiProvider>
-      </ChakraProvider>
+      <QueryClientProvider client={queryClient}>
+        <ChakraProvider value={defaultSystem}>
+          <ContactsApiProvider api={api}>{ui}</ContactsApiProvider>
+        </ChakraProvider>
+      </QueryClientProvider>
     );
   }
 

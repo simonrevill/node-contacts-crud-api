@@ -19,8 +19,7 @@ export class ContactError extends Error {
   error: string | z.core.$ZodIssue[];
 
   constructor({ code, status, error }: ContactErrorConstructor) {
-    super();
-
+    super(typeof error === "string" ? error : "Contact error");
     this.code = code;
     this.status = status;
     this.error = error;

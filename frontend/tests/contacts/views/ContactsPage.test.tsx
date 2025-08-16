@@ -1,4 +1,4 @@
-import { act, screen, within } from "@testing-library/react";
+import { act, screen, within, waitFor } from "@testing-library/react";
 import { createRoutesStub } from "react-router";
 
 import type { Contact } from "backend/domain/models/Contact";
@@ -44,11 +44,19 @@ describe("ContactsPage tests", () => {
     const spy = vi.fn().mockResolvedValue({
       ok: false,
     });
+
+    // Act
     await act(async () => {
       renderWithProviders(<Stub />, {
         withContactApi: true,
         api: createContactsApiAdapter({ request: spy }),
       });
+    });
+    await waitFor(() => {
+      const loadingMessage = screen.queryByRole("status", {
+        name: "Fetching contacts...",
+      });
+      expect(loadingMessage).not.toBeInTheDocument();
     });
 
     // Assert
@@ -72,6 +80,7 @@ describe("ContactsPage tests", () => {
       },
     ]);
     const fakeEmptyContactData: Contact[] = [];
+
     const spy = vi.fn().mockResolvedValue({
       ok: true,
       json: () => fakeEmptyContactData,
@@ -81,6 +90,13 @@ describe("ContactsPage tests", () => {
         withContactApi: true,
         api: createContactsApiAdapter({ request: spy }),
       });
+    });
+    // Wait for React Query to update state
+    await waitFor(() => {
+      const loadingMessage = screen.queryByRole("status", {
+        name: "Fetching contacts...",
+      });
+      expect(loadingMessage).not.toBeInTheDocument();
     });
 
     // Assert
