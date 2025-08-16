@@ -10,46 +10,32 @@ import { createMockContactData, renderWithProviders } from "test-utils";
 describe("ContactsPage tests", () => {
   it("should show a loading message when fetching contacts", async () => {
     // Arrange
-    const Stub = createRoutesStub([
-      {
-        path: "/",
-        Component: ContactsPage,
-      },
-    ]);
     const fakeEmptyContactData: Contact[] = [];
-    const spy = vi.fn().mockResolvedValue({
+    const mock = vi.fn().mockResolvedValue({
       ok: true,
       json: () => fakeEmptyContactData,
     });
-    renderWithProviders(<Stub />, {
+    renderWithProviders(<ContactsPage />, {
       withContactApi: true,
-      api: createContactsApiAdapter({ request: spy }),
+      api: createContactsApiAdapter({ request: mock }),
     });
 
     // Assert
-    expect(screen.getByRole("status")).toBeVisible();
-    expect(screen.getByRole("status")).toHaveTextContent(
-      "Fetching contacts..."
-    );
+    const loadingMessage = screen.getByRole("status");
+    expect(loadingMessage).toBeVisible();
+    expect(loadingMessage).toHaveTextContent("Fetching contacts...");
   });
 
   it("should show an error message when there is a problem fetching contacts", async () => {
     // Arrange
-    const Stub = createRoutesStub([
-      {
-        path: "/",
-        Component: ContactsPage,
-      },
-    ]);
-    const spy = vi.fn().mockResolvedValue({
+    const mock = vi.fn().mockResolvedValue({
       ok: false,
     });
 
-    // Act
     await act(async () => {
-      renderWithProviders(<Stub />, {
+      renderWithProviders(<ContactsPage />, {
         withContactApi: true,
-        api: createContactsApiAdapter({ request: spy }),
+        api: createContactsApiAdapter({ request: mock }),
       });
     });
     await waitFor(() => {
@@ -81,14 +67,14 @@ describe("ContactsPage tests", () => {
     ]);
     const fakeEmptyContactData: Contact[] = [];
 
-    const spy = vi.fn().mockResolvedValue({
+    const mock = vi.fn().mockResolvedValue({
       ok: true,
       json: () => fakeEmptyContactData,
     });
     await act(async () => {
       renderWithProviders(<Stub />, {
         withContactApi: true,
-        api: createContactsApiAdapter({ request: spy }),
+        api: createContactsApiAdapter({ request: mock }),
       });
     });
     // Wait for React Query to update state
@@ -118,20 +104,14 @@ describe("ContactsPage tests", () => {
 
   it("should show a list of contacts", async () => {
     // Arrange
-    const Stub = createRoutesStub([
-      {
-        path: "/",
-        Component: ContactsPage,
-      },
-    ]);
     const fakeContactData = createMockContactData(3);
-    const spy = vi.fn().mockResolvedValue({
+    const mock = vi.fn().mockResolvedValue({
       ok: true,
       json: () => fakeContactData,
     });
-    renderWithProviders(<Stub />, {
+    renderWithProviders(<ContactsPage />, {
       withContactApi: true,
-      api: createContactsApiAdapter({ request: spy }),
+      api: createContactsApiAdapter({ request: mock }),
     });
 
     // Assert

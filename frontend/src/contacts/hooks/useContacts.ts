@@ -1,6 +1,7 @@
+import { useQuery } from "@tanstack/react-query";
+
 import { useContactsApi } from "api/ContactsApiContext";
 import { fetchContacts } from "useCases";
-import { useQuery } from "@tanstack/react-query";
 
 export default function useContacts() {
   const contactsApi = useContactsApi();
