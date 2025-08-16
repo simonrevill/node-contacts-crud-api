@@ -17,7 +17,7 @@ describe("API service adapter tests", () => {
     const { fetchContacts } = createContactsApiAdapter({ request: mock });
 
     // Assert
-    await expect(fetchContacts()).rejects.toMatchObject(mockServerError);
+    await expect(fetchContacts()).rejects.toStrictEqual(mockServerError);
   });
 
   it("returns a list of contacts when there is a successful response", async () => {
