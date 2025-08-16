@@ -43,7 +43,6 @@ describe("ContactsPage tests", () => {
     ]);
     const spy = vi.fn().mockResolvedValue({
       ok: false,
-      json: vi.fn(),
     });
     await act(async () => {
       renderWithProviders(<Stub />, {
