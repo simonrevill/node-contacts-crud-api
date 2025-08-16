@@ -37,13 +37,12 @@ export const createMockContactResponse = (
 };
 
 type ProvidersOptions = {
-  withContactApi?: boolean;
   api?: IContactsAPI;
 } & RenderOptions;
 
 export function renderWithProviders(
   ui: React.ReactElement,
-  { withContactApi = false, api, ...renderOptions }: ProvidersOptions = {}
+  { api, ...renderOptions }: ProvidersOptions = {}
 ) {
   const queryClient = new QueryClient({
     defaultOptions: { queries: { retry: false } },
@@ -55,10 +54,7 @@ export function renderWithProviders(
     </QueryClientProvider>
   );
 
-  if (withContactApi) {
-    if (!api) {
-      throw new Error("You must provide an api when withContactApi is true");
-    }
+  if (api) {
     tree = (
       <QueryClientProvider client={queryClient}>
         <ChakraProvider value={defaultSystem}>

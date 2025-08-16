@@ -16,7 +16,6 @@ describe("ContactsPage tests", () => {
       json: () => fakeEmptyContactData,
     });
     renderWithProviders(<ContactsPage />, {
-      withContactApi: true,
       api: createContactsApiAdapter({ request: mock }),
     });
 
@@ -34,7 +33,6 @@ describe("ContactsPage tests", () => {
 
     await act(async () => {
       renderWithProviders(<ContactsPage />, {
-        withContactApi: true,
         api: createContactsApiAdapter({ request: mock }),
       });
     });
@@ -73,7 +71,6 @@ describe("ContactsPage tests", () => {
     });
     await act(async () => {
       renderWithProviders(<Stub />, {
-        withContactApi: true,
         api: createContactsApiAdapter({ request: mock }),
       });
     });
@@ -110,7 +107,6 @@ describe("ContactsPage tests", () => {
       json: () => fakeContactData,
     });
     renderWithProviders(<ContactsPage />, {
-      withContactApi: true,
       api: createContactsApiAdapter({ request: mock }),
     });
 
