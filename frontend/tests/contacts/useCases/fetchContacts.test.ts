@@ -20,7 +20,7 @@ describe("Fetching contacts use case", async () => {
 
     // Act & Assert
     await expect(fetchContactsPromise).rejects.toBeInstanceOf(ContactError);
-    await expect(fetchContactsPromise).rejects.toMatchObject(mockServerError);
+    await expect(fetchContactsPromise).rejects.toStrictEqual(mockServerError);
   });
 
   it("should return an empty list of contacts when there are no existing contacts in the database", async () => {
