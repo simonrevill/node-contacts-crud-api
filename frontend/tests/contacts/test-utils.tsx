@@ -49,7 +49,7 @@ export function renderWithProviders(
   ui: React.ReactElement,
   { api, ...renderOptions }: ProvidersOptions = {}
 ) {
-  const queryClientConfig: QueryClientConfig = {
+  const queryClientTestConfig: QueryClientConfig = {
     defaultOptions: {
       queries: {
         retry: false,
@@ -60,14 +60,13 @@ export function renderWithProviders(
       },
     },
   };
-  const queryClient = new QueryClient(queryClientConfig);
+  const queryClient = new QueryClient(queryClientTestConfig);
 
   let tree = (
     <QueryClientProvider client={queryClient}>
       <ChakraProvider value={defaultSystem}>
         <MemoryRouter>{ui}</MemoryRouter>
       </ChakraProvider>
-      ;
     </QueryClientProvider>
   );
 
