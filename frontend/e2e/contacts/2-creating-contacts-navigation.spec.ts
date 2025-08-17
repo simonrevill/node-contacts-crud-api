@@ -6,6 +6,7 @@ describe("Creating contacts", () => {
     page,
   }) => {
     // Arrange
+    await contactsPage.simulateFetchingEmptyContactList();
     await contactsPage.goto();
 
     // Act

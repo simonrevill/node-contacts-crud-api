@@ -16,6 +16,7 @@
     "{src,lib}/**/!(*.+(s|S)pec|*.+(t|T)est).+(cjs|mjs|js|ts|mts|cts|jsx|tsx|html|vue|svelte)",
     "!src/main.tsx",
     "!src/theme.ts",
+    "!src/utils.ts",
     "!src/App.tsx",
     "!src/contacts/hooks/**/*"
   ]

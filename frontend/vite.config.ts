@@ -54,6 +54,7 @@ export default defineConfig({
         "src/main.tsx",
         "src/theme.ts",
         "src/types.ts",
+        "src/utils.ts",
         "**/*/index.ts",
       ],
       thresholds: {

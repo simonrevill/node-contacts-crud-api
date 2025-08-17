@@ -4,14 +4,20 @@ describe("Initial load of the application", () => {
   test("User sees the correct page title when the application loads", async ({
     contactsPage,
   }) => {
-    // Arrange & Assert
+    // Arrange
+    await contactsPage.goto();
+
+    // Assert
     expect(await contactsPage.getTitle()).toBe("Contacts Manager");
   });
 
   test("User sees the correct headings when the application loads", async ({
     contactsPage,
   }) => {
-    // Arrange & Assert
+    // Arrange
+    await contactsPage.goto();
+
+    // Assert
     await expect(contactsPage.heading).toBeVisible();
     await expect(contactsPage.contactListHeading).toBeVisible();
   });
@@ -20,7 +26,7 @@ describe("Initial load of the application", () => {
     contactsPage,
     page,
   }) => {
-    // Arrange & Act
+    // Arrange
     await contactsPage.simulateFetchingEmptyContactList();
     await contactsPage.goto();
 
@@ -38,7 +44,6 @@ describe("Initial load of the application", () => {
   }) => {
     // Arrange
     await contactsPage.simulateServerError();
-
     await contactsPage.goto();
 
     // Assert
@@ -49,7 +54,11 @@ describe("Initial load of the application", () => {
   test("User sees an empty contact list when the application loads successfully", async ({
     contactsPage,
   }) => {
-    // Arrange & Assert
+    // Arrange
+    await contactsPage.simulateFetchingEmptyContactList();
+    await contactsPage.goto();
+
+    //Assert
     await expect(contactsPage.emptyStateHeading).toBeVisible();
     await expect(contactsPage.emptyStateSubheading).toBeVisible();
     await expect(contactsPage.addContactButton).toBeVisible();

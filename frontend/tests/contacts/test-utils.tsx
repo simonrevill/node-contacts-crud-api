@@ -50,7 +50,15 @@ export function renderWithProviders(
   { api, ...renderOptions }: ProvidersOptions = {}
 ) {
   const queryClientConfig: QueryClientConfig = {
-    defaultOptions: { queries: { retry: false } },
+    defaultOptions: {
+      queries: {
+        retry: false,
+        staleTime: 0,
+        refetchOnWindowFocus: false,
+        refetchOnMount: false,
+        refetchOnReconnect: false,
+      },
+    },
   };
   const queryClient = new QueryClient(queryClientConfig);
 
