@@ -1,6 +1,5 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { createRoutesStub } from "react-router";
 
 import { AddContactForm } from "components";
 import { renderWithProviders } from "test-utils";
@@ -9,13 +8,7 @@ describe("AddContactForm tests", () => {
   describe("initial rendering", () => {
     it("should render a input field for a first name", async () => {
       // Arrange
-      const Stub = createRoutesStub([
-        {
-          path: "/",
-          Component: AddContactForm,
-        },
-      ]);
-      renderWithProviders(<Stub />);
+      renderWithProviders(<AddContactForm />);
 
       // Assert
       const firstNameInput: HTMLInputElement =
@@ -28,13 +21,7 @@ describe("AddContactForm tests", () => {
 
     it("should render a input field for a last name", async () => {
       // Arrange
-      const Stub = createRoutesStub([
-        {
-          path: "/",
-          Component: AddContactForm,
-        },
-      ]);
-      renderWithProviders(<Stub />);
+      renderWithProviders(<AddContactForm />);
 
       // Assert
       const lastNameInput: HTMLInputElement =
@@ -47,13 +34,7 @@ describe("AddContactForm tests", () => {
 
     it("should render a input field for an email", async () => {
       // Arrange
-      const Stub = createRoutesStub([
-        {
-          path: "/",
-          Component: AddContactForm,
-        },
-      ]);
-      renderWithProviders(<Stub />);
+      renderWithProviders(<AddContactForm />);
 
       // Assert
       const emailInput: HTMLInputElement = screen.getByLabelText(/Email/i);
@@ -65,13 +46,7 @@ describe("AddContactForm tests", () => {
 
     it("should render a cancel button that links back to the contacts page", async () => {
       // Arrange
-      const Stub = createRoutesStub([
-        {
-          path: "/",
-          Component: AddContactForm,
-        },
-      ]);
-      renderWithProviders(<Stub />);
+      renderWithProviders(<AddContactForm />);
 
       // Assert
       const cancelButton = screen.getByRole("link", { name: /Cancel/i });
@@ -81,13 +56,7 @@ describe("AddContactForm tests", () => {
 
     it("should render a submit button that submits the form", async () => {
       // Arrange
-      const Stub = createRoutesStub([
-        {
-          path: "/",
-          Component: AddContactForm,
-        },
-      ]);
-      renderWithProviders(<Stub />);
+      renderWithProviders(<AddContactForm />);
 
       // Assert
       const submitButton = screen.getByRole("button", { name: /Submit/i });
@@ -115,13 +84,7 @@ describe("AddContactForm tests", () => {
       async ({ fieldName, error }) => {
         // Arrange
         const user = userEvent.setup();
-        const Stub = createRoutesStub([
-          {
-            path: "/",
-            Component: AddContactForm,
-          },
-        ]);
-        renderWithProviders(<Stub />);
+        renderWithProviders(<AddContactForm />);
 
         const field: HTMLInputElement = screen.getByLabelText(fieldName);
 
@@ -163,13 +126,7 @@ describe("AddContactForm tests", () => {
       async ({ fieldName, value, error }) => {
         // Arrange
         const user = userEvent.setup();
-        const Stub = createRoutesStub([
-          {
-            path: "/",
-            Component: AddContactForm,
-          },
-        ]);
-        renderWithProviders(<Stub />);
+        renderWithProviders(<AddContactForm />);
 
         const field: HTMLInputElement = screen.getByLabelText(fieldName);
 

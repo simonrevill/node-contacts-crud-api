@@ -1,5 +1,4 @@
 import { screen, within } from "@testing-library/react";
-import { createRoutesStub } from "react-router";
 
 import { NoContacts } from "components";
 import { renderWithProviders } from "test-utils";
@@ -7,13 +6,7 @@ import { renderWithProviders } from "test-utils";
 describe("NoContacts component tests", () => {
   it("should render the the no contacts message and a button to add a new contact", () => {
     // Arrange
-    const Stub = createRoutesStub([
-      {
-        path: "/",
-        Component: NoContacts,
-      },
-    ]);
-    renderWithProviders(<Stub />);
+    renderWithProviders(<NoContacts />);
 
     const noContactsAlert = screen.getByRole("alert");
     const noContactsIcon =

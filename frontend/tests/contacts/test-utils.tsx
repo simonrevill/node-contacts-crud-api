@@ -5,7 +5,12 @@ import { ContactsApiProvider } from "api/ContactsApiProvider";
 import { faker } from "@faker-js/faker";
 import type { IContactsAPI } from "types";
 import type { Contact, ContactInput } from "backend/domain/models/Contact";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  QueryClient,
+  QueryClientProvider,
+  type QueryClientConfig,
+} from "@tanstack/react-query";
+import { MemoryRouter } from "react-router";
 
 export const createMockContact = (): ContactInput => ({
   firstName: faker.person.firstName(),
@@ -44,13 +49,17 @@ export function renderWithProviders(
   ui: React.ReactElement,
   { api, ...renderOptions }: ProvidersOptions = {}
 ) {
-  const queryClient = new QueryClient({
+  const queryClientConfig: QueryClientConfig = {
     defaultOptions: { queries: { retry: false } },
-  });
+  };
+  const queryClient = new QueryClient(queryClientConfig);
 
   let tree = (
     <QueryClientProvider client={queryClient}>
-      <ChakraProvider value={defaultSystem}>{ui}</ChakraProvider>;
+      <ChakraProvider value={defaultSystem}>
+        <MemoryRouter>{ui}</MemoryRouter>
+      </ChakraProvider>
+      ;
     </QueryClientProvider>
   );
 
@@ -58,7 +67,9 @@ export function renderWithProviders(
     tree = (
       <QueryClientProvider client={queryClient}>
         <ChakraProvider value={defaultSystem}>
-          <ContactsApiProvider api={api}>{ui}</ContactsApiProvider>
+          <ContactsApiProvider api={api}>
+            <MemoryRouter>{ui}</MemoryRouter>
+          </ContactsApiProvider>
         </ChakraProvider>
       </QueryClientProvider>
     );

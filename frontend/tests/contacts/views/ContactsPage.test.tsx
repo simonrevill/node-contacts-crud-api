@@ -1,5 +1,4 @@
 import { act, screen, within, waitFor } from "@testing-library/react";
-import { createRoutesStub } from "react-router";
 
 import type { Contact } from "backend/domain/models/Contact";
 
@@ -57,12 +56,6 @@ describe("ContactsPage tests", () => {
 
   it("should show a no contacts alert when there are no contacts", async () => {
     // Arrange
-    const Stub = createRoutesStub([
-      {
-        path: "/",
-        Component: ContactsPage,
-      },
-    ]);
     const fakeEmptyContactData: Contact[] = [];
 
     const mock = vi.fn().mockResolvedValue({
@@ -70,7 +63,7 @@ describe("ContactsPage tests", () => {
       json: () => fakeEmptyContactData,
     });
     await act(async () => {
-      renderWithProviders(<Stub />, {
+      renderWithProviders(<ContactsPage />, {
         api: createContactsApiAdapter({ request: mock }),
       });
     });
