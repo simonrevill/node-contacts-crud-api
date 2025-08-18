@@ -146,5 +146,30 @@ describe("AddContactForm tests", () => {
         expect(submitButton).toBeDisabled();
       }
     );
+
+    it("should show no validation errors and an enabled submit button when provided form data is valid", async () => {
+      // Arrange
+      const user = userEvent.setup();
+      renderWithProviders(<AddContactForm />);
+
+      // Act
+      const validFormData = [
+        { fieldName: "First name", value: "John" },
+        { fieldName: "Last name", value: "Smith" },
+        { fieldName: "Email", value: "john.smith@gmail.com" },
+      ] as const;
+
+      for (const { fieldName, value } of validFormData) {
+        const field: HTMLInputElement = screen.getByLabelText(fieldName);
+        await user.type(field, value);
+      }
+
+      // Assert
+      const alerts = await screen.queryAllByRole("alert");
+      const submitButton = screen.getByRole("button", { name: /Submit/i });
+
+      expect(alerts).toHaveLength(0);
+      expect(submitButton).toBeEnabled();
+    });
   });
 });
