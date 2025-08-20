@@ -1,15 +1,9 @@
 import { NavLink } from "react-router";
-import { Controller } from "react-hook-form";
-import {
-  Field,
-  Input,
-  Button,
-  Link as ChakraLink,
-  Box,
-} from "@chakra-ui/react";
+import { Button, Link as ChakraLink, Box } from "@chakra-ui/react";
 import { X, Check, LoaderCircle } from "lucide-react";
 
 import { useAddContactForm } from "hooks";
+import { FormField } from "components";
 
 export default function AddContactForm() {
   const { control, isSubmitDisabled, isSubmitting, handleSubmit, onSubmit } =
@@ -17,60 +11,24 @@ export default function AddContactForm() {
 
   return (
     <Box as="form" onSubmit={handleSubmit(onSubmit)}>
-      <Controller
+      <FormField
         name="firstName"
+        label="First name"
         control={control}
-        render={({ field, fieldState }) => (
-          <Field.Root invalid={fieldState.invalid} mb={6}>
-            <Field.Label htmlFor={field.name}>First name</Field.Label>
-            <Input
-              {...field}
-              id={field.name}
-              name={field.name}
-              placeholder="Enter your first name"
-            />
-            <Field.ErrorText role="alert">
-              {fieldState.error?.message}
-            </Field.ErrorText>
-          </Field.Root>
-        )}
+        placeholder="Enter your first name"
       />
-      <Controller
+      <FormField
         name="lastName"
+        label="Last name"
         control={control}
-        render={({ field, fieldState }) => (
-          <Field.Root invalid={fieldState.invalid} mb={6}>
-            <Field.Label htmlFor={field.name}>Last name</Field.Label>
-            <Input
-              {...field}
-              id={field.name}
-              name={field.name}
-              placeholder="Enter your last name"
-            />
-            <Field.ErrorText role="alert">
-              {fieldState.error?.message}
-            </Field.ErrorText>
-          </Field.Root>
-        )}
+        placeholder="Enter your last name"
       />
-      <Controller
+      <FormField
+        type="email"
         name="email"
+        label="Email"
         control={control}
-        render={({ field, fieldState }) => (
-          <Field.Root invalid={fieldState.invalid} mb={12}>
-            <Field.Label htmlFor={field.name}>Email</Field.Label>
-            <Input
-              {...field}
-              type={field.name}
-              id={field.name}
-              name={field.name}
-              placeholder="Enter your email address"
-            />
-            <Field.ErrorText role="alert">
-              {fieldState.error?.message}
-            </Field.ErrorText>
-          </Field.Root>
-        )}
+        placeholder="Enter your email address"
       />
       <Box display="flex" justifyContent="flex-end" gap={4}>
         <ChakraLink asChild>

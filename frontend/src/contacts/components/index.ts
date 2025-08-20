@@ -7,3 +7,4 @@ export { AddContactForm } from "./AddContactForm";
 export { FetchingContacts } from "./FetchingContacts";
 export { SomethingWentWrong } from "./SomethingWentWrong";
 export { ContactsPageContainer } from "./ContactsPageContainer";
+export { FormField } from "./FormField";
