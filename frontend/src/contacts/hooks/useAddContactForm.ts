@@ -44,7 +44,6 @@ export default function useAddContactForm() {
     Controller,
     control,
     getFieldState,
-    isLastNameInvalid: !!errors.lastName,
     isEmailInvalid: !!errors.email?.message,
     isSubmitDisabled: !isValid || isSubmitting,
     isSubmitting,

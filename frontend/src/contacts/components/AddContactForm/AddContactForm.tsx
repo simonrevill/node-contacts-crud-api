@@ -15,7 +15,6 @@ export default function AddContactForm() {
     Controller,
     control,
     getFieldState,
-    isLastNameInvalid,
     isEmailInvalid,
     isSubmitDisabled,
     isSubmitting,
@@ -46,8 +45,8 @@ export default function AddContactForm() {
       <Controller
         name="lastName"
         control={control}
-        render={({ field }) => (
-          <Field.Root invalid={isLastNameInvalid} mb={6}>
+        render={({ field, fieldState }) => (
+          <Field.Root invalid={fieldState.invalid} mb={6}>
             <Field.Label htmlFor="lastName">Last name</Field.Label>
             <Input
               {...field}
