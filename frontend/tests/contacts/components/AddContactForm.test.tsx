@@ -172,4 +172,29 @@ describe("AddContactForm tests", () => {
       expect(submitButton).toBeEnabled();
     });
   });
+
+  describe("form submission", () => {
+    it("should display submitting text on a disabled submit button when the form is submitted with valid data", async () => {
+      // Arrange
+      const user = userEvent.setup();
+      renderWithProviders(<AddContactForm />);
+
+      const firstNameInput: HTMLInputElement =
+        screen.getByLabelText(/First name/i);
+      const lastNameInput: HTMLInputElement =
+        screen.getByLabelText(/Last name/i);
+      const emailInput: HTMLInputElement = screen.getByLabelText(/Email/i);
+      const submitButton = screen.getByRole("button", { name: /Submit/i });
+
+      // Act
+      await user.type(firstNameInput, "John");
+      await user.type(lastNameInput, "Smith");
+      await user.type(emailInput, "john.smith@gmail.com");
+      await user.click(submitButton);
+
+      screen.debug();
+      expect(submitButton).toHaveTextContent("Submitting...");
+      expect(submitButton).toBeDisabled();
+    });
+  });
 });

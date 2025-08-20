@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, type SubmitHandler } from "react-hook-form";
 import z from "zod/v4";
 
 export default function useAddContactForm() {
@@ -26,13 +26,19 @@ export default function useAddContactForm() {
 
   const {
     control,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isSubmitting },
     getFieldState,
+    handleSubmit,
   } = useForm<AddContactFormData>({
     resolver: zodResolver(addContactFormSchema),
     defaultValues: { firstName: "", lastName: "", email: "" },
     mode: "all",
   });
+
+  const onSubmit: SubmitHandler<AddContactFormData> = async (values) =>
+    await new Promise((resolve) => {
+      setTimeout(() => resolve(values), 50);
+    });
 
   return {
     Controller,
@@ -41,6 +47,9 @@ export default function useAddContactForm() {
     isFirstNameInvalid: !!errors.firstName,
     isLastNameInvalid: !!errors.lastName,
     isEmailInvalid: !!errors.email?.message,
-    isSubmitDisabled: !isValid,
+    isSubmitDisabled: !isValid || isSubmitting,
+    isSubmitting,
+    handleSubmit,
+    onSubmit,
   };
 }

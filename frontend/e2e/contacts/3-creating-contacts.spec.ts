@@ -95,4 +95,18 @@ describe("Creating contacts", () => {
     await expect(page.getByRole("alert")).toHaveCount(0);
     await expect(addContactPage.submitButton).toBeEnabled();
   });
+
+  test("User sees submitting text on a disabled submit button when the form is submitted with valid data", async ({
+    addContactPage,
+  }) => {
+    // Arrange
+    await addContactPage.fillAddContactFormWithValidData();
+
+    // Act
+    await addContactPage.submitButton.click();
+
+    // Assert
+    await expect(addContactPage.submitButton).toHaveText("Submitting...");
+    await expect(addContactPage.submitButton).toBeDisabled();
+  });
 });

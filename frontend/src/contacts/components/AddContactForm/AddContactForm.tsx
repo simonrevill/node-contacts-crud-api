@@ -6,7 +6,7 @@ import {
   Link as ChakraLink,
   Box,
 } from "@chakra-ui/react";
-import { X, Check } from "lucide-react";
+import { X, Check, LoaderCircle } from "lucide-react";
 
 import { useAddContactForm } from "hooks";
 
@@ -19,10 +19,13 @@ export default function AddContactForm() {
     isLastNameInvalid,
     isEmailInvalid,
     isSubmitDisabled,
+    isSubmitting,
+    handleSubmit,
+    onSubmit,
   } = useAddContactForm();
 
   return (
-    <Box as="form">
+    <Box as="form" onSubmit={handleSubmit(onSubmit)}>
       <Controller
         name="firstName"
         control={control}
@@ -88,8 +91,8 @@ export default function AddContactForm() {
           </NavLink>
         </ChakraLink>
         <Button type="submit" variant="solid" disabled={isSubmitDisabled}>
-          <Check />
-          Submit
+          {isSubmitting ? <LoaderCircle className="loading" /> : <Check />}
+          {isSubmitting ? "Submitting..." : "Submit"}
         </Button>
       </Box>
     </Box>
