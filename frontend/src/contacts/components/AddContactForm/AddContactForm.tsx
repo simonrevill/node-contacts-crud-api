@@ -1,4 +1,5 @@
 import { NavLink } from "react-router";
+import { Controller } from "react-hook-form";
 import {
   Field,
   Input,
@@ -11,14 +12,8 @@ import { X, Check, LoaderCircle } from "lucide-react";
 import { useAddContactForm } from "hooks";
 
 export default function AddContactForm() {
-  const {
-    Controller,
-    control,
-    isSubmitDisabled,
-    isSubmitting,
-    handleSubmit,
-    onSubmit,
-  } = useAddContactForm();
+  const { control, isSubmitDisabled, isSubmitting, handleSubmit, onSubmit } =
+    useAddContactForm();
 
   return (
     <Box as="form" onSubmit={handleSubmit(onSubmit)}>
@@ -27,11 +22,11 @@ export default function AddContactForm() {
         control={control}
         render={({ field, fieldState }) => (
           <Field.Root invalid={fieldState.invalid} mb={6}>
-            <Field.Label htmlFor="firstName">First name</Field.Label>
+            <Field.Label htmlFor={field.name}>First name</Field.Label>
             <Input
               {...field}
-              id="firstName"
-              name="firstName"
+              id={field.name}
+              name={field.name}
               placeholder="Enter your first name"
             />
             <Field.ErrorText role="alert">

@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, Controller, type SubmitHandler } from "react-hook-form";
+import { useForm, type SubmitHandler } from "react-hook-form";
 import z from "zod/v4";
 
 export default function useAddContactForm() {
@@ -40,11 +40,10 @@ export default function useAddContactForm() {
     });
 
   return {
-    Controller,
     control,
-    isSubmitDisabled: !isValid || isSubmitting,
-    isSubmitting,
     handleSubmit,
     onSubmit,
+    isSubmitDisabled: !isValid || isSubmitting,
+    isSubmitting,
   };
 }
