@@ -14,7 +14,6 @@ export default function AddContactForm() {
   const {
     Controller,
     control,
-    getFieldState,
     isSubmitDisabled,
     isSubmitting,
     handleSubmit,
@@ -36,7 +35,7 @@ export default function AddContactForm() {
               placeholder="Enter your first name"
             />
             <Field.ErrorText role="alert">
-              {getFieldState("firstName").error?.message}
+              {fieldState.error?.message}
             </Field.ErrorText>
           </Field.Root>
         )}
@@ -54,7 +53,7 @@ export default function AddContactForm() {
               placeholder="Enter your last name"
             />
             <Field.ErrorText role="alert">
-              {getFieldState("lastName").error?.message}
+              {fieldState.error?.message}
             </Field.ErrorText>
           </Field.Root>
         )}
@@ -73,7 +72,7 @@ export default function AddContactForm() {
               placeholder="Enter your email address"
             />
             <Field.ErrorText role="alert">
-              {getFieldState("email").error?.message}
+              {fieldState.error?.message}
             </Field.ErrorText>
           </Field.Root>
         )}

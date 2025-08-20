@@ -27,7 +27,6 @@ export default function useAddContactForm() {
   const {
     control,
     formState: { isValid, isSubmitting },
-    getFieldState,
     handleSubmit,
   } = useForm<AddContactFormData>({
     resolver: zodResolver(addContactFormSchema),
@@ -43,7 +42,6 @@ export default function useAddContactForm() {
   return {
     Controller,
     control,
-    getFieldState,
     isSubmitDisabled: !isValid || isSubmitting,
     isSubmitting,
     handleSubmit,
