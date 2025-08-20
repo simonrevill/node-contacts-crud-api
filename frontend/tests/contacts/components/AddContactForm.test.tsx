@@ -192,7 +192,6 @@ describe("AddContactForm tests", () => {
       await user.type(emailInput, "john.smith@gmail.com");
       await user.click(submitButton);
 
-      screen.debug();
       expect(submitButton).toHaveTextContent("Submitting...");
       expect(submitButton).toBeDisabled();
     });
