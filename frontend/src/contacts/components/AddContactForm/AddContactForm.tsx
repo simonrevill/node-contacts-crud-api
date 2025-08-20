@@ -58,12 +58,12 @@ export default function AddContactForm() {
         control={control}
         render={({ field, fieldState }) => (
           <Field.Root invalid={fieldState.invalid} mb={12}>
-            <Field.Label htmlFor="email">Email</Field.Label>
+            <Field.Label htmlFor={field.name}>Email</Field.Label>
             <Input
               {...field}
-              type="email"
-              id="email"
-              name="email"
+              type={field.name}
+              id={field.name}
+              name={field.name}
               placeholder="Enter your email address"
             />
             <Field.ErrorText role="alert">
