@@ -26,7 +26,7 @@ export default function useAddContactForm() {
 
   const {
     control,
-    formState: { errors, isValid, isSubmitting },
+    formState: { isValid, isSubmitting },
     getFieldState,
     handleSubmit,
   } = useForm<AddContactFormData>({
@@ -44,7 +44,6 @@ export default function useAddContactForm() {
     Controller,
     control,
     getFieldState,
-    isEmailInvalid: !!errors.email?.message,
     isSubmitDisabled: !isValid || isSubmitting,
     isSubmitting,
     handleSubmit,

@@ -15,7 +15,6 @@ export default function AddContactForm() {
     Controller,
     control,
     getFieldState,
-    isEmailInvalid,
     isSubmitDisabled,
     isSubmitting,
     handleSubmit,
@@ -63,8 +62,8 @@ export default function AddContactForm() {
       <Controller
         name="email"
         control={control}
-        render={({ field }) => (
-          <Field.Root invalid={isEmailInvalid} mb={12}>
+        render={({ field, fieldState }) => (
+          <Field.Root invalid={fieldState.invalid} mb={12}>
             <Field.Label htmlFor="email">Email</Field.Label>
             <Input
               {...field}
