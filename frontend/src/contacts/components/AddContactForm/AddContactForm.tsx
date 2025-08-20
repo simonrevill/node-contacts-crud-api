@@ -40,11 +40,11 @@ export default function AddContactForm() {
         control={control}
         render={({ field, fieldState }) => (
           <Field.Root invalid={fieldState.invalid} mb={6}>
-            <Field.Label htmlFor="lastName">Last name</Field.Label>
+            <Field.Label htmlFor={field.name}>Last name</Field.Label>
             <Input
               {...field}
-              id="lastName"
-              name="lastName"
+              id={field.name}
+              name={field.name}
               placeholder="Enter your last name"
             />
             <Field.ErrorText role="alert">
