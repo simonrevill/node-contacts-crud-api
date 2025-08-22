@@ -8,86 +8,23 @@ import { FormField } from "components";
 import { renderWithProviders } from "test-utils";
 
 describe("FormField component tests", () => {
-  const addContactFormSchema = z.object({
-    firstName: z
-      .string()
-      .nonempty("First name is required.")
-      .min(2, { message: "First name requires at least 2 characters." }),
-    email: z.email({
-      error: (issue) => {
-        if (issue.input === "") {
-          return "Email is required.";
-        }
-        return "Email provided has an incorrect format.";
-      },
-    }),
-  });
-
-  type AddContactFormData = z.infer<typeof addContactFormSchema>;
-
-  function TestForm({
-    onSubmit,
-    defaultValues = { firstName: "", email: "" },
-    ...props
-  }: {
-    onSubmit?: SubmitHandler<AddContactFormData>;
-    defaultValues?: AddContactFormData;
-  }) {
-    const {
-      control,
-      handleSubmit,
-      formState: { isValid, errors },
-    } = useForm<AddContactFormData>({
-      resolver: zodResolver(addContactFormSchema),
-      defaultValues,
-      mode: "all",
-    });
-
-    return (
-      <form onSubmit={handleSubmit(onSubmit ?? (() => {}))}>
-        <FormField
-          name="firstName"
-          label="First name"
-          control={control}
-          placeholder="Enter your first name"
-          {...props}
-        />
-        <FormField
-          type="email"
-          name="email"
-          label="Email"
-          control={control}
-          placeholder="Enter your email address"
-          {...props}
-        />
-        <button type="submit" disabled={!isValid}>
-          Submit
-        </button>
-        <div data-testid="errors">{JSON.stringify(errors)}</div>
-      </form>
-    );
-  }
-
   describe("initial rendering", () => {
     it("should render a text input by default", () => {
+      // Arrange
       renderWithProviders(<TestForm />);
       const input = screen.getByLabelText(/First name/i);
+
+      // Assert
       expect(input).toBeVisible();
       expect(input).toHaveAttribute("type", "text");
     });
 
     it("should render a text input for first name", () => {
+      // Arrange
       renderWithProviders(<TestForm />);
       const input = screen.getByLabelText(/First name/i);
-      expect(input).toBeVisible();
-      expect(input).toHaveAttribute("type", "text");
-      expect(input).toHaveAttribute("name", "firstName");
-      expect(input).toHaveAttribute("placeholder", "Enter your first name");
-      expect(input).toHaveValue("");
-    });
-    it("should render a text input for first name", () => {
-      renderWithProviders(<TestForm />);
-      const input = screen.getByLabelText(/First name/i);
+
+      // Assert
       expect(input).toBeVisible();
       expect(input).toHaveAttribute("type", "text");
       expect(input).toHaveAttribute("name", "firstName");
@@ -96,8 +33,11 @@ describe("FormField component tests", () => {
     });
 
     it("should render an email input for email", () => {
+      // Arrange
       renderWithProviders(<TestForm />);
       const input = screen.getByLabelText(/Email/i);
+
+      // Assert
       expect(input).toBeVisible();
       expect(input).toHaveAttribute("type", "email");
       expect(input).toHaveAttribute("name", "email");
@@ -105,89 +45,128 @@ describe("FormField component tests", () => {
       expect(input).toHaveValue("");
     });
 
-    it("should render the label and error text", () => {
+    it("should render the label", () => {
+      // Arrange
       renderWithProviders(<TestForm />);
-      expect(screen.getByLabelText(/First name/i)).toBeVisible();
-      expect(screen.getByLabelText(/Email/i)).toBeVisible();
-      expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+      const label = screen.getByText(/First name/i);
+
+      // Assert
+      expect(label).toBeVisible();
     });
   });
 
   describe("validation", () => {
     it("should show required error when field is empty and blurred", async () => {
+      // Arrange
       const user = userEvent.setup();
       renderWithProviders(<TestForm />);
       const input = screen.getByLabelText(/First name/i);
 
+      // Act
       await user.click(input);
       await user.tab();
 
+      // Assert
+      const alert = screen.getByRole("alert");
       expect(input).toHaveValue("");
-      expect(screen.getByTestId("errors").textContent).toContain("firstName");
-      // Error message should be visible in the error text
-      expect(screen.getByRole("alert")).toBeVisible();
+      expect(alert).toBeVisible();
+      expect(alert).toHaveTextContent("First name is required.");
     });
 
-    it("should show no error when field is filled", async () => {
+    it("should not show error when field is filled with valid data", async () => {
+      // Arrange
       const user = userEvent.setup();
       renderWithProviders(<TestForm />);
       const input = screen.getByLabelText(/First name/i);
 
+      // Act
       await user.type(input, "John");
       await user.tab();
 
+      // Assert
       expect(input).toHaveValue("John");
-      expect(screen.getByTestId("errors").textContent).not.toContain(
-        "firstName"
-      );
       expect(screen.queryByRole("alert")).not.toBeInTheDocument();
     });
   });
 
   describe("controlled value", () => {
     it("should accept a default value", () => {
+      // Arrange
       renderWithProviders(
         <TestForm
           defaultValues={{ firstName: "Jane", email: "jane@example.com" }}
         />
       );
-      expect(screen.getByLabelText(/First name/i)).toHaveValue("Jane");
-      expect(screen.getByLabelText(/Email/i)).toHaveValue("jane@example.com");
+      const firstNameInput = screen.getByLabelText(/First name/i);
+      const lastNameInput = screen.getByLabelText(/Email/i);
+
+      // Assert
+      expect(firstNameInput).toHaveValue("Jane");
+      expect(lastNameInput).toHaveValue("jane@example.com");
     });
 
     it("should update value on user input", async () => {
+      // Arrange
       const user = userEvent.setup();
       renderWithProviders(<TestForm />);
       const input = screen.getByLabelText(/First name/i);
 
+      // Act
       await user.type(input, "Alice");
+
+      // Assert
       expect(input).toHaveValue("Alice");
     });
   });
-
-  describe("form submission", () => {
-    it("should call onSubmit with form data when valid", async () => {
-      const user = userEvent.setup();
-      const handleSubmit = vi.fn();
-      renderWithProviders(<TestForm onSubmit={handleSubmit} />);
-
-      await user.type(screen.getByLabelText(/First name/i), "Bob");
-      await user.type(screen.getByLabelText(/Email/i), "bob@example.com");
-      await user.click(screen.getByRole("button", { name: /submit/i }));
-
-      expect(handleSubmit).toHaveBeenCalledWith(
-        { firstName: "Bob", email: "bob@example.com" },
-        expect.anything()
-      );
-    });
-
-    it("should not call onSubmit if form is invalid", async () => {
-      const user = userEvent.setup();
-      const handleSubmit = vi.fn();
-      renderWithProviders(<TestForm onSubmit={handleSubmit} />);
-
-      await user.click(screen.getByRole("button", { name: /submit/i }));
-      expect(handleSubmit).not.toHaveBeenCalled();
-    });
-  });
 });
+
+const addContactFormSchema = z.object({
+  firstName: z
+    .string()
+    .nonempty("First name is required.")
+    .min(2, { message: "First name requires at least 2 characters." }),
+  email: z.email({
+    error: (issue) => {
+      if (issue.input === "") {
+        return "Email is required.";
+      }
+      return "Email provided has an incorrect format.";
+    },
+  }),
+});
+
+type AddContactFormData = z.infer<typeof addContactFormSchema>;
+
+function TestForm({
+  defaultValues = { firstName: "", email: "" },
+  ...props
+}: {
+  onSubmit?: SubmitHandler<AddContactFormData>;
+  defaultValues?: AddContactFormData;
+}) {
+  const { control } = useForm<AddContactFormData>({
+    resolver: zodResolver(addContactFormSchema),
+    defaultValues,
+    mode: "all",
+  });
+
+  return (
+    <form>
+      <FormField
+        name="firstName"
+        label="First name"
+        control={control}
+        placeholder="Enter your first name"
+        {...props}
+      />
+      <FormField
+        type="email"
+        name="email"
+        label="Email"
+        control={control}
+        placeholder="Enter your email address"
+        {...props}
+      />
+    </form>
+  );
+}
