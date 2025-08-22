@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { useForm, type SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 
@@ -139,9 +139,7 @@ type AddContactFormData = z.infer<typeof addContactFormSchema>;
 
 function TestForm({
   defaultValues = { firstName: "", email: "" },
-  ...props
 }: {
-  onSubmit?: SubmitHandler<AddContactFormData>;
   defaultValues?: AddContactFormData;
 }) {
   const { control } = useForm<AddContactFormData>({
@@ -157,7 +155,6 @@ function TestForm({
         label="First name"
         control={control}
         placeholder="Enter your first name"
-        {...props}
       />
       <FormField
         type="email"
@@ -165,7 +162,6 @@ function TestForm({
         label="Email"
         control={control}
         placeholder="Enter your email address"
-        {...props}
       />
     </form>
   );
