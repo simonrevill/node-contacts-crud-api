@@ -50,7 +50,6 @@ describe("FormField component tests", () => {
           label="First name"
           control={control}
           placeholder="Enter your first name"
-          type="text"
           {...props}
         />
         <FormField
@@ -70,6 +69,22 @@ describe("FormField component tests", () => {
   }
 
   describe("initial rendering", () => {
+    it("should render a text input by default", () => {
+      renderWithProviders(<TestForm />);
+      const input = screen.getByLabelText(/First name/i);
+      expect(input).toBeVisible();
+      expect(input).toHaveAttribute("type", "text");
+    });
+
+    it("should render a text input for first name", () => {
+      renderWithProviders(<TestForm />);
+      const input = screen.getByLabelText(/First name/i);
+      expect(input).toBeVisible();
+      expect(input).toHaveAttribute("type", "text");
+      expect(input).toHaveAttribute("name", "firstName");
+      expect(input).toHaveAttribute("placeholder", "Enter your first name");
+      expect(input).toHaveValue("");
+    });
     it("should render a text input for first name", () => {
       renderWithProviders(<TestForm />);
       const input = screen.getByLabelText(/First name/i);
