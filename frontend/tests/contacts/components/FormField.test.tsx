@@ -120,7 +120,7 @@ describe("FormField component tests", () => {
   });
 });
 
-const addContactFormSchema = z.object({
+const testFormSchema = z.object({
   firstName: z
     .string()
     .nonempty("First name is required.")
@@ -135,7 +135,7 @@ const addContactFormSchema = z.object({
   }),
 });
 
-type AddContactFormData = z.infer<typeof addContactFormSchema>;
+type AddContactFormData = z.infer<typeof testFormSchema>;
 
 function TestForm({
   defaultValues = { firstName: "", email: "" },
@@ -143,7 +143,7 @@ function TestForm({
   defaultValues?: AddContactFormData;
 }) {
   const { control } = useForm<AddContactFormData>({
-    resolver: zodResolver(addContactFormSchema),
+    resolver: zodResolver(testFormSchema),
     defaultValues,
     mode: "all",
   });
