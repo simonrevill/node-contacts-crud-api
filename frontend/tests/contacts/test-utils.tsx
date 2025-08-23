@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 import { render, type RenderOptions } from "@testing-library/react";
 import { ChakraProvider, defaultSystem } from "@chakra-ui/react";
 import { ContactsApiProvider } from "api/ContactsApiProvider";
@@ -11,6 +11,9 @@ import {
   type QueryClientConfig,
 } from "@tanstack/react-query";
 import { MemoryRouter } from "react-router";
+import z from "zod";
+import { useForm, type Control, type DefaultValues } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export const createMockContact = (): ContactInput => ({
   firstName: faker.person.firstName(),
@@ -115,4 +118,63 @@ export class ContactBuilder {
       email: this.email,
     };
   }
+}
+
+export const firstNameSchema = z.object({
+  firstName: z
+    .string("First name is required.")
+    .min(2, { message: "First name requires at least 2 characters." }),
+});
+
+export const emailSchema = z.object({
+  email: z.email({
+    error: (issue) => {
+      if (issue.input === "") {
+        return "Email is required.";
+      }
+      return "Email provided has an incorrect format.";
+    },
+  }),
+});
+
+export const testFormSchema = z.object({
+  firstName: z
+    .string("First name is required.")
+    .min(2, { message: "First name requires at least 2 characters." }),
+  email: z.email({
+    error: (issue) => {
+      if (issue.input === "") {
+        return "Email is required.";
+      }
+      return "Email provided has an incorrect format.";
+    },
+  }),
+});
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function createFormComponent<T extends z.ZodType<any, any, any>>(
+  schema: T
+) {
+  return function FormComponent({
+    defaultValues,
+    children,
+  }: {
+    defaultValues?: DefaultValues<z.input<T>>;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    children: (control: Control<z.input<T>, any>) => ReactNode;
+  }) {
+    const { control } = useForm<z.input<T>>({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      resolver: zodResolver(schema) as any,
+      defaultValues,
+      mode: "all",
+    });
+
+    return (
+      <form>
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+        {children(control as Control<z.input<T>, any>)}
+      </form>
+    );
+  };
 }

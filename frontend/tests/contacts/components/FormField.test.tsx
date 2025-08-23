@@ -1,17 +1,32 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import z from "zod";
 
 import { FormField } from "components";
-import { renderWithProviders } from "test-utils";
+import {
+  createFormComponent,
+  emailSchema,
+  firstNameSchema,
+  renderWithProviders,
+  testFormSchema,
+} from "test-utils";
 
 describe("FormField component tests", () => {
   describe("initial rendering", () => {
     it("should render a text input by default", () => {
       // Arrange
-      renderWithProviders(<TestForm />);
+      const TestForm = createFormComponent(firstNameSchema);
+      renderWithProviders(
+        <TestForm>
+          {(control) => (
+            <FormField
+              name="firstName"
+              label="First name"
+              control={control}
+              placeholder="Enter your first name"
+            />
+          )}
+        </TestForm>
+      );
       const input = screen.getByLabelText(/First name/i);
 
       // Assert
@@ -21,7 +36,19 @@ describe("FormField component tests", () => {
 
     it("should render a text input for first name", () => {
       // Arrange
-      renderWithProviders(<TestForm />);
+      const TestForm = createFormComponent(firstNameSchema);
+      renderWithProviders(
+        <TestForm>
+          {(control) => (
+            <FormField
+              name="firstName"
+              label="First name"
+              control={control}
+              placeholder="Enter your first name"
+            />
+          )}
+        </TestForm>
+      );
       const input = screen.getByLabelText(/First name/i);
 
       // Assert
@@ -34,7 +61,20 @@ describe("FormField component tests", () => {
 
     it("should render an email input for email", () => {
       // Arrange
-      renderWithProviders(<TestForm />);
+      const TestForm = createFormComponent(emailSchema);
+      renderWithProviders(
+        <TestForm>
+          {(control) => (
+            <FormField
+              type="email"
+              name="email"
+              label="Email"
+              control={control}
+              placeholder="Enter your email address"
+            />
+          )}
+        </TestForm>
+      );
       const input = screen.getByLabelText(/Email/i);
 
       // Assert
@@ -47,7 +87,19 @@ describe("FormField component tests", () => {
 
     it("should render the label", () => {
       // Arrange
-      renderWithProviders(<TestForm />);
+      const TestForm = createFormComponent(firstNameSchema);
+      renderWithProviders(
+        <TestForm>
+          {(control) => (
+            <FormField
+              name="firstName"
+              label="First name"
+              control={control}
+              placeholder="Enter your first name"
+            />
+          )}
+        </TestForm>
+      );
       const label = screen.getByText(/First name/i);
 
       // Assert
@@ -59,7 +111,19 @@ describe("FormField component tests", () => {
     it("should show required error when field is empty and blurred", async () => {
       // Arrange
       const user = userEvent.setup();
-      renderWithProviders(<TestForm />);
+      const TestForm = createFormComponent(firstNameSchema);
+      renderWithProviders(
+        <TestForm>
+          {(control) => (
+            <FormField
+              name="firstName"
+              label="First name"
+              control={control}
+              placeholder="Enter your first name"
+            />
+          )}
+        </TestForm>
+      );
       const input = screen.getByLabelText(/First name/i);
 
       // Act
@@ -76,7 +140,19 @@ describe("FormField component tests", () => {
     it("should not show error when field is filled with valid data", async () => {
       // Arrange
       const user = userEvent.setup();
-      renderWithProviders(<TestForm />);
+      const TestForm = createFormComponent(firstNameSchema);
+      renderWithProviders(
+        <TestForm>
+          {(control) => (
+            <FormField
+              name="firstName"
+              label="First name"
+              control={control}
+              placeholder="Enter your first name"
+            />
+          )}
+        </TestForm>
+      );
       const input = screen.getByLabelText(/First name/i);
 
       // Act
@@ -92,10 +168,29 @@ describe("FormField component tests", () => {
   describe("controlled value", () => {
     it("should accept a default value", () => {
       // Arrange
+      const TestForm = createFormComponent(testFormSchema);
       renderWithProviders(
         <TestForm
           defaultValues={{ firstName: "Jane", email: "jane@example.com" }}
-        />
+        >
+          {(control) => (
+            <>
+              <FormField
+                name="firstName"
+                label="First name"
+                control={control}
+                placeholder="Enter your first name"
+              />
+              <FormField
+                type="email"
+                name="email"
+                label="Email"
+                control={control}
+                placeholder="Enter your email address"
+              />
+            </>
+          )}
+        </TestForm>
       );
       const firstNameInput = screen.getByLabelText(/First name/i);
       const lastNameInput = screen.getByLabelText(/Email/i);
@@ -108,7 +203,19 @@ describe("FormField component tests", () => {
     it("should update value on user input", async () => {
       // Arrange
       const user = userEvent.setup();
-      renderWithProviders(<TestForm />);
+      const TestForm = createFormComponent(firstNameSchema);
+      renderWithProviders(
+        <TestForm>
+          {(control) => (
+            <FormField
+              name="firstName"
+              label="First name"
+              control={control}
+              placeholder="Enter your first name"
+            />
+          )}
+        </TestForm>
+      );
       const input = screen.getByLabelText(/First name/i);
 
       // Act
@@ -119,50 +226,3 @@ describe("FormField component tests", () => {
     });
   });
 });
-
-const testFormSchema = z.object({
-  firstName: z
-    .string()
-    .nonempty("First name is required.")
-    .min(2, { message: "First name requires at least 2 characters." }),
-  email: z.email({
-    error: (issue) => {
-      if (issue.input === "") {
-        return "Email is required.";
-      }
-      return "Email provided has an incorrect format.";
-    },
-  }),
-});
-
-type AddContactFormData = z.infer<typeof testFormSchema>;
-
-function TestForm({
-  defaultValues = { firstName: "", email: "" },
-}: {
-  defaultValues?: AddContactFormData;
-}) {
-  const { control } = useForm<AddContactFormData>({
-    resolver: zodResolver(testFormSchema),
-    defaultValues,
-    mode: "all",
-  });
-
-  return (
-    <form>
-      <FormField
-        name="firstName"
-        label="First name"
-        control={control}
-        placeholder="Enter your first name"
-      />
-      <FormField
-        type="email"
-        name="email"
-        label="Email"
-        control={control}
-        placeholder="Enter your email address"
-      />
-    </form>
-  );
-}
