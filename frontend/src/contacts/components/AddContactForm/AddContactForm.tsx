@@ -6,11 +6,11 @@ import { useAddContactForm } from "hooks";
 import { FormField } from "components";
 
 export default function AddContactForm() {
-  const { control, isSubmitDisabled, isSubmitting, handleSubmit, onSubmit } =
+  const { control, isSubmitDisabled, isSubmitting, onSubmit } =
     useAddContactForm();
 
   return (
-    <Box as="form" onSubmit={handleSubmit(onSubmit)}>
+    <Box as="form" onSubmit={onSubmit}>
       <FormField
         name="firstName"
         label="First name"

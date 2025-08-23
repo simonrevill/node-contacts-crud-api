@@ -34,14 +34,15 @@ export default function useAddContactForm() {
     mode: "all",
   });
 
-  const onSubmit: SubmitHandler<AddContactFormData> = async (values) =>
+  const onSubmitHandler: SubmitHandler<AddContactFormData> = async (values) =>
     await new Promise((resolve) => {
       setTimeout(() => resolve(values), 50);
     });
 
+  const onSubmit = handleSubmit(onSubmitHandler);
+
   return {
     control,
-    handleSubmit,
     onSubmit,
     isSubmitDisabled: !isValid || isSubmitting,
     isSubmitting,
