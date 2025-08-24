@@ -137,19 +137,9 @@ export const emailSchema = z.object({
   }),
 });
 
-export const testFormSchema = z.object({
-  firstName: z
-    .string("First name is required.")
-    .min(2, { message: "First name requires at least 2 characters." }),
-  email: z.email({
-    error: (issue) => {
-      if (issue.input === "") {
-        return "Email is required.";
-      }
-      return "Email provided has an incorrect format.";
-    },
-  }),
-});
+export const testFormSchema = z
+  .object({})
+  .extend({ ...firstNameSchema.shape, ...emailSchema.shape });
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function createFormComponent<T extends z.ZodType<any, any, any>>(
