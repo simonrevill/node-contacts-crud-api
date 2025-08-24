@@ -121,7 +121,7 @@ export class ContactBuilder {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function createFormComponent<T extends z.ZodType<any, any, any>>(
+export function createTestFormComponent<T extends z.ZodType<any, any, any>>(
   schema: T
 ) {
   return function FormComponent({

@@ -2,7 +2,7 @@ import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { FormField } from "components";
-import { createFormComponent, renderWithProviders } from "test-utils";
+import { createTestFormComponent, renderWithProviders } from "test-utils";
 import z from "zod";
 
 export const firstNameSchema = z.object({
@@ -30,7 +30,7 @@ describe("FormField component tests", () => {
   describe("initial rendering", () => {
     it("should render a text input by default", () => {
       // Arrange
-      const TestForm = createFormComponent(firstNameSchema);
+      const TestForm = createTestFormComponent(firstNameSchema);
       renderWithProviders(
         <TestForm>
           {(control) => (
@@ -52,7 +52,7 @@ describe("FormField component tests", () => {
 
     it("should render a text input for first name", () => {
       // Arrange
-      const TestForm = createFormComponent(firstNameSchema);
+      const TestForm = createTestFormComponent(firstNameSchema);
       renderWithProviders(
         <TestForm>
           {(control) => (
@@ -77,7 +77,7 @@ describe("FormField component tests", () => {
 
     it("should render an email input for email", () => {
       // Arrange
-      const TestForm = createFormComponent(emailSchema);
+      const TestForm = createTestFormComponent(emailSchema);
       renderWithProviders(
         <TestForm>
           {(control) => (
@@ -103,7 +103,7 @@ describe("FormField component tests", () => {
 
     it("should render the label", () => {
       // Arrange
-      const TestForm = createFormComponent(firstNameSchema);
+      const TestForm = createTestFormComponent(firstNameSchema);
       renderWithProviders(
         <TestForm>
           {(control) => (
@@ -127,7 +127,7 @@ describe("FormField component tests", () => {
     it("should show required error when field is empty and blurred", async () => {
       // Arrange
       const user = userEvent.setup();
-      const TestForm = createFormComponent(firstNameSchema);
+      const TestForm = createTestFormComponent(firstNameSchema);
       renderWithProviders(
         <TestForm>
           {(control) => (
@@ -156,7 +156,7 @@ describe("FormField component tests", () => {
     it("should not show error when field is filled with valid data", async () => {
       // Arrange
       const user = userEvent.setup();
-      const TestForm = createFormComponent(firstNameSchema);
+      const TestForm = createTestFormComponent(firstNameSchema);
       renderWithProviders(
         <TestForm>
           {(control) => (
@@ -184,7 +184,7 @@ describe("FormField component tests", () => {
   describe("controlled value", () => {
     it("should accept a default value", () => {
       // Arrange
-      const TestForm = createFormComponent(testFormSchema);
+      const TestForm = createTestFormComponent(testFormSchema);
       renderWithProviders(
         <TestForm
           defaultValues={{ firstName: "Jane", email: "jane@example.com" }}
@@ -219,7 +219,7 @@ describe("FormField component tests", () => {
     it("should update value on user input", async () => {
       // Arrange
       const user = userEvent.setup();
-      const TestForm = createFormComponent(firstNameSchema);
+      const TestForm = createTestFormComponent(firstNameSchema);
       renderWithProviders(
         <TestForm>
           {(control) => (
