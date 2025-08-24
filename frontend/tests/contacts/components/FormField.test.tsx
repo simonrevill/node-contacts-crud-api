@@ -2,13 +2,29 @@ import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { FormField } from "components";
-import {
-  createFormComponent,
-  emailSchema,
-  firstNameSchema,
-  renderWithProviders,
-  testFormSchema,
-} from "test-utils";
+import { createFormComponent, renderWithProviders } from "test-utils";
+import z from "zod";
+
+export const firstNameSchema = z.object({
+  firstName: z
+    .string("First name is required.")
+    .min(2, { message: "First name requires at least 2 characters." }),
+});
+
+export const emailSchema = z.object({
+  email: z.email({
+    error: (issue) => {
+      if (issue.input === "") {
+        return "Email is required.";
+      }
+      return "Email provided has an incorrect format.";
+    },
+  }),
+});
+
+export const testFormSchema = z
+  .object({})
+  .extend({ ...firstNameSchema.shape, ...emailSchema.shape });
 
 describe("FormField component tests", () => {
   describe("initial rendering", () => {
