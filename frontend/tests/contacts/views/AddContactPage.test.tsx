@@ -7,8 +7,6 @@ describe("AddContactPage tests", () => {
   it("should render a back button that links back to the contacts page", async () => {
     // Arrange
     renderWithProviders(<AddContactPage />);
-
-    // Act
     const backButton = screen.getByRole("button", { name: /Back/i });
 
     // Assert
@@ -18,8 +16,6 @@ describe("AddContactPage tests", () => {
   it("should render the correct heading", async () => {
     // Arrange
     renderWithProviders(<AddContactPage />);
-
-    // Act
     const addContactHeading = screen.getByRole("heading", {
       level: 2,
       name: /Add a contact/i,
@@ -27,5 +23,31 @@ describe("AddContactPage tests", () => {
 
     // Assert
     expect(addContactHeading).toBeVisible();
+  });
+
+  it("should render the add new contact form with the correct inputs", () => {
+    // Arrange
+    renderWithProviders(<AddContactPage />);
+    const form = screen.getByRole("form", {
+      name: /Add a contact/i,
+    });
+    const firstNameInput = screen.getByLabelText(/First name/i);
+    const lastNameInput = screen.getByLabelText(/Last name/i);
+    const emailInput = screen.getByLabelText(/Email/i);
+    const cancelButton = screen.getByRole("button", { name: /Cancel/i });
+    const submitButton = screen.getByRole("button", { name: /Submit/i });
+
+    // Assert
+    expect(form).toBeVisible();
+    expect(firstNameInput).toBeVisible();
+    expect(firstNameInput).toHaveValue("");
+    expect(lastNameInput).toBeVisible();
+    expect(lastNameInput).toHaveValue("");
+    expect(emailInput).toBeVisible();
+    expect(emailInput).toHaveValue("");
+    expect(cancelButton).toBeVisible();
+    expect(cancelButton).toBeEnabled();
+    expect(submitButton).toBeVisible();
+    expect(submitButton).toBeDisabled();
   });
 });

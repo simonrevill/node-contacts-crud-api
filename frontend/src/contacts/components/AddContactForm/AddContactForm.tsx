@@ -10,7 +10,7 @@ export default function AddContactForm() {
     useAddContactForm();
 
   return (
-    <Box as="form" onSubmit={onSubmit}>
+    <Box as="form" aria-labelledby="add-a-contact-heading" onSubmit={onSubmit}>
       <FormField
         name="firstName"
         label="First name"

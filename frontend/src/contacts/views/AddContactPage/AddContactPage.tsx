@@ -15,7 +15,7 @@ export default function AddContactPage() {
           </Button>
         </NavLink>
       </ChakraLink>
-      <Heading as="h2" mb={6}>
+      <Heading as="h2" id="add-a-contact-heading" mb={6}>
         Add a contact
       </Heading>
       <AddContactForm />
