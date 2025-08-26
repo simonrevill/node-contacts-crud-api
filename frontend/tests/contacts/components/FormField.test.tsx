@@ -38,7 +38,7 @@ describe("FormField component tests", () => {
               name="firstName"
               label="First name"
               control={control}
-              placeholder="Enter your first name"
+              placeholder="Enter a first name"
             />
           )}
         </TestForm>
@@ -60,7 +60,7 @@ describe("FormField component tests", () => {
               name="firstName"
               label="First name"
               control={control}
-              placeholder="Enter your first name"
+              placeholder="Enter a first name"
             />
           )}
         </TestForm>
@@ -71,7 +71,7 @@ describe("FormField component tests", () => {
       expect(input).toBeVisible();
       expect(input).toHaveAttribute("type", "text");
       expect(input).toHaveAttribute("name", "firstName");
-      expect(input).toHaveAttribute("placeholder", "Enter your first name");
+      expect(input).toHaveAttribute("placeholder", "Enter a first name");
       expect(input).toHaveValue("");
     });
 
@@ -111,7 +111,7 @@ describe("FormField component tests", () => {
               name="firstName"
               label="First name"
               control={control}
-              placeholder="Enter your first name"
+              placeholder="Enter a first name"
             />
           )}
         </TestForm>
@@ -135,7 +135,7 @@ describe("FormField component tests", () => {
               name="firstName"
               label="First name"
               control={control}
-              placeholder="Enter your first name"
+              placeholder="Enter a first name"
             />
           )}
         </TestForm>
@@ -164,7 +164,7 @@ describe("FormField component tests", () => {
               name="firstName"
               label="First name"
               control={control}
-              placeholder="Enter your first name"
+              placeholder="Enter a first name"
             />
           )}
         </TestForm>
@@ -195,7 +195,7 @@ describe("FormField component tests", () => {
                 name="firstName"
                 label="First name"
                 control={control}
-                placeholder="Enter your first name"
+                placeholder="Enter a first name"
               />
               <FormField
                 type="email"
@@ -227,7 +227,7 @@ describe("FormField component tests", () => {
               name="firstName"
               label="First name"
               control={control}
-              placeholder="Enter your first name"
+              placeholder="Enter a first name"
             />
           )}
         </TestForm>

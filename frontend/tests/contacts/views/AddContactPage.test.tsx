@@ -42,10 +42,7 @@ describe("AddContactPage tests", () => {
     expect(firstNameInput).toBeVisible();
     expect(firstNameInput).toHaveAttribute("type", "text");
     expect(firstNameInput).toHaveAttribute("name", "firstName");
-    expect(firstNameInput).toHaveAttribute(
-      "placeholder",
-      "Enter your first name"
-    );
+    expect(firstNameInput).toHaveAttribute("placeholder", "Enter a first name");
     expect(firstNameInput).toHaveValue("");
     expect(lastNameInput).toBeVisible();
     expect(lastNameInput).toHaveAttribute("type", "text");

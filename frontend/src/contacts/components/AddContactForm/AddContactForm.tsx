@@ -15,7 +15,7 @@ export default function AddContactForm() {
         name="firstName"
         label="First name"
         control={control}
-        placeholder="Enter your first name"
+        placeholder="Enter a first name"
       />
       <FormField
         name="lastName"
