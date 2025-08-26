@@ -40,10 +40,28 @@ describe("AddContactPage tests", () => {
     // Assert
     expect(form).toBeVisible();
     expect(firstNameInput).toBeVisible();
+    expect(firstNameInput).toHaveAttribute("type", "text");
+    expect(firstNameInput).toHaveAttribute("name", "firstName");
+    expect(firstNameInput).toHaveAttribute(
+      "placeholder",
+      "Enter your first name"
+    );
     expect(firstNameInput).toHaveValue("");
     expect(lastNameInput).toBeVisible();
+    expect(lastNameInput).toHaveAttribute("type", "text");
+    expect(lastNameInput).toHaveAttribute("name", "lastName");
+    expect(lastNameInput).toHaveAttribute(
+      "placeholder",
+      "Enter your last name"
+    );
     expect(lastNameInput).toHaveValue("");
     expect(emailInput).toBeVisible();
+    expect(emailInput).toHaveAttribute("type", "email");
+    expect(emailInput).toHaveAttribute("name", "email");
+    expect(emailInput).toHaveAttribute(
+      "placeholder",
+      "Enter your email address"
+    );
     expect(emailInput).toHaveValue("");
     expect(cancelButton).toBeVisible();
     expect(cancelButton).toBeEnabled();
