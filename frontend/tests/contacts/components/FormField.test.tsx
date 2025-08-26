@@ -86,7 +86,7 @@ describe("FormField component tests", () => {
               name="email"
               label="Email"
               control={control}
-              placeholder="Enter your email address"
+              placeholder="Enter an email address"
             />
           )}
         </TestForm>
@@ -97,7 +97,7 @@ describe("FormField component tests", () => {
       expect(input).toBeVisible();
       expect(input).toHaveAttribute("type", "email");
       expect(input).toHaveAttribute("name", "email");
-      expect(input).toHaveAttribute("placeholder", "Enter your email address");
+      expect(input).toHaveAttribute("placeholder", "Enter an email address");
       expect(input).toHaveValue("");
     });
 
@@ -202,7 +202,7 @@ describe("FormField component tests", () => {
                 name="email"
                 label="Email"
                 control={control}
-                placeholder="Enter your email address"
+                placeholder="Enter an email address"
               />
             </>
           )}

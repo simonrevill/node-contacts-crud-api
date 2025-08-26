@@ -21,14 +21,14 @@ export default function AddContactForm() {
         name="lastName"
         label="Last name"
         control={control}
-        placeholder="Enter your last name"
+        placeholder="Enter a last name"
       />
       <FormField
         type="email"
         name="email"
         label="Email"
         control={control}
-        placeholder="Enter your email address"
+        placeholder="Enter an email address"
       />
       <Box display="flex" justifyContent="flex-end" gap={4}>
         <ChakraLink asChild textDecoration="none">
