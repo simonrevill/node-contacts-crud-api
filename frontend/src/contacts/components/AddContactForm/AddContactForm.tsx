@@ -31,7 +31,7 @@ export default function AddContactForm() {
         placeholder="Enter your email address"
       />
       <Box display="flex" justifyContent="flex-end" gap={4}>
-        <ChakraLink asChild>
+        <ChakraLink asChild textDecoration="none">
           <NavLink to="/">
             <Button variant="outline">
               <X />

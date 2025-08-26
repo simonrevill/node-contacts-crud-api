@@ -7,7 +7,7 @@ import { AddContactForm, Main } from "components";
 export default function AddContactPage() {
   return (
     <Main>
-      <ChakraLink asChild>
+      <ChakraLink textDecoration="none" asChild>
         <NavLink to="/">
           <Button variant="outline" mb={6}>
             <ChevronLeft />
