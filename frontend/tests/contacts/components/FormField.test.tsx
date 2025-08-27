@@ -22,9 +22,10 @@ export const emailSchema = z.object({
   }),
 });
 
-export const testFormSchema = z
-  .object({})
-  .extend({ ...firstNameSchema.shape, ...emailSchema.shape });
+export const testFormSchema = z.object({
+  ...firstNameSchema.shape,
+  ...emailSchema.shape,
+});
 
 describe("FormField component tests", () => {
   describe("initial rendering", () => {
