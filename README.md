@@ -1,28 +1,35 @@
 # Node Contacts CRUD API
 
-### Test coverage
+<div align="center">
+  <h3>Test coverage<h3>
+  
+  <a href="https://codecov.io/github/simonrevill/node-contacts-crud-api">
+    <img src="https://codecov.io/github/simonrevill/node-contacts-crud-api/branch/main/graph/badge.svg?token=QTB4X3Y34Y" alt="codecov"/>
+  </a>
 
-<a href="https://codecov.io/github/simonrevill/node-contacts-crud-api">
-  <img src="https://codecov.io/github/simonrevill/node-contacts-crud-api/branch/main/graph/badge.svg?token=QTB4X3Y34Y" alt="codecov"/>
-</a><br>
+  <h3>CI Status<h3>
 
-### CI Status
+  <p align="center">
+    <a href="https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/backend_qa.yml">
+      <img src="https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/backend_qa.yml/badge.svg?branch=main" alt="Backend CI pipeline"/>
+    </a>
+    <a href="https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/backend_qa_mutation.yml">
+      <img src="https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/backend_qa_mutation.yml/badge.svg" alt="Backend Mutation Tests"/>
+    </a>
+  </p>
 
-<a href="https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/backend_qa.yml">
-  <img src="https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/backend_qa.yml/badge.svg?branch=main" alt="Backend CI pipeline"/>
-</a><br>
-<a href="https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/backend_qa_mutation.yml">
-  <img src="https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/backend_qa_mutation.yml/badge.svg" alt="Backend Mutation Tests"/>
-</a><br>
-<a href="https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/frontend_qa.yml">
-  <img src="https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/frontend_qa.yml/badge.svg" alt="Frontend CI Pipeline"/>
-</a><br>
-<a href="https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/frontend_qa_mutation.yml">
-  <img src="https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/frontend_qa_mutation.yml/badge.svg" alt="Frontend Mutation Tests"/>
-</a><br>
-<a href="https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/e2e_qa.yml">
-  <img src="https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/e2e_qa.yml/badge.svg" alt="Playwright Tests"/>
-</a>
+  <p align="center">
+    <a href="https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/frontend_qa.yml">
+      <img src="https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/frontend_qa.yml/badge.svg" alt="Frontend CI Pipeline"/>
+    </a>
+    <a href="https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/frontend_qa_mutation.yml">
+      <img src="https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/frontend_qa_mutation.yml/badge.svg" alt="Frontend Mutation Tests"/>
+    </a>
+    <a href="https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/e2e_qa.yml">
+      <img src="https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/e2e_qa.yml/badge.svg" alt="Playwright Tests"/>
+    </a>
+  </p>
+</div>
 
 ## Introduction
 
