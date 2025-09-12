@@ -2,7 +2,7 @@
 
 <div align="center">
   <h3>Test coverage<h3>
-  
+
   <a href="https://codecov.io/github/simonrevill/node-contacts-crud-api">
     <img src="https://codecov.io/github/simonrevill/node-contacts-crud-api/branch/main/graph/badge.svg?token=QTB4X3Y34Y" alt="codecov"/>
   </a>
@@ -25,6 +25,9 @@
     <a href="https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/frontend_qa_mutation.yml">
       <img src="https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/frontend_qa_mutation.yml/badge.svg" alt="Frontend Mutation Tests"/>
     </a>
+  </p>
+  
+  <p align="center">
     <a href="https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/e2e_qa.yml">
       <img src="https://github.com/simonrevill/node-contacts-crud-api/actions/workflows/e2e_qa.yml/badge.svg" alt="Playwright Tests"/>
     </a>
