@@ -5,7 +5,7 @@ import { renderWithProviders } from "../test-utils";
 
 describe("ContactsPageContainer component tests", () => {
   it("should render the heading", () => {
-    renderWithProviders(<ContactsPageContainer>test</ContactsPageContainer>);
+    renderWithProviders(<ContactsPageContainer />);
 
     // Assert
     const mainElement = screen.getByRole("main");

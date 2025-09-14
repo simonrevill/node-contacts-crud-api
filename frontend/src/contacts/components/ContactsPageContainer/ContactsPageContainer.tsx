@@ -1,11 +1,9 @@
-import type { ReactNode } from "react";
+import type { ComponentProps } from "react";
 import { Heading } from "@chakra-ui/react";
 
 import { Main } from "components";
 
-interface ContactsPageContainerProps {
-  children: ReactNode;
-}
+type ContactsPageContainerProps = ComponentProps<"main">;
 
 export default function ContactsPageContainer({
   children,
