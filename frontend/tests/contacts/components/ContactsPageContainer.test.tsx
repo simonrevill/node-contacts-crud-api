@@ -5,6 +5,7 @@ import { createMockContactData, renderWithProviders } from "../test-utils";
 import { createContactsApiAdapter } from "src/contacts/api/ContactsApiService";
 import { AddContactPage } from "src/contacts/views";
 import userEvent from "@testing-library/user-event";
+import { Route, Routes } from "react-router";
 
 describe("ContactsPageContainer component tests", () => {
   it("should render the heading", () => {
@@ -57,12 +58,13 @@ describe("ContactsPageContainer component tests", () => {
       json: () => fakeContactData,
     });
     renderWithProviders(
-      <>
-        <AddContactPage />
-        <ContactsPageContainer />
-      </>,
+      <Routes>
+        <Route path="/" element={<ContactsPageContainer />} />
+        <Route path="/create" element={<AddContactPage />} />
+      </Routes>,
       {
         api: createContactsApiAdapter({ request: mock }),
+        initialEntries: ["/"],
       }
     );
     const addContactButton = screen.getByRole("button", {

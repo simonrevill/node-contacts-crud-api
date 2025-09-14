@@ -10,7 +10,7 @@ import {
   QueryClientProvider,
   type QueryClientConfig,
 } from "@tanstack/react-query";
-import { MemoryRouter } from "react-router";
+import { MemoryRouter, type InitialEntry } from "react-router";
 import z from "zod";
 import { useForm, type Control, type DefaultValues } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -46,11 +46,12 @@ export const createMockContactResponse = (
 
 type ProvidersOptions = {
   api?: IContactsAPI;
+  initialEntries?: InitialEntry[];
 } & RenderOptions;
 
 export function renderWithProviders(
   ui: React.ReactElement,
-  { api, ...renderOptions }: ProvidersOptions = {}
+  { api, initialEntries, ...renderOptions }: ProvidersOptions = {}
 ) {
   const queryClientTestConfig: QueryClientConfig = {
     defaultOptions: {
@@ -68,7 +69,7 @@ export function renderWithProviders(
   let tree = (
     <QueryClientProvider client={queryClient}>
       <ChakraProvider value={defaultSystem}>
-        <MemoryRouter>{ui}</MemoryRouter>
+        <MemoryRouter {...initialEntries}>{ui}</MemoryRouter>
       </ChakraProvider>
     </QueryClientProvider>
   );
@@ -78,7 +79,7 @@ export function renderWithProviders(
       <QueryClientProvider client={queryClient}>
         <ChakraProvider value={defaultSystem}>
           <ContactsApiProvider api={api}>
-            <MemoryRouter>{ui}</MemoryRouter>
+            <MemoryRouter {...initialEntries}>{ui}</MemoryRouter>
           </ContactsApiProvider>
         </ChakraProvider>
       </QueryClientProvider>
