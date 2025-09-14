@@ -1,9 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router";
 
 import { useContactsApi } from "api/ContactsApiContext";
 import { fetchContacts } from "useCases";
 
 export default function useContacts() {
+  const navigate = useNavigate();
   const contactsApi = useContactsApi();
   const {
     data: contacts,
@@ -16,10 +18,15 @@ export default function useContacts() {
 
   const hasNoContacts = contacts?.length === 0;
 
+  const handleAddContact = () => {
+    navigate("/create");
+  };
+
   return {
     contacts,
     isLoading,
     isError,
     hasNoContacts,
+    handleAddContact,
   };
 }

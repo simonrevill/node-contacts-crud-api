@@ -1,18 +1,27 @@
 import type { ComponentProps } from "react";
-import { Heading } from "@chakra-ui/react";
+import { Box, Button, Heading } from "@chakra-ui/react";
 
 import { Main } from "components";
+import { useContacts } from "src/contacts/hooks";
 
 type ContactsPageContainerProps = ComponentProps<"main">;
 
 export default function ContactsPageContainer({
   children,
 }: ContactsPageContainerProps) {
+  const { handleAddContact } = useContacts();
+
   return (
     <Main>
-      <Heading as="h2" mb={8}>
-        My Contacts
-      </Heading>
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        mb={8}
+      >
+        <Heading as="h2">My Contacts</Heading>
+        <Button onClick={handleAddContact}>Add contact</Button>
+      </Box>
       {children}
     </Main>
   );
