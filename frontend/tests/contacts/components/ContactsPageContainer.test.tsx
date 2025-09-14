@@ -4,8 +4,7 @@ import { ContactsPageContainer } from "components";
 import { renderWithProviders } from "../test-utils";
 
 describe("ContactsPageContainer component tests", () => {
-  it("should render the the loading message", () => {
-    // Arrange
+  it("should render the heading", () => {
     renderWithProviders(<ContactsPageContainer>test</ContactsPageContainer>);
 
     // Assert
