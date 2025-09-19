@@ -69,7 +69,7 @@ export function renderWithProviders(
   let tree = (
     <QueryClientProvider client={queryClient}>
       <ChakraProvider value={defaultSystem}>
-        <MemoryRouter {...initialEntries}>{ui}</MemoryRouter>
+        <MemoryRouter initialEntries={initialEntries}>{ui}</MemoryRouter>
       </ChakraProvider>
     </QueryClientProvider>
   );
@@ -79,7 +79,7 @@ export function renderWithProviders(
       <QueryClientProvider client={queryClient}>
         <ChakraProvider value={defaultSystem}>
           <ContactsApiProvider api={api}>
-            <MemoryRouter {...initialEntries}>{ui}</MemoryRouter>
+            <MemoryRouter initialEntries={initialEntries}>{ui}</MemoryRouter>
           </ContactsApiProvider>
         </ChakraProvider>
       </QueryClientProvider>
