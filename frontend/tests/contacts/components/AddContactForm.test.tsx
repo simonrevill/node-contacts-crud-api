@@ -1,14 +1,24 @@
-import { screen } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { AddContactForm } from "components";
+import type { IContactsAPI } from "src/types";
 import { renderWithProviders } from "test-utils";
+
+const apiStub: IContactsAPI = {
+  fetchContacts: vi.fn(),
+  createContact: vi
+    .fn()
+    .mockImplementation(
+      () => new Promise((resolve) => setTimeout(() => resolve({}), 50))
+    ),
+};
 
 describe("AddContactForm tests", () => {
   describe("initial rendering", () => {
     it("should render a input field for a first name", async () => {
       // Arrange
-      renderWithProviders(<AddContactForm />);
+      renderWithProviders(<AddContactForm />, { api: apiStub });
 
       // Assert
       const firstNameInput: HTMLInputElement =
@@ -21,7 +31,7 @@ describe("AddContactForm tests", () => {
 
     it("should render a input field for a last name", async () => {
       // Arrange
-      renderWithProviders(<AddContactForm />);
+      renderWithProviders(<AddContactForm />, { api: apiStub });
 
       // Assert
       const lastNameInput: HTMLInputElement =
@@ -34,7 +44,7 @@ describe("AddContactForm tests", () => {
 
     it("should render a input field for an email", async () => {
       // Arrange
-      renderWithProviders(<AddContactForm />);
+      renderWithProviders(<AddContactForm />, { api: apiStub });
 
       // Assert
       const emailInput: HTMLInputElement = screen.getByLabelText(/Email/i);
@@ -46,7 +56,7 @@ describe("AddContactForm tests", () => {
 
     it("should render a cancel button that links back to the contacts page", async () => {
       // Arrange
-      renderWithProviders(<AddContactForm />);
+      renderWithProviders(<AddContactForm />, { api: apiStub });
 
       // Assert
       const cancelButton = screen.getByRole("link", { name: /Cancel/i });
@@ -56,7 +66,7 @@ describe("AddContactForm tests", () => {
 
     it("should render a submit button that submits the form", async () => {
       // Arrange
-      renderWithProviders(<AddContactForm />);
+      renderWithProviders(<AddContactForm />, { api: apiStub });
 
       // Assert
       const submitButton = screen.getByRole("button", { name: /Submit/i });
@@ -84,7 +94,7 @@ describe("AddContactForm tests", () => {
       async ({ fieldName, error }) => {
         // Arrange
         const user = userEvent.setup();
-        renderWithProviders(<AddContactForm />);
+        renderWithProviders(<AddContactForm />, { api: apiStub });
 
         const field: HTMLInputElement = screen.getByLabelText(fieldName);
 
@@ -126,7 +136,7 @@ describe("AddContactForm tests", () => {
       async ({ fieldName, value, error }) => {
         // Arrange
         const user = userEvent.setup();
-        renderWithProviders(<AddContactForm />);
+        renderWithProviders(<AddContactForm />, { api: apiStub });
 
         const field: HTMLInputElement = screen.getByLabelText(fieldName);
 
@@ -150,7 +160,7 @@ describe("AddContactForm tests", () => {
     it("should show no validation errors and an enabled submit button when provided form data is valid", async () => {
       // Arrange
       const user = userEvent.setup();
-      renderWithProviders(<AddContactForm />);
+      renderWithProviders(<AddContactForm />, { api: apiStub });
 
       // Act
       const validFormData = [
@@ -177,7 +187,7 @@ describe("AddContactForm tests", () => {
     it("should display submitting text on a disabled submit button when the form is submitted with valid data", async () => {
       // Arrange
       const user = userEvent.setup();
-      renderWithProviders(<AddContactForm />);
+      renderWithProviders(<AddContactForm />, { api: apiStub });
 
       const firstNameInput: HTMLInputElement =
         screen.getByLabelText(/First name/i);
@@ -192,8 +202,10 @@ describe("AddContactForm tests", () => {
       await user.type(emailInput, "john.smith@gmail.com");
       await user.click(submitButton);
 
-      expect(submitButton).toHaveTextContent("Submitting...");
-      expect(submitButton).toBeDisabled();
+      await waitFor(() => {
+        expect(submitButton).toHaveTextContent("Submitting...");
+        expect(submitButton).toBeDisabled();
+      });
     });
   });
 });

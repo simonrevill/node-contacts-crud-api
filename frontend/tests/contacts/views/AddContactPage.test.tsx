@@ -1,7 +1,14 @@
-import { screen } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
-import { AddContactPage } from "views";
-import { renderWithProviders } from "test-utils";
+import { AddContactPage, ContactsPage } from "views";
+import {
+  ContactBuilder,
+  createMockContactData,
+  renderWithProviders,
+} from "test-utils";
+import { Route, Routes } from "react-router";
+import { createContactsApiAdapter } from "src/contacts/api/ContactsApiService";
 
 describe("AddContactPage tests", () => {
   it("should render a back button that links back to the contacts page", async () => {
@@ -58,5 +65,51 @@ describe("AddContactPage tests", () => {
     expect(cancelButton).toBeEnabled();
     expect(submitButton).toBeVisible();
     expect(submitButton).toBeDisabled();
+  });
+
+  it.only("should navigate back to the contacts page showing the new contact when user submits a valid new contact", async () => {
+    // Arrange
+    const user = userEvent.setup();
+    const existingContacts = createMockContactData(3);
+    const newContact = new ContactBuilder()
+      .withFirstName("John")
+      .withLastName("Doe")
+      .withEmail("john.doe@example.com");
+    const mock = vi
+      .fn()
+      .mockResolvedValueOnce({
+        ok: true,
+        json: () => Promise.resolve(existingContacts),
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        json: () => Promise.resolve([...existingContacts, newContact]),
+      });
+    renderWithProviders(
+      <Routes>
+        <Route path="/" element={<ContactsPage />} />
+        <Route path="/create" element={<AddContactPage />} />
+      </Routes>,
+      {
+        api: createContactsApiAdapter({ request: mock }),
+        initialEntries: ["/create"],
+      }
+    );
+    const firstNameInput = screen.getByLabelText(/First name/i);
+    const lastNameInput = screen.getByLabelText(/Last name/i);
+    const emailInput = screen.getByLabelText(/Email/i);
+    const submitButton = screen.getByRole("button", { name: /Submit/i });
+
+    // Act
+    await user.type(firstNameInput, "John");
+    await user.type(lastNameInput, "Doe");
+    await user.type(emailInput, "john.doe@example.com");
+    await user.click(submitButton);
+
+    await waitFor(() => {
+      expect(
+        screen.getByText(`${newContact.firstName} ${newContact.lastName}`)
+      ).toBeVisible();
+    });
   });
 });

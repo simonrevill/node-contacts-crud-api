@@ -1,8 +1,24 @@
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, type SubmitHandler } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+import type { ContactInput } from "backend/domain/models";
+import { useContactsApi } from "../api/ContactsApiContext";
 import z from "zod/v4";
+import { useNavigate } from "react-router";
 
 export default function useAddContactForm() {
+  const navigate = useNavigate();
+  const contactsApi = useContactsApi();
+  const mutation = useMutation({
+    mutationFn: async (newContact: ContactInput) => {
+      await contactsApi.createContact(newContact);
+    },
+    onSuccess: () => {
+      navigate("/");
+    },
+  });
+
   const addContactFormSchema = z.object({
     firstName: z
       .string()
@@ -35,9 +51,7 @@ export default function useAddContactForm() {
   });
 
   const onSubmitHandler: SubmitHandler<AddContactFormData> = async (values) =>
-    await new Promise((resolve) => {
-      setTimeout(() => resolve(values), 50);
-    });
+    await mutation.mutateAsync(values);
 
   const onSubmit = handleSubmit(onSubmitHandler);
 
