@@ -2,17 +2,7 @@ import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { AddContactForm } from "components";
-import type { IContactsAPI } from "src/types";
-import { renderWithProviders } from "test-utils";
-
-const apiStub: IContactsAPI = {
-  fetchContacts: vi.fn(),
-  createContact: vi
-    .fn()
-    .mockImplementation(
-      () => new Promise((resolve) => setTimeout(() => resolve({}), 50))
-    ),
-};
+import { apiStub, renderWithProviders } from "test-utils";
 
 describe("AddContactForm tests", () => {
   describe("initial rendering", () => {
@@ -187,7 +177,17 @@ describe("AddContactForm tests", () => {
     it("should display submitting text on a disabled submit button when the form is submitted with valid data", async () => {
       // Arrange
       const user = userEvent.setup();
-      renderWithProviders(<AddContactForm />, { api: apiStub });
+      renderWithProviders(<AddContactForm />, {
+        api: {
+          ...apiStub,
+          // Add a delay to allow rendering of the 'Submitting...' text
+          createContact: vi
+            .fn()
+            .mockImplementation(
+              () => new Promise((resolve) => setTimeout(() => resolve({}), 50))
+            ),
+        },
+      });
 
       const firstNameInput: HTMLInputElement =
         screen.getByLabelText(/First name/i);

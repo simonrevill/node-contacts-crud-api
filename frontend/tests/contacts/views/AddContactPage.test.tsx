@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 
 import { AddContactPage, ContactsPage } from "views";
 import {
+  apiStub,
   ContactBuilder,
   createMockContactData,
   renderWithProviders,
@@ -13,7 +14,7 @@ import { createContactsApiAdapter } from "src/contacts/api/ContactsApiService";
 describe("AddContactPage tests", () => {
   it("should render a back button that links back to the contacts page", async () => {
     // Arrange
-    renderWithProviders(<AddContactPage />);
+    renderWithProviders(<AddContactPage />, { api: apiStub });
     const backButton = screen.getByRole("button", { name: /Back/i });
 
     // Assert
@@ -22,7 +23,7 @@ describe("AddContactPage tests", () => {
 
   it("should render the correct heading", async () => {
     // Arrange
-    renderWithProviders(<AddContactPage />);
+    renderWithProviders(<AddContactPage />, { api: apiStub });
     const addContactHeading = screen.getByRole("heading", {
       level: 2,
       name: /Add a contact/i,
@@ -34,7 +35,7 @@ describe("AddContactPage tests", () => {
 
   it("should render the add new contact form with the correct inputs", () => {
     // Arrange
-    renderWithProviders(<AddContactPage />);
+    renderWithProviders(<AddContactPage />, { api: apiStub });
     const form = screen.getByRole("form", {
       name: /Add a contact/i,
     });
@@ -67,7 +68,7 @@ describe("AddContactPage tests", () => {
     expect(submitButton).toBeDisabled();
   });
 
-  it.only("should navigate back to the contacts page showing the new contact when user submits a valid new contact", async () => {
+  it("should navigate back to the contacts page showing the new contact when user submits a valid new contact", async () => {
     // Arrange
     const user = userEvent.setup();
     const existingContacts = createMockContactData(3);

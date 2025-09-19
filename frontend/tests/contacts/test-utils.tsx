@@ -49,6 +49,11 @@ type ProvidersOptions = {
   initialEntries?: InitialEntry[];
 } & RenderOptions;
 
+export const apiStub: IContactsAPI = {
+  fetchContacts: vi.fn(),
+  createContact: vi.fn(),
+};
+
 export function renderWithProviders(
   ui: React.ReactElement,
   { api, initialEntries, ...renderOptions }: ProvidersOptions = {}
