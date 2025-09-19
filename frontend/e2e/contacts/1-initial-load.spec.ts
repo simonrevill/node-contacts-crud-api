@@ -61,6 +61,6 @@ describe("Initial load of the application", () => {
     //Assert
     await expect(contactsPage.emptyStateHeading).toBeVisible();
     await expect(contactsPage.emptyStateSubheading).toBeVisible();
-    await expect(contactsPage.addContactButton).toBeVisible();
+    await expect(contactsPage.emptyStateAddContactButton).toBeVisible();
   });
 });

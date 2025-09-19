@@ -7,8 +7,10 @@ export class ContactsPage {
   loadingMessage: Locator;
   fetchErrorMessageHeading: Locator;
   fetchErrorMessageSubheading: Locator;
+  emptyStateAlert: Locator;
   emptyStateHeading: Locator;
   emptyStateSubheading: Locator;
+  emptyStateAddContactButton: Locator;
   addContactButton: Locator;
 
   constructor(public readonly page: Page) {
@@ -30,8 +32,12 @@ export class ContactsPage {
     this.fetchErrorMessageSubheading = this.page.getByText(
       "Please try again later"
     );
+    this.emptyStateAlert = page.getByRole("alert");
     this.emptyStateHeading = page.getByText("No contacts");
     this.emptyStateSubheading = page.getByText("Add a contact to get started");
+    this.emptyStateAddContactButton = this.emptyStateAlert.getByRole("button", {
+      name: "Add contact",
+    });
     this.addContactButton = page.getByRole("button", {
       name: "Add contact",
     });
