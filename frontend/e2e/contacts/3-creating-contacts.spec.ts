@@ -100,6 +100,7 @@ describe("Creating contacts", () => {
     addContactPage,
   }) => {
     // Arrange
+    await addContactPage.simulateSubmittingValidForm();
     await addContactPage.fillAddContactFormWithValidData();
 
     // Act

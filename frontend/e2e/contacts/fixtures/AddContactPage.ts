@@ -29,4 +29,15 @@ export class AddContactPage {
     await this.lastNameInput.fill("Smith");
     await this.emailInput.fill("john.smith@gmail.com");
   }
+
+  async simulateSubmittingValidForm() {
+    await this.page.route("**/api/contacts", async (route) => {
+      await new Promise((resolve) => setTimeout(resolve, 500)); // 500ms delay
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify([]),
+      });
+    });
+  }
 }
